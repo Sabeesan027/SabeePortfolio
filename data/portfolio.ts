@@ -90,7 +90,7 @@ export const PROFILE: ProfileData = {
   profileImage: "/src/profile-studio.jpg",
   email: "sabeesan.gnanavel@gmail.com",
   socials: {
-    github: "https://github.com/sabeesan",
+    github: "https://github.com/Sabeesan027",
     linkedin: "https://www.linkedin.com/in/sabeesan-gnanavel",
   },
   coreSkills: [
