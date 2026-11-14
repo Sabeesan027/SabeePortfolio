@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -8,7 +9,6 @@ import {
   Server,
   DatabaseZap,
   ShieldAlert,
-  Zap,
 } from "lucide-react";
 import {
   MARQUEE_ROW_1,
@@ -19,6 +19,7 @@ import {
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SpringTiltCard } from "@/components/motion/SpringTiltCard";
 import { Badge } from "@/components/ui/badge";
+import { TechIcon } from "@/components/ui/tech-icon";
 import { StaggerContainer, StaggerItem } from "@/components/ui/reveal";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -32,6 +33,8 @@ const ICON_MAP: Record<
   DatabaseZap,
   ShieldAlert,
 };
+
+const STACK_BACKDROP_SRC = "/src/stack-backdrop.jpg";
 
 export function TechStackSection() {
   const sectionRef = React.useRef<HTMLElement>(null);
@@ -88,11 +91,17 @@ export function TechStackSection() {
 
   return (
     <section ref={sectionRef} id="stack" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
-      {/* Precision Blueprint Grid & Hatch Background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-blueprint-grid opacity-30 [mask-image:radial-gradient(ellipse_75%_55%_at_50%_40%,black_30%,transparent_100%)]"
-      />
+      {/* Crisp Circuit & Silicon Motherboard Backdrop Image */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <Image
+          src={STACK_BACKDROP_SRC}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#090A0F] via-transparent to-[#090A0F]" />
+      </div>
 
       {/* Atmospheric Central Cyan / Teal Radial Bloom */}
       <div
@@ -125,17 +134,17 @@ export function TechStackSection() {
           description="A versatile toolkit spanning reactive frontends, native Android, hardened backend APIs, relational/NoSQL databases, and Linux VPS DevOps."
         />
 
-        {/* GSAP Dual-Track Velocity Marquee with Frame & Edge Masks */}
-        <div className="relative mb-14 rounded-2xl border border-white/[0.08] bg-white/[0.015] py-4 backdrop-blur-md overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+        {/* GSAP Dual-Track Velocity Marquee with Dedicated Tech Icons */}
+        <div className="relative mb-14 rounded-2xl border border-white/[0.08] bg-white/[0.02] py-4 backdrop-blur-md overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
           <div className="space-y-3">
             <div ref={track1Ref} className="flex w-max">
               {row1Items.map((item, idx) => (
                 <div
                   key={`r1-${item}-${idx}`}
-                  className="mx-2 flex items-center gap-2 rounded-full border border-white/[0.1] bg-[#0D1117]/80 px-4 py-2 text-xs font-mono text-slate-300 transition-colors hover:border-cyan-400/50 hover:text-cyan-200 sm:text-sm shadow-[0_2px_10px_rgba(0,0,0,0.3)]"
+                  className="mx-2 flex items-center gap-2 rounded-full border border-white/[0.1] bg-[#0D1117]/85 px-4 py-2 text-xs font-mono text-slate-300 transition-colors hover:border-cyan-400/50 hover:text-cyan-200 sm:text-sm shadow-[0_2px_10px_rgba(0,0,0,0.3)]"
                 >
-                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
-                  {item}
+                  <TechIcon name={item} className="h-3.5 w-3.5 text-cyan-400" />
+                  <span>{item}</span>
                 </div>
               ))}
             </div>
@@ -144,23 +153,23 @@ export function TechStackSection() {
               {row2Items.map((item, idx) => (
                 <div
                   key={`r2-${item}-${idx}`}
-                  className="mx-2 flex items-center gap-2 rounded-full border border-white/[0.1] bg-[#0D1117]/80 px-4 py-2 text-xs font-mono text-slate-300 transition-colors hover:border-teal-400/50 hover:text-teal-200 sm:text-sm shadow-[0_2px_10px_rgba(0,0,0,0.3)]"
+                  className="mx-2 flex items-center gap-2 rounded-full border border-white/[0.1] bg-[#0D1117]/85 px-4 py-2 text-xs font-mono text-slate-300 transition-colors hover:border-teal-400/50 hover:text-teal-200 sm:text-sm shadow-[0_2px_10px_rgba(0,0,0,0.3)]"
                 >
-                  <span className="h-1.5 w-1.5 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(20,184,166,0.8)]" />
-                  {item}
+                  <TechIcon name={item} className="h-3.5 w-3.5 text-teal-400" />
+                  <span>{item}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Categorized 4-Pillar Grid */}
+        {/* Categorized 4-Pillar Grid with Real Tech Icons */}
         <StaggerContainer className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {SKILL_CATEGORIES.map((category) => {
             const Icon = ICON_MAP[category.iconName];
             return (
               <StaggerItem key={category.id}>
-                <SpringTiltCard tiltIntensity={4} className="p-6 sm:p-7 h-full flex flex-col justify-between border-white/[0.08] hover:border-cyan-400/40">
+                <SpringTiltCard tiltIntensity={4} className="p-6 sm:p-7 h-full flex flex-col justify-between border-white/[0.08] hover:border-cyan-400/40 bg-[#0D1117]/80 backdrop-blur-md">
                   <div>
                     <div className="flex items-start justify-between gap-4 mb-5">
                       <div className="flex items-center gap-3.5">
@@ -183,21 +192,20 @@ export function TechStackSection() {
 
                     <div className="flex flex-wrap gap-2">
                       {category.skills.map((skill) => (
-                        <Badge
+                        <span
                           key={skill}
-                          variant="glass"
-                          className="py-1.5 px-3 hover:border-cyan-400/40 hover:text-cyan-200 transition-colors"
+                          className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-slate-300 hover:border-cyan-400/40 hover:text-cyan-200 transition-colors"
                         >
-                          <Zap className="h-3 w-3 text-cyan-400 mr-1" />
-                          {skill}
-                        </Badge>
+                          <TechIcon name={skill} className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+                          <span>{skill}</span>
+                        </span>
                       ))}
                     </div>
                   </div>
 
                   <div className="mt-6 pt-4 border-t border-white/[0.05] flex items-center justify-between text-[11px] font-mono text-slate-500">
                     <span>PRODUCTION VERIFIED</span>
-                    <span className="text-cyan-400/80">ACTIVE ARSENAL</span>
+                    <span className="text-cyan-400/90 font-medium">ACTIVE ARSENAL</span>
                   </div>
                 </SpringTiltCard>
               </StaggerItem>

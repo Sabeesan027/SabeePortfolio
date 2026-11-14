@@ -1,10 +1,24 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, CheckCircle2, Layers3, X, Cpu, Sparkles } from "lucide-react";
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  Layers3,
+  X,
+  Cpu,
+  Sparkles,
+  ShoppingBag,
+  Smartphone,
+  Building2,
+  MessageSquareCode,
+  Gamepad2,
+  Layers,
+} from "lucide-react";
 import {
   PROJECTS,
   type ProjectCategory,
@@ -14,11 +28,23 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { SpringTiltCard } from "@/components/motion/SpringTiltCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { TechIcon } from "@/components/ui/tech-icon";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const CATEGORIES: ProjectCategory[] = ["All", "Web", "Mobile", "AI & Systems"];
+const PROJECTS_BACKDROP_SRC = "/src/projects-backdrop.jpg";
+
+const PROJECT_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  "salesphere-pos": ShoppingBag,
+  "naviora-android": Smartphone,
+  "virtual-saree-draping": Sparkles,
+  "enterprise-construction-web": Building2,
+  "whatsapp-automation-bot": MessageSquareCode,
+  "eldoria-dragons-heart": Gamepad2,
+  "renttent-medicare-plus": Layers,
+};
 
 export function ProjectsSection() {
   const sectionRef = React.useRef<HTMLElement>(null);
@@ -92,15 +118,17 @@ export function ProjectsSection() {
 
   return (
     <section ref={sectionRef} id="projects" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
-      {/* Precision Background Atmosphere */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-arch-grid opacity-30 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,black_30%,transparent_100%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-tech-hatch opacity-30 [mask-image:linear-gradient(to_bottom,black_20%,transparent_90%)]"
-      />
+      {/* Crisp Architectural Gallery Backdrop Image */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <Image
+          src={PROJECTS_BACKDROP_SRC}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-65"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#090A0F] via-transparent to-[#090A0F]" />
+      </div>
 
       {/* Atmospheric Cyan / Sky Ambient Glow */}
       <div
@@ -139,7 +167,7 @@ export function ProjectsSection() {
           />
 
           {/* Filter Pills with Counts */}
-          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-white/[0.1] bg-[#0D1117]/80 p-1.5 backdrop-blur-xl self-start md:mb-16 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-white/[0.1] bg-[#0D1117]/85 p-1.5 backdrop-blur-xl self-start md:mb-16 shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
             {CATEGORIES.map((category) => {
               const isActive = activeCategory === category;
               const count = categoryCounts[category];
@@ -184,77 +212,89 @@ export function ProjectsSection() {
           ref={gridRef}
           className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
         >
-          {filteredProjects.map((project, index) => (
-            <div
-              key={`${activeCategory}-${project.id}`}
-              className={cn(
-                "project-grid-item",
-                index === 0 && activeCategory === "All" ? "md:col-span-2" : ""
-              )}
-            >
-              <SpringTiltCard
-                tiltIntensity={4.5}
-                onClick={() => setSelectedProject(project)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    setSelectedProject(project);
-                  }
-                }}
-                className="h-full cursor-pointer p-6 sm:p-7 flex flex-col justify-between group transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_36px_rgba(6,182,212,0.15)]"
+          {filteredProjects.map((project, index) => {
+            const ProjectIcon = PROJECT_ICON_MAP[project.id] ?? Layers3;
+            return (
+              <div
+                key={`${activeCategory}-${project.id}`}
+                className={cn(
+                  "project-grid-item",
+                  index === 0 && activeCategory === "All" ? "md:col-span-2" : ""
+                )}
               >
-                {/* Subtle top accent wash */}
-                <div
-                  aria-hidden="true"
-                  className={cn(
-                    "pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b opacity-60",
-                    project.accentGradient
-                  )}
-                />
+                <SpringTiltCard
+                  tiltIntensity={4.5}
+                  onClick={() => setSelectedProject(project)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelectedProject(project);
+                    }
+                  }}
+                  className="h-full cursor-pointer p-6 sm:p-7 flex flex-col justify-between group transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_36px_rgba(6,182,212,0.15)] bg-[#0D1117]/75 backdrop-blur-md"
+                >
+                  {/* Subtle top accent wash */}
+                  <div
+                    aria-hidden="true"
+                    className={cn(
+                      "pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b opacity-60",
+                      project.accentGradient
+                    )}
+                  />
 
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between gap-3 mb-4">
-                    <Badge variant="cyan" className="font-mono text-[11px] border-cyan-400/30 bg-cyan-500/10">
-                      {project.badge}
-                    </Badge>
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition-colors group-hover:border-cyan-400/50 group-hover:text-cyan-300 group-hover:bg-cyan-500/10">
-                      <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between gap-3 mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-cyan-400/30 bg-cyan-500/10 text-cyan-300">
+                          <ProjectIcon className="h-3.5 w-3.5" />
+                        </span>
+                        <Badge variant="cyan" className="font-mono text-[11px] border-cyan-400/30 bg-cyan-500/10">
+                          {project.badge}
+                        </Badge>
+                      </div>
+                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition-colors group-hover:border-cyan-400/50 group-hover:text-cyan-300 group-hover:bg-cyan-500/10">
+                        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-bold tracking-tight text-slate-50 group-hover:text-cyan-200 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="mt-1 text-xs font-mono text-cyan-400/90">
+                      {project.subtitle}
+                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-400 line-clamp-3">
+                      {project.summary}
+                    </p>
+                  </div>
+
+                  <div className="relative z-10 mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.stack.slice(0, 4).map((tech) => (
+                        <span
+                          key={tech}
+                          className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] text-slate-300"
+                        >
+                          <TechIcon name={tech} className="h-3 w-3 text-cyan-400 shrink-0" />
+                          <span>{tech}</span>
+                        </span>
+                      ))}
+                      {project.stack.length > 4 && (
+                        <Badge variant="glass" className="text-[11px]">
+                          +{project.stack.length - 4}
+                        </Badge>
+                      )}
+                    </div>
+                    <span className="text-[11px] font-mono text-cyan-400/90 group-hover:underline flex items-center gap-1 shrink-0 ml-2">
+                      Case Study
                     </span>
                   </div>
-
-                  <h3 className="text-xl font-bold tracking-tight text-slate-50 group-hover:text-cyan-200 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="mt-1 text-xs font-mono text-cyan-400/90">
-                    {project.subtitle}
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-400 line-clamp-3">
-                    {project.summary}
-                  </p>
-                </div>
-
-                <div className="relative z-10 mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between">
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.stack.slice(0, 4).map((tech) => (
-                      <Badge key={tech} variant="glass" className="text-[11px]">
-                        {tech}
-                      </Badge>
-                    ))}
-                    {project.stack.length > 4 && (
-                      <Badge variant="glass" className="text-[11px]">
-                        +{project.stack.length - 4}
-                      </Badge>
-                    )}
-                  </div>
-                  <span className="text-[11px] font-mono text-cyan-400/80 group-hover:underline flex items-center gap-1 shrink-0 ml-2">
-                    Case Study
-                  </span>
-                </div>
-              </SpringTiltCard>
-            </div>
-          ))}
+                </SpringTiltCard>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -267,7 +307,7 @@ export function ProjectsSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md"
+              className="fixed inset-0 bg-black/85 backdrop-blur-md"
             />
 
             <motion.div
@@ -275,7 +315,7 @@ export function ProjectsSection() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 16 }}
               transition={{ type: "spring", stiffness: 320, damping: 28 }}
-              className="relative z-10 max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-cyan-400/30 bg-[#0D1117] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.85)] sm:p-8"
+              className="relative z-10 max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-cyan-400/35 bg-[#0D1117] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.85)] sm:p-8"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -312,7 +352,7 @@ export function ProjectsSection() {
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.03] p-4 sm:p-5">
+                <div className="rounded-2xl border border-cyan-500/25 bg-cyan-500/[0.04] p-4 sm:p-5">
                   <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cyan-300">
                     <Cpu className="h-3.5 w-3.5" />
                     Architecture & Deployment
@@ -354,9 +394,13 @@ export function ProjectsSection() {
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.stack.map((tech) => (
-                      <Badge key={tech} variant="sky">
-                        {tech}
-                      </Badge>
+                      <span
+                        key={tech}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1.5 text-xs text-sky-200"
+                      >
+                        <TechIcon name={tech} className="h-3.5 w-3.5 text-sky-300 shrink-0" />
+                        <span>{tech}</span>
+                      </span>
                     ))}
                   </div>
                 </div>

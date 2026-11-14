@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 import { SERVICES, type ServiceItem } from "@/data/portfolio";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
-import { Badge } from "@/components/ui/badge";
+import { TechIcon } from "@/components/ui/tech-icon";
 import { LottieServiceIcon } from "@/components/motion/LottieServiceIcon";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -127,9 +127,13 @@ export function ServicesSection() {
 
                   <div className="mt-6 pt-4 border-t border-white/[0.05] flex flex-wrap gap-2">
                     {service.tags.map((tag) => (
-                      <Badge key={tag} variant="glass" className="group-hover:border-cyan-500/30 transition-colors">
-                        {tag}
-                      </Badge>
+                      <span
+                        key={tag}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-xs text-slate-300 group-hover:border-cyan-500/30 transition-colors"
+                      >
+                        <TechIcon name={tag} className="h-3 w-3 text-cyan-400 shrink-0" />
+                        <span>{tag}</span>
+                      </span>
                     ))}
                   </div>
                 </SpotlightCard>

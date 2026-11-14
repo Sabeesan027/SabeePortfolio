@@ -9,6 +9,9 @@ import {
   MapPin,
   Send,
   Sparkles,
+  User,
+  MessageSquare,
+  Clock,
 } from "lucide-react";
 
 function LinkedInIcon({ className }: { className?: string }) {
@@ -88,7 +91,7 @@ export function ContactSection() {
       {/* Precision Blueprint & Hatch Atmosphere */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-blueprint-grid opacity-25 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,black_35%,transparent_100%)]"
+        className="pointer-events-none absolute inset-0 bg-blueprint-grid opacity-30 [mask-image:radial-gradient(ellipse_75%_65%_at_50%_50%,black_35%,transparent_100%)]"
       />
 
       {/* Atmospheric Cyan / Sky Spotlight Bleed */}
@@ -104,11 +107,11 @@ export function ContactSection() {
       {/* Concentric Radar Signal Rings in Background */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[700px] w-[700px] opacity-15"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[720px] w-[720px] opacity-15"
       >
         <div className="absolute inset-0 rounded-full border border-dashed border-cyan-400" />
-        <div className="absolute inset-16 rounded-full border border-white/40" />
-        <div className="absolute inset-32 rounded-full border border-dashed border-cyan-400" />
+        <div className="absolute inset-20 rounded-full border border-white/40" />
+        <div className="absolute inset-40 rounded-full border border-dashed border-cyan-400" />
       </div>
 
       {/* Giant Background Watermark */}
@@ -124,9 +127,9 @@ export function ContactSection() {
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
           <div className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-teal-400 animate-pulse" />
-            <span>SEC // 06 · DIRECT CHANNEL & DISPATCH</span>
+            <span>SEC // 06 · DIRECT CHANNEL &amp; DISPATCH</span>
           </div>
-          <span className="text-slate-500">GLOBAL AVAILABILITY · HYBRID & REMOTE</span>
+          <span className="text-slate-500">GLOBAL AVAILABILITY · HYBRID &amp; REMOTE</span>
         </div>
 
         <SectionHeading
@@ -139,7 +142,7 @@ export function ContactSection() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
           {/* Left Info Card */}
           <Reveal className="lg:col-span-2">
-            <SpotlightCard className="p-6 sm:p-8 h-full flex flex-col justify-between border-white/[0.08] hover:border-cyan-400/40">
+            <SpotlightCard className="p-6 sm:p-8 h-full flex flex-col justify-between border-white/[0.08] hover:border-cyan-400/40 bg-[#0D1117]/85 backdrop-blur-md">
               <div className="space-y-6">
                 <div>
                   <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/25 bg-teal-500/10 px-3 py-1 text-xs font-mono text-teal-300 mb-3">
@@ -192,16 +195,23 @@ export function ContactSection() {
                   </div>
                 </div>
 
-                {/* Location */}
-                <div className="flex items-start gap-3 text-sm text-slate-300">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
-                  <div>
-                    <div className="font-medium text-slate-100">
-                      {PROFILE.location}
+                {/* Location & Timezone info */}
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3 text-sm text-slate-300">
+                    <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
+                    <div>
+                      <div className="font-medium text-slate-100">
+                        {PROFILE.location}
+                      </div>
+                      <div className="text-xs text-slate-400 mt-0.5">
+                        {PROFILE.availability}
+                      </div>
                     </div>
-                    <div className="text-xs text-slate-400 mt-0.5">
-                      {PROFILE.availability}
-                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 text-xs text-slate-400 font-mono">
+                    <Clock className="h-3.5 w-3.5 text-teal-400 shrink-0" />
+                    <span>Timezone: Asia/Colombo (UTC+05:30)</span>
                   </div>
                 </div>
               </div>
@@ -232,7 +242,7 @@ export function ContactSection() {
 
           {/* Right Static-Compatible Contact Form */}
           <Reveal delay={0.1} className="lg:col-span-3">
-            <SpotlightCard className="p-6 sm:p-8 h-full border-white/[0.08] hover:border-cyan-400/40">
+            <SpotlightCard className="p-6 sm:p-8 h-full border-white/[0.08] hover:border-cyan-400/40 bg-[#0D1117]/85 backdrop-blur-md">
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div
@@ -286,8 +296,9 @@ export function ContactSection() {
                       <div>
                         <label
                           htmlFor="contact-name"
-                          className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2"
+                          className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-slate-400 mb-2"
                         >
+                          <User className="h-3.5 w-3.5 text-cyan-400" />
                           Your Name
                         </label>
                         <input
@@ -304,8 +315,9 @@ export function ContactSection() {
                       <div>
                         <label
                           htmlFor="contact-email"
-                          className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2"
+                          className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-slate-400 mb-2"
                         >
+                          <Mail className="h-3.5 w-3.5 text-cyan-400" />
                           Email Address
                         </label>
                         <input
@@ -323,8 +335,9 @@ export function ContactSection() {
                     <div>
                       <label
                         htmlFor="contact-message"
-                        className="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2"
+                        className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-slate-400 mb-2"
                       >
+                        <MessageSquare className="h-3.5 w-3.5 text-cyan-400" />
                         Project or Opportunity Details
                       </label>
                       <textarea

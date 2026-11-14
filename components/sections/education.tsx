@@ -3,7 +3,7 @@
 import * as React from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { GraduationCap, Calendar, CheckCircle2, Award } from "lucide-react";
+import { GraduationCap, Calendar, CheckCircle2, Award, BookOpen, Compass } from "lucide-react";
 import { EDUCATION } from "@/data/portfolio";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SpringTiltCard } from "@/components/motion/SpringTiltCard";
@@ -11,6 +11,12 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const EDU_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  bedfordshire: GraduationCap,
+  "sliit-city-uni": BookOpen,
+  "jaffna-hindu-college": Compass,
+};
 
 export function EducationSection() {
   const sectionRef = React.useRef<HTMLElement>(null);
@@ -53,10 +59,10 @@ export function EducationSection() {
 
   return (
     <section ref={sectionRef} id="education" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
-      {/* Precision Background Atmosphere */}
+      {/* Precision Blueprint & Architectural Ledger Background */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-dot-matrix opacity-30 [mask-image:radial-gradient(ellipse_60%_60%_at_40%_50%,black_30%,transparent_100%)]"
+        className="pointer-events-none absolute inset-0 bg-blueprint-grid opacity-35 [mask-image:radial-gradient(ellipse_70%_60%_at_45%_50%,black_35%,transparent_100%)]"
       />
 
       {/* Atmospheric Cyan / Teal Gradient Light Bleed */}
@@ -84,7 +90,7 @@ export function EducationSection() {
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
             <span>SEC // 05 · ACADEMIC MILESTONES</span>
           </div>
-          <span className="text-slate-500">COMPUTER SOFTWARE ENGINEERING & MATHEMATICS</span>
+          <span className="text-slate-500">COMPUTER SOFTWARE ENGINEERING &amp; MATHEMATICS</span>
         </div>
 
         <SectionHeading
@@ -134,6 +140,7 @@ export function EducationSection() {
           <div className="space-y-7">
             {EDUCATION.map((item, idx) => {
               const isLit = idx < litCount;
+              const EduIcon = EDU_ICON_MAP[item.id] ?? GraduationCap;
               return (
                 <div key={item.id} className="relative">
                   {/* Milestone Node illuminated as the beam passes */}
@@ -156,14 +163,14 @@ export function EducationSection() {
                   <SpringTiltCard
                     tiltIntensity={3.5}
                     className={cn(
-                      "p-6 sm:p-7 transition-all duration-500 border-white/[0.08]",
+                      "p-6 sm:p-7 transition-all duration-500 border-white/[0.08] bg-[#0D1117]/80 backdrop-blur-md",
                       isLit && "border-cyan-400/35 bg-white/[0.04] shadow-[0_8px_32px_rgba(6,182,212,0.08)]"
                     )}
                   >
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                       <div className="flex items-center gap-3.5">
                         <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-400/25 bg-cyan-500/10 text-cyan-300 shadow-[0_0_16px_rgba(6,182,212,0.15)]">
-                          <GraduationCap className="h-5 w-5" />
+                          <EduIcon className="h-5 w-5" />
                         </div>
                         <div>
                           <div className="flex items-center gap-2">

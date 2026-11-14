@@ -3,7 +3,18 @@
 import * as React from "react";
 import Image from "next/image";
 import { animate } from "animejs";
-import { Compass, ShieldCheck, Rocket, MapPin, Sparkles } from "lucide-react";
+import {
+  Compass,
+  ShieldCheck,
+  Rocket,
+  MapPin,
+  Sparkles,
+  Layers,
+  Laptop2,
+  Server,
+  Shield,
+  ArrowUpRight,
+} from "lucide-react";
 import { PROFILE } from "@/data/portfolio";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +23,7 @@ import { AnimatedDivider } from "@/components/motion/AnimatedDivider";
 import { Reveal, StaggerContainer, StaggerItem } from "@/components/ui/reveal";
 
 const PHILOSOPHY_ICONS = [Compass, ShieldCheck, Rocket];
+const METRIC_ICONS = [Layers, Laptop2, Server, Shield];
 
 const METRIC_TARGETS = [
   { end: 7, suffix: "+", decimals: 0 },
@@ -19,6 +31,8 @@ const METRIC_TARGETS = [
   { end: 99.9, suffix: "%", decimals: 1 },
   { end: 24, suffix: "/7", decimals: 0 },
 ];
+
+const ABOUT_BACKDROP_SRC = "/src/about-backdrop.jpg";
 
 export function AboutSection() {
   const metricsRef = React.useRef<HTMLDivElement>(null);
@@ -69,11 +83,18 @@ export function AboutSection() {
 
   return (
     <section id="about" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
-      {/* Precision Background Atmosphere */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-dot-matrix opacity-40 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,black_30%,transparent_100%)]"
-      />
+      {/* Crisp Architectural Studio Backdrop Image */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <Image
+          src={ABOUT_BACKDROP_SRC}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-65"
+        />
+        {/* Soft edge fade into #090A0F canvas */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#090A0F] via-transparent to-[#090A0F]" />
+      </div>
 
       {/* Atmospheric Ambient Glow Bleed */}
       <div
@@ -157,27 +178,33 @@ export function AboutSection() {
           </Reveal>
         </div>
 
-        {/* Anime.js Animated Metrics Row */}
+        {/* Anime.js Animated Metrics Row with Proper Category Icons */}
         <div
           ref={metricsRef}
           className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8"
         >
-          {PROFILE.metrics.map((metric, idx) => (
-            <SpringTiltCard key={metric.label} tiltIntensity={4} className="p-6 h-full relative group">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono uppercase tracking-wider text-cyan-400">
+          {PROFILE.metrics.map((metric, idx) => {
+            const MetricIcon = METRIC_ICONS[idx] ?? Layers;
+            return (
+              <SpringTiltCard key={metric.label} tiltIntensity={4} className="p-6 h-full relative group">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-cyan-400/25 bg-cyan-500/10 text-cyan-300">
+                    <MetricIcon className="h-4 w-4" />
+                  </div>
+                  <span className="font-mono text-[10px] text-slate-500">0{idx + 1}</span>
+                </div>
+                <div className="text-xs font-mono uppercase tracking-wider text-cyan-400 mb-1">
                   {metric.label}
-                </span>
-                <span className="font-mono text-[10px] text-slate-500">0{idx + 1}</span>
-              </div>
-              <div className="mt-1 font-mono text-3xl font-bold tracking-tight text-slate-50 sm:text-4xl bg-gradient-to-br from-white via-slate-100 to-cyan-200 bg-clip-text text-transparent">
-                {displayValues[idx] ?? metric.value}
-              </div>
-              <p className="mt-2.5 text-sm leading-relaxed text-slate-400">
-                {metric.detail}
-              </p>
-            </SpringTiltCard>
-          ))}
+                </div>
+                <div className="font-mono text-3xl font-bold tracking-tight text-slate-50 sm:text-4xl bg-gradient-to-br from-white via-slate-100 to-cyan-200 bg-clip-text text-transparent">
+                  {displayValues[idx] ?? metric.value}
+                </div>
+                <p className="mt-2.5 text-sm leading-relaxed text-slate-400">
+                  {metric.detail}
+                </p>
+              </SpringTiltCard>
+            );
+          })}
         </div>
 
         {/* Anime.js SVG Hairline Circuit Divider */}
@@ -208,7 +235,7 @@ export function AboutSection() {
                   </div>
                   <div className="mt-6 pt-4 border-t border-white/[0.05] flex items-center justify-between text-[11px] font-mono text-cyan-400/80">
                     <span>Verified Pattern</span>
-                    <span className="h-1 w-1 rounded-full bg-cyan-400" />
+                    <ArrowUpRight className="h-3.5 w-3.5 text-cyan-400" />
                   </div>
                 </SpringTiltCard>
               </StaggerItem>
