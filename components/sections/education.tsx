@@ -61,7 +61,7 @@ export function EducationSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="education" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
+    <section ref={sectionRef} id="education" className="relative py-14 sm:py-20 overflow-hidden border-t border-white/[0.05]">
       {/* Crisp Architectural Ledger Backdrop Image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Image
@@ -94,7 +94,7 @@ export function EducationSection() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
         {/* Technical Coordinate Header */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
           <div className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
             <span>SEC // 05 · ACADEMIC MILESTONES</span>
@@ -146,7 +146,7 @@ export function EducationSection() {
             />
           </svg>
 
-          <div className="space-y-7">
+          <div className="space-y-5">
             {EDUCATION.map((item, idx) => {
               const isLit = idx < litCount;
               const EduIcon = EDU_ICON_MAP[item.id] ?? GraduationCap;

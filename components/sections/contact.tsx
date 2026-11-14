@@ -90,7 +90,7 @@ export function ContactSection() {
   )}`;
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
+    <section id="contact" className="relative py-14 sm:py-20 overflow-hidden border-t border-white/[0.05]">
       {/* Crisp Radar Telemetry Backdrop Image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Image
@@ -133,7 +133,7 @@ export function ContactSection() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
         {/* Technical Coordinate Header */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
           <div className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-teal-400 animate-pulse" />
             <span>SEC // 06 · DIRECT CHANNEL &amp; DISPATCH</span>

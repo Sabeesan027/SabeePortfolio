@@ -82,7 +82,7 @@ export function AboutSection() {
   }, []);
 
   return (
-    <section id="about" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
+    <section id="about" className="relative py-14 sm:py-20 overflow-hidden border-t border-white/[0.05]">
       {/* Crisp Architectural Studio Backdrop Image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Image
@@ -126,7 +126,7 @@ export function AboutSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center mb-14">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center mb-8">
           <div className="lg:col-span-7">
             <SectionHeading
               eyebrow="About & Philosophy"
@@ -181,7 +181,7 @@ export function AboutSection() {
         {/* Anime.js Animated Metrics Row with Proper Category Icons */}
         <div
           ref={metricsRef}
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8"
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6"
         >
           {PROFILE.metrics.map((metric, idx) => {
             const MetricIcon = METRIC_ICONS[idx] ?? Layers;
@@ -208,7 +208,7 @@ export function AboutSection() {
         </div>
 
         {/* Anime.js SVG Hairline Circuit Divider */}
-        <AnimatedDivider className="mb-10" />
+        <AnimatedDivider className="mb-6" />
 
         {/* Engineering Philosophy Pillars wrapped in SpringTiltCard */}
         <StaggerContainer className="grid grid-cols-1 gap-5 md:grid-cols-3">

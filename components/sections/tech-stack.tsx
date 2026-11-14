@@ -90,7 +90,7 @@ export function TechStackSection() {
   const row2Items = [...MARQUEE_ROW_2, ...MARQUEE_ROW_2];
 
   return (
-    <section ref={sectionRef} id="stack" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
+    <section ref={sectionRef} id="stack" className="relative py-14 sm:py-20 overflow-hidden border-t border-white/[0.05]">
       {/* Crisp Circuit & Silicon Motherboard Backdrop Image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Image
@@ -119,7 +119,7 @@ export function TechStackSection() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
         {/* Technical Coordinate Header */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
           <div className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
             <span>SEC // 04 · TECHNICAL ARSENAL</span>
@@ -135,7 +135,7 @@ export function TechStackSection() {
         />
 
         {/* GSAP Dual-Track Velocity Marquee with Dedicated Tech Icons */}
-        <div className="relative mb-14 rounded-2xl border border-white/[0.08] bg-white/[0.02] py-4 backdrop-blur-md overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+        <div className="relative mb-8 rounded-2xl border border-white/[0.08] bg-white/[0.02] py-3 backdrop-blur-md overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
           <div className="space-y-3">
             <div ref={track1Ref} className="flex w-max">
               {row1Items.map((item, idx) => (

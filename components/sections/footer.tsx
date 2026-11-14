@@ -5,7 +5,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-white/[0.08] bg-[#090A0F] py-12 overflow-hidden">
+    <footer className="relative border-t border-white/[0.08] bg-[#090A0F] py-8 overflow-hidden">
       {/* Background subtle grid */}
       <div
         aria-hidden="true"

@@ -117,7 +117,7 @@ export function ProjectsSection() {
   }, [selectedProject]);
 
   return (
-    <section ref={sectionRef} id="projects" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
+    <section ref={sectionRef} id="projects" className="relative py-14 sm:py-20 overflow-hidden border-t border-white/[0.05]">
       {/* Crisp Architectural Gallery Backdrop Image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Image
@@ -150,7 +150,7 @@ export function ProjectsSection() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
         {/* Technical Coordinate Header */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
           <div className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
             <span>SEC // 03 · FEATURED ENGINEERING REPOSITORY</span>
@@ -158,7 +158,7 @@ export function ProjectsSection() {
           <span className="text-slate-500">PROD-GRADE SYSTEMS · VERIFIED ARCHITECTURE</span>
         </div>
 
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-12">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-8">
           <SectionHeading
             eyebrow="Selected Engineering Work"
             title="Featured"
@@ -167,7 +167,7 @@ export function ProjectsSection() {
           />
 
           {/* Filter Pills with Counts */}
-          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-white/[0.1] bg-[#0D1117]/85 p-1.5 backdrop-blur-xl self-start md:mb-16 shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-white/[0.1] bg-[#0D1117]/85 p-1.5 backdrop-blur-xl self-start md:mb-8 shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
             {CATEGORIES.map((category) => {
               const isActive = activeCategory === category;
               const count = categoryCounts[category];
