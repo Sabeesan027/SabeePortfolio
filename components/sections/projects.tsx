@@ -4,7 +4,7 @@ import * as React from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, CheckCircle2, Layers3, X, Cpu } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Layers3, X, Cpu, Sparkles } from "lucide-react";
 import {
   PROJECTS,
   type ProjectCategory,
@@ -35,18 +35,29 @@ export function ProjectsSection() {
     );
   }, [activeCategory]);
 
+  const categoryCounts = React.useMemo(() => {
+    return {
+      All: PROJECTS.length,
+      Web: PROJECTS.filter((p) => p.categories.includes("Web")).length,
+      Mobile: PROJECTS.filter((p) => p.categories.includes("Mobile")).length,
+      "AI & Systems": PROJECTS.filter((p) =>
+        p.categories.includes("AI & Systems")
+      ).length,
+    };
+  }, []);
+
   // GSAP ScrollTrigger initial reveal + filter stagger choreography
   React.useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".project-grid-item",
-        { opacity: 0, scale: 0.94, y: 20 },
+        { opacity: 0, scale: 0.94, y: 22 },
         {
           opacity: 1,
           scale: 1,
           y: 0,
-          duration: 0.5,
-          stagger: 0.06,
+          duration: 0.55,
+          stagger: 0.065,
           ease: "power3.out",
           scrollTrigger: {
             trigger: gridRef.current,
@@ -80,8 +91,45 @@ export function ProjectsSection() {
   }, [selectedProject]);
 
   return (
-    <section ref={sectionRef} id="projects" className="relative py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section ref={sectionRef} id="projects" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
+      {/* Precision Background Atmosphere */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-arch-grid opacity-30 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,black_30%,transparent_100%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-tech-hatch opacity-30 [mask-image:linear-gradient(to_bottom,black_20%,transparent_90%)]"
+      />
+
+      {/* Atmospheric Cyan / Sky Ambient Glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-10 right-10 h-[520px] w-[560px] rounded-full bg-cyan-500/10 blur-[150px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-1/4 -left-20 h-[500px] w-[500px] rounded-full bg-teal-500/10 blur-[150px]"
+      />
+
+      {/* Giant Background Watermark */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 select-none text-[16vw] font-black uppercase tracking-tighter text-white/[0.015] whitespace-nowrap"
+      >
+        SHOWCASE
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+        {/* Technical Coordinate Header */}
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+            <span>SEC // 03 · FEATURED ENGINEERING REPOSITORY</span>
+          </div>
+          <span className="text-slate-500">PROD-GRADE SYSTEMS · VERIFIED ARCHITECTURE</span>
+        </div>
+
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-12">
           <SectionHeading
             eyebrow="Selected Engineering Work"
@@ -90,17 +138,18 @@ export function ProjectsSection() {
             description="Production web platforms, native Android releases, AI computer vision pipelines, and enterprise POS systems."
           />
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-1.5 backdrop-blur-md self-start md:mb-16">
+          {/* Filter Pills with Counts */}
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-white/[0.1] bg-[#0D1117]/80 p-1.5 backdrop-blur-xl self-start md:mb-16 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             {CATEGORIES.map((category) => {
               const isActive = activeCategory === category;
+              const count = categoryCounts[category];
               return (
                 <button
                   key={category}
                   type="button"
                   onClick={() => setActiveCategory(category)}
                   className={cn(
-                    "relative rounded-xl px-4 py-2 text-xs font-medium transition-colors cursor-pointer sm:text-sm",
+                    "relative rounded-xl px-3.5 py-2 text-xs font-medium transition-colors cursor-pointer sm:text-sm flex items-center gap-1.5",
                     isActive
                       ? "text-slate-950 font-semibold"
                       : "text-slate-400 hover:text-slate-100"
@@ -110,10 +159,20 @@ export function ProjectsSection() {
                     <motion.span
                       layoutId="active-project-filter"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-teal-300"
+                      className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-teal-300 shadow-[0_0_16px_rgba(6,182,212,0.4)]"
                     />
                   )}
                   <span className="relative z-10">{category}</span>
+                  <span
+                    className={cn(
+                      "relative z-10 font-mono text-[10px] px-1.5 py-0.2 rounded-full",
+                      isActive
+                        ? "bg-slate-950/20 text-slate-950"
+                        : "bg-white/[0.06] text-slate-400"
+                    )}
+                  >
+                    {count}
+                  </span>
                 </button>
               );
             })}
@@ -144,23 +203,23 @@ export function ProjectsSection() {
                     setSelectedProject(project);
                   }
                 }}
-                className="h-full cursor-pointer p-6 sm:p-7 flex flex-col justify-between"
+                className="h-full cursor-pointer p-6 sm:p-7 flex flex-col justify-between group transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_36px_rgba(6,182,212,0.15)]"
               >
                 {/* Subtle top accent wash */}
                 <div
                   aria-hidden="true"
                   className={cn(
-                    "pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b opacity-60",
+                    "pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b opacity-60",
                     project.accentGradient
                   )}
                 />
 
                 <div className="relative z-10">
                   <div className="flex items-center justify-between gap-3 mb-4">
-                    <Badge variant="cyan" className="font-mono text-[11px]">
+                    <Badge variant="cyan" className="font-mono text-[11px] border-cyan-400/30 bg-cyan-500/10">
                       {project.badge}
                     </Badge>
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition-colors group-hover:border-cyan-400/40 group-hover:text-cyan-300">
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition-colors group-hover:border-cyan-400/50 group-hover:text-cyan-300 group-hover:bg-cyan-500/10">
                       <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </span>
                   </div>
@@ -168,25 +227,30 @@ export function ProjectsSection() {
                   <h3 className="text-xl font-bold tracking-tight text-slate-50 group-hover:text-cyan-200 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="mt-1 text-xs font-mono text-cyan-400/85">
+                  <p className="mt-1 text-xs font-mono text-cyan-400/90">
                     {project.subtitle}
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                  <p className="mt-3 text-sm leading-relaxed text-slate-400 line-clamp-3">
                     {project.summary}
                   </p>
                 </div>
 
-                <div className="relative z-10 mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-1.5">
-                  {project.stack.slice(0, 5).map((tech) => (
-                    <Badge key={tech} variant="glass" className="text-[11px]">
-                      {tech}
-                    </Badge>
-                  ))}
-                  {project.stack.length > 5 && (
-                    <Badge variant="glass" className="text-[11px]">
-                      +{project.stack.length - 5}
-                    </Badge>
-                  )}
+                <div className="relative z-10 mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.stack.slice(0, 4).map((tech) => (
+                      <Badge key={tech} variant="glass" className="text-[11px]">
+                        {tech}
+                      </Badge>
+                    ))}
+                    {project.stack.length > 4 && (
+                      <Badge variant="glass" className="text-[11px]">
+                        +{project.stack.length - 4}
+                      </Badge>
+                    )}
+                  </div>
+                  <span className="text-[11px] font-mono text-cyan-400/80 group-hover:underline flex items-center gap-1 shrink-0 ml-2">
+                    Case Study
+                  </span>
                 </div>
               </SpringTiltCard>
             </div>
@@ -203,7 +267,7 @@ export function ProjectsSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
-              className="fixed inset-0 bg-black/75 backdrop-blur-md"
+              className="fixed inset-0 bg-black/80 backdrop-blur-md"
             />
 
             <motion.div
@@ -211,11 +275,12 @@ export function ProjectsSection() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 16 }}
               transition={{ type: "spring", stiffness: 320, damping: 28 }}
-              className="relative z-10 max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-cyan-400/25 bg-[#0D1117] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.8)] sm:p-8"
+              className="relative z-10 max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-cyan-400/30 bg-[#0D1117] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.85)] sm:p-8"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <Badge variant="cyan" className="font-mono text-xs mb-3">
+                    <Sparkles className="h-3 w-3 mr-1" />
                     {selectedProject.badge}
                   </Badge>
                   <h3 className="text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
@@ -230,7 +295,7 @@ export function ProjectsSection() {
                   type="button"
                   onClick={() => setSelectedProject(null)}
                   aria-label="Close project details"
-                  className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-slate-300 transition-colors hover:border-cyan-400/40 hover:text-white cursor-pointer"
+                  className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-slate-300 transition-colors hover:border-cyan-400/50 hover:text-white cursor-pointer"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -247,7 +312,7 @@ export function ProjectsSection() {
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-4 sm:p-5">
+                <div className="rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.03] p-4 sm:p-5">
                   <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cyan-300">
                     <Cpu className="h-3.5 w-3.5" />
                     Architecture & Deployment

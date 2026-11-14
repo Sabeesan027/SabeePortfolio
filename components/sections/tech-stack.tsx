@@ -8,6 +8,7 @@ import {
   Server,
   DatabaseZap,
   ShieldAlert,
+  Zap,
 } from "lucide-react";
 import {
   MARQUEE_ROW_1,
@@ -86,8 +87,37 @@ export function TechStackSection() {
   const row2Items = [...MARQUEE_ROW_2, ...MARQUEE_ROW_2];
 
   return (
-    <section ref={sectionRef} id="stack" className="relative py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section ref={sectionRef} id="stack" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
+      {/* Precision Blueprint Grid & Hatch Background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-blueprint-grid opacity-30 [mask-image:radial-gradient(ellipse_75%_55%_at_50%_40%,black_30%,transparent_100%)]"
+      />
+
+      {/* Atmospheric Central Cyan / Teal Radial Bloom */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[420px] w-[720px] rounded-full bg-cyan-500/12 blur-[140px]"
+      />
+
+      {/* Giant Background Watermark */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 select-none text-[18vw] font-black uppercase tracking-tighter text-white/[0.015] whitespace-nowrap"
+      >
+        ARSENAL
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+        {/* Technical Coordinate Header */}
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+            <span>SEC // 04 · TECHNICAL ARSENAL</span>
+          </div>
+          <span className="text-slate-500">FULL-STACK · CLOUD DEVOPS · APP SEC</span>
+        </div>
+
         <SectionHeading
           eyebrow="Technical Arsenal"
           title="Technologies &"
@@ -95,30 +125,32 @@ export function TechStackSection() {
           description="A versatile toolkit spanning reactive frontends, native Android, hardened backend APIs, relational/NoSQL databases, and Linux VPS DevOps."
         />
 
-        {/* GSAP Dual-Track Velocity Marquee */}
-        <div className="space-y-3 mb-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div ref={track1Ref} className="flex w-max">
-            {row1Items.map((item, idx) => (
-              <div
-                key={`r1-${item}-${idx}`}
-                className="mx-2 flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs font-mono text-slate-300 transition-colors hover:border-cyan-400/40 hover:text-cyan-200 sm:text-sm"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400/80" />
-                {item}
-              </div>
-            ))}
-          </div>
+        {/* GSAP Dual-Track Velocity Marquee with Frame & Edge Masks */}
+        <div className="relative mb-14 rounded-2xl border border-white/[0.08] bg-white/[0.015] py-4 backdrop-blur-md overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+          <div className="space-y-3">
+            <div ref={track1Ref} className="flex w-max">
+              {row1Items.map((item, idx) => (
+                <div
+                  key={`r1-${item}-${idx}`}
+                  className="mx-2 flex items-center gap-2 rounded-full border border-white/[0.1] bg-[#0D1117]/80 px-4 py-2 text-xs font-mono text-slate-300 transition-colors hover:border-cyan-400/50 hover:text-cyan-200 sm:text-sm shadow-[0_2px_10px_rgba(0,0,0,0.3)]"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+                  {item}
+                </div>
+              ))}
+            </div>
 
-          <div ref={track2Ref} className="flex w-max">
-            {row2Items.map((item, idx) => (
-              <div
-                key={`r2-${item}-${idx}`}
-                className="mx-2 flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs font-mono text-slate-300 transition-colors hover:border-teal-400/40 hover:text-teal-200 sm:text-sm"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-teal-400/80" />
-                {item}
-              </div>
-            ))}
+            <div ref={track2Ref} className="flex w-max">
+              {row2Items.map((item, idx) => (
+                <div
+                  key={`r2-${item}-${idx}`}
+                  className="mx-2 flex items-center gap-2 rounded-full border border-white/[0.1] bg-[#0D1117]/80 px-4 py-2 text-xs font-mono text-slate-300 transition-colors hover:border-teal-400/50 hover:text-teal-200 sm:text-sm shadow-[0_2px_10px_rgba(0,0,0,0.3)]"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(20,184,166,0.8)]" />
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -128,27 +160,44 @@ export function TechStackSection() {
             const Icon = ICON_MAP[category.iconName];
             return (
               <StaggerItem key={category.id}>
-                <SpringTiltCard tiltIntensity={4} className="p-6 sm:p-7 h-full">
-                  <div className="flex items-start gap-4 mb-5">
-                    <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-400/25 bg-cyan-500/10 text-cyan-300">
-                      <Icon className="h-5 w-5" />
+                <SpringTiltCard tiltIntensity={4} className="p-6 sm:p-7 h-full flex flex-col justify-between border-white/[0.08] hover:border-cyan-400/40">
+                  <div>
+                    <div className="flex items-start justify-between gap-4 mb-5">
+                      <div className="flex items-center gap-3.5">
+                        <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-400/25 bg-cyan-500/10 text-cyan-300 shadow-[0_0_16px_rgba(6,182,212,0.15)]">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-slate-100">
+                            {category.title}
+                          </h3>
+                          <p className="mt-0.5 text-xs text-slate-400">
+                            {category.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                      <Badge variant="cyan" className="font-mono text-[10px] shrink-0">
+                        {category.skills.length} Techs
+                      </Badge>
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-slate-100">
-                        {category.title}
-                      </h3>
-                      <p className="mt-0.5 text-sm text-slate-400">
-                        {category.subtitle}
-                      </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills.map((skill) => (
+                        <Badge
+                          key={skill}
+                          variant="glass"
+                          className="py-1.5 px-3 hover:border-cyan-400/40 hover:text-cyan-200 transition-colors"
+                        >
+                          <Zap className="h-3 w-3 text-cyan-400 mr-1" />
+                          {skill}
+                        </Badge>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill) => (
-                      <Badge key={skill} variant="glass" className="py-1.5 px-3">
-                        {skill}
-                      </Badge>
-                    ))}
+                  <div className="mt-6 pt-4 border-t border-white/[0.05] flex items-center justify-between text-[11px] font-mono text-slate-500">
+                    <span>PRODUCTION VERIFIED</span>
+                    <span className="text-cyan-400/80">ACTIVE ARSENAL</span>
                   </div>
                 </SpringTiltCard>
               </StaggerItem>

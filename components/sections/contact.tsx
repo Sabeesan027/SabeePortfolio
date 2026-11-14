@@ -8,6 +8,7 @@ import {
   Mail,
   MapPin,
   Send,
+  Sparkles,
 } from "lucide-react";
 
 function LinkedInIcon({ className }: { className?: string }) {
@@ -46,6 +47,7 @@ function GitHubIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
 import { PROFILE } from "@/data/portfolio";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
@@ -65,7 +67,6 @@ export function ContactSection() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2200);
     } catch {
-      // Fallback for restricted clipboard contexts
       setCopied(false);
     }
   };
@@ -83,8 +84,51 @@ export function ContactSection() {
   )}`;
 
   return (
-    <section id="contact" className="relative py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section id="contact" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
+      {/* Precision Blueprint & Hatch Atmosphere */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-blueprint-grid opacity-25 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,black_35%,transparent_100%)]"
+      />
+
+      {/* Atmospheric Cyan / Sky Spotlight Bleed */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 h-[560px] w-[680px] rounded-full bg-cyan-500/12 blur-[150px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 right-1/4 h-[380px] w-[460px] rounded-full bg-teal-500/10 blur-[130px]"
+      />
+
+      {/* Concentric Radar Signal Rings in Background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[700px] w-[700px] opacity-15"
+      >
+        <div className="absolute inset-0 rounded-full border border-dashed border-cyan-400" />
+        <div className="absolute inset-16 rounded-full border border-white/40" />
+        <div className="absolute inset-32 rounded-full border border-dashed border-cyan-400" />
+      </div>
+
+      {/* Giant Background Watermark */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 select-none text-[18vw] font-black uppercase tracking-tighter text-white/[0.015] whitespace-nowrap"
+      >
+        CONNECT
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+        {/* Technical Coordinate Header */}
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-teal-400 animate-pulse" />
+            <span>SEC // 06 · DIRECT CHANNEL & DISPATCH</span>
+          </div>
+          <span className="text-slate-500">GLOBAL AVAILABILITY · HYBRID & REMOTE</span>
+        </div>
+
         <SectionHeading
           eyebrow="Get in Touch"
           title="Let's Build Something"
@@ -95,10 +139,17 @@ export function ContactSection() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
           {/* Left Info Card */}
           <Reveal className="lg:col-span-2">
-            <SpotlightCard className="p-6 sm:p-8 h-full flex flex-col justify-between">
+            <SpotlightCard className="p-6 sm:p-8 h-full flex flex-col justify-between border-white/[0.08] hover:border-cyan-400/40">
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold text-slate-100">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-teal-400/25 bg-teal-500/10 px-3 py-1 text-xs font-mono text-teal-300 mb-3">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-400" />
+                    </span>
+                    Available for Work
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-100">
                     Direct Channels
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-400">
@@ -108,15 +159,15 @@ export function ContactSection() {
                 </div>
 
                 {/* Copy Email Block */}
-                <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-4">
+                <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-4.5 hover:border-cyan-400/30 transition-colors">
                   <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-slate-400">
                     <Mail className="h-3.5 w-3.5 text-cyan-400" />
-                    Email Address
+                    Primary Email
                   </div>
-                  <div className="mt-2 flex items-center justify-between gap-2">
+                  <div className="mt-2.5 flex items-center justify-between gap-2">
                     <a
                       href={`mailto:${PROFILE.email}`}
-                      className="truncate text-sm font-medium text-slate-100 hover:text-cyan-300 transition-colors"
+                      className="truncate text-sm font-medium text-slate-100 hover:text-cyan-300 transition-colors font-mono"
                     >
                       {PROFILE.email}
                     </a>
@@ -181,7 +232,7 @@ export function ContactSection() {
 
           {/* Right Static-Compatible Contact Form */}
           <Reveal delay={0.1} className="lg:col-span-3">
-            <SpotlightCard className="p-6 sm:p-8 h-full">
+            <SpotlightCard className="p-6 sm:p-8 h-full border-white/[0.08] hover:border-cyan-400/40">
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div
@@ -189,9 +240,9 @@ export function ContactSection() {
                     initial={{ opacity: 0, scale: 0.96 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex h-full min-h-[300px] flex-col items-center justify-center text-center"
+                    className="flex h-full min-h-[320px] flex-col items-center justify-center text-center"
                   >
-                    <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full border border-teal-400/30 bg-teal-500/15 text-teal-300">
+                    <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full border border-teal-400/30 bg-teal-500/15 text-teal-300 shadow-[0_0_24px_rgba(20,184,166,0.3)]">
                       <Check className="h-7 w-7" />
                     </div>
                     <h3 className="text-2xl font-bold text-slate-100">
@@ -204,7 +255,7 @@ export function ContactSection() {
                     </p>
                     <div className="mt-6 flex flex-wrap justify-center gap-3">
                       <a href={mailtoHref}>
-                        <Button>
+                        <Button className="shadow-[0_0_24px_rgba(6,182,212,0.3)]">
                           <Mail className="h-4 w-4" />
                           Open in Email Client
                         </Button>
@@ -246,7 +297,7 @@ export function ContactSection() {
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           placeholder="Jane Doe"
-                          className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:border-cyan-400/60 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                          className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:border-cyan-400/60 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all"
                         />
                       </div>
 
@@ -264,7 +315,7 @@ export function ContactSection() {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="jane@company.com"
-                          className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:border-cyan-400/60 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                          className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:border-cyan-400/60 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all"
                         />
                       </div>
                     </div>
@@ -283,15 +334,16 @@ export function ContactSection() {
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         placeholder="Tell me about your product, timeline, or engineering team..."
-                        className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:border-cyan-400/60 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                        className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:border-cyan-400/60 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all"
                       />
                     </div>
 
-                    <div className="flex items-center justify-between gap-4 pt-1">
-                      <span className="text-xs text-slate-500">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-1">
+                      <span className="text-xs text-slate-500 flex items-center gap-1.5 font-mono">
+                        <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
                         Typically responds within 24 hours.
                       </span>
-                      <Button magnetic type="submit" size="lg">
+                      <Button magnetic type="submit" size="lg" className="w-full sm:w-auto shadow-[0_0_20px_rgba(6,182,212,0.3)]">
                         Send Message
                         <Send className="h-4 w-4" />
                       </Button>

@@ -42,6 +42,32 @@ body {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
+/* Technical dot matrix background */
+.bg-dot-matrix {
+  background-size: 28px 28px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1.2px, transparent 1.2px);
+}
+
+/* Technical blueprint cyan grid */
+.bg-blueprint-grid {
+  background-size: 56px 56px;
+  background-image:
+    linear-gradient(to right, rgba(6, 182, 212, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 182, 212, 0.045) 1px, transparent 1px);
+}
+
+/* Diagonal technical hatch pattern */
+.bg-tech-hatch {
+  background-size: 24px 24px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.015),
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+}
+
 /* Glassmorphic surface utility */
 .glass-card {
   background: rgba(255, 255, 255, 0.03);

@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { animate } from "animejs";
-import { Compass, ShieldCheck, Rocket, MapPin } from "lucide-react";
+import { Compass, ShieldCheck, Rocket, MapPin, Sparkles } from "lucide-react";
 import { PROFILE } from "@/data/portfolio";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
@@ -68,9 +68,44 @@ export function AboutSection() {
   }, []);
 
   return (
-    <section id="about" className="relative py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center mb-12">
+    <section id="about" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
+      {/* Precision Background Atmosphere */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-dot-matrix opacity-40 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,black_30%,transparent_100%)]"
+      />
+
+      {/* Atmospheric Ambient Glow Bleed */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-32 right-1/4 h-[480px] w-[520px] rounded-full bg-cyan-500/10 blur-[130px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-10 h-[360px] w-[420px] rounded-full bg-teal-500/10 blur-[120px]"
+      />
+
+      {/* Giant Architectural Ghost Watermark */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 select-none text-[16vw] font-black uppercase tracking-tighter text-white/[0.015] whitespace-nowrap"
+      >
+        PHILOSOPHY
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+        {/* Technical Coordinate & Status Header */}
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+            <span>SEC // 01 · ENGINEERING MINDSET</span>
+          </div>
+          <div className="hidden sm:inline-flex items-center gap-2 text-slate-500">
+            <span>JAFFNA NODE · LAT 9.66° N // LON 80.02° E</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center mb-14">
           <div className="lg:col-span-7">
             <SectionHeading
               eyebrow="About & Philosophy"
@@ -81,9 +116,9 @@ export function AboutSection() {
           </div>
 
           <Reveal delay={0.1} className="lg:col-span-5">
-            <SpringTiltCard tiltIntensity={4} className="p-4 sm:p-5">
+            <SpringTiltCard tiltIntensity={4} className="p-5 sm:p-6 border-cyan-400/25 bg-gradient-to-br from-white/[0.05] via-[#0D1117] to-white/[0.02]">
               <div className="flex flex-col sm:flex-row items-center gap-5">
-                <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-2xl border border-cyan-400/35 bg-[#0D1117] shadow-[0_0_28px_rgba(6,182,212,0.18)] sm:h-36 sm:w-36">
+                <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-2xl border border-cyan-400/40 bg-[#0D1117] shadow-[0_0_32px_rgba(6,182,212,0.22)] sm:h-36 sm:w-36">
                   <Image
                     src={PROFILE.profileImage}
                     alt={PROFILE.fullName}
@@ -93,25 +128,29 @@ export function AboutSection() {
                   />
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#090A0F]/45 via-transparent to-transparent"
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#090A0F]/60 via-transparent to-transparent"
                   />
                 </div>
 
                 <div className="text-center sm:text-left">
-                  <Badge variant="teal" className="mb-2 font-mono text-[11px]">
+                  <Badge variant="teal" className="mb-2.5 font-mono text-[11px]">
                     <span className="h-1.5 w-1.5 rounded-full bg-teal-400 animate-pulse" />
                     Lead Developer
                   </Badge>
-                  <h3 className="text-lg font-bold tracking-tight text-slate-50">
+                  <h3 className="text-xl font-bold tracking-tight text-slate-50">
                     {PROFILE.fullName}
                   </h3>
-                  <p className="mt-1 text-xs font-mono text-cyan-300/90">
+                  <p className="mt-1 text-xs font-mono text-cyan-300">
                     {PROFILE.brandTag}
                   </p>
-                  <p className="mt-2 inline-flex items-center justify-center sm:justify-start gap-1.5 text-xs text-slate-400">
+                  <p className="mt-2.5 inline-flex items-center justify-center sm:justify-start gap-1.5 text-xs text-slate-400">
                     <MapPin className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
                     {PROFILE.location}
                   </p>
+                  <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-mono text-teal-300/90">
+                    <Sparkles className="h-3 w-3 text-teal-400" />
+                    Available for Global Opportunities
+                  </div>
                 </div>
               </div>
             </SpringTiltCard>
@@ -121,17 +160,20 @@ export function AboutSection() {
         {/* Anime.js Animated Metrics Row */}
         <div
           ref={metricsRef}
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6"
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8"
         >
           {PROFILE.metrics.map((metric, idx) => (
-            <SpringTiltCard key={metric.label} tiltIntensity={4} className="p-6 h-full">
-              <div className="text-xs font-mono uppercase tracking-wider text-cyan-400">
-                {metric.label}
+            <SpringTiltCard key={metric.label} tiltIntensity={4} className="p-6 h-full relative group">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-mono uppercase tracking-wider text-cyan-400">
+                  {metric.label}
+                </span>
+                <span className="font-mono text-[10px] text-slate-500">0{idx + 1}</span>
               </div>
-              <div className="mt-2 font-mono text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
+              <div className="mt-1 font-mono text-3xl font-bold tracking-tight text-slate-50 sm:text-4xl bg-gradient-to-br from-white via-slate-100 to-cyan-200 bg-clip-text text-transparent">
                 {displayValues[idx] ?? metric.value}
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-slate-400">
+              <p className="mt-2.5 text-sm leading-relaxed text-slate-400">
                 {metric.detail}
               </p>
             </SpringTiltCard>
@@ -139,7 +181,7 @@ export function AboutSection() {
         </div>
 
         {/* Anime.js SVG Hairline Circuit Divider */}
-        <AnimatedDivider className="mb-8" />
+        <AnimatedDivider className="mb-10" />
 
         {/* Engineering Philosophy Pillars wrapped in SpringTiltCard */}
         <StaggerContainer className="grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -147,16 +189,27 @@ export function AboutSection() {
             const Icon = PHILOSOPHY_ICONS[index] ?? Compass;
             return (
               <StaggerItem key={point.title}>
-                <SpringTiltCard className="p-6 h-full">
-                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-400/25 bg-cyan-500/10 text-cyan-300">
-                    <Icon className="h-5 w-5" />
+                <SpringTiltCard className="p-6 sm:p-7 h-full flex flex-col justify-between">
+                  <div>
+                    <div className="mb-5 flex items-center justify-between">
+                      <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-400/30 bg-cyan-500/10 text-cyan-300">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <span className="font-mono text-xs uppercase tracking-widest text-slate-600">
+                        PILLAR 0{index + 1}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-100">
+                      {point.title}
+                    </h3>
+                    <p className="mt-2.5 text-sm leading-relaxed text-slate-400">
+                      {point.description}
+                    </p>
                   </div>
-                  <h3 className="text-lg font-semibold text-slate-100">
-                    {point.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">
-                    {point.description}
-                  </p>
+                  <div className="mt-6 pt-4 border-t border-white/[0.05] flex items-center justify-between text-[11px] font-mono text-cyan-400/80">
+                    <span>Verified Pattern</span>
+                    <span className="h-1 w-1 rounded-full bg-cyan-400" />
+                  </div>
                 </SpringTiltCard>
               </StaggerItem>
             );
