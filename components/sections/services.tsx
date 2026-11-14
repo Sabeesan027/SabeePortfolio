@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
@@ -17,6 +18,8 @@ const SPOTLIGHT_MAP: Record<ServiceItem["accent"], string> = {
   sky: "rgba(56, 189, 248, 0.18)",
   teal: "rgba(20, 184, 166, 0.18)",
 };
+
+const SERVICES_BACKDROP_SRC = "/src/services-backdrop.svg";
 
 export function ServicesSection() {
   const sectionRef = React.useRef<HTMLElement>(null);
@@ -45,11 +48,17 @@ export function ServicesSection() {
 
   return (
     <section ref={sectionRef} id="services" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
-      {/* Technical Blueprint Grid Background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-blueprint-grid opacity-35 [mask-image:radial-gradient(ellipse_75%_55%_at_50%_45%,black_35%,transparent_100%)]"
-      />
+      {/* Crisp Architectural Blueprint Backdrop Image */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <Image
+          src={SERVICES_BACKDROP_SRC}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-75"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#090A0F] via-transparent to-[#090A0F]" />
+      </div>
 
       {/* Atmospheric Cyan / Sky Glow Bleed */}
       <div

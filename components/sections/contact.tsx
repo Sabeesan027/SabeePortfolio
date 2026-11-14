@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Check,
@@ -57,6 +58,8 @@ import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 
+const CONTACT_BACKDROP_SRC = "/src/contact-backdrop.svg";
+
 export function ContactSection() {
   const [copied, setCopied] = React.useState(false);
   const [name, setName] = React.useState("");
@@ -88,11 +91,17 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
-      {/* Precision Blueprint & Hatch Atmosphere */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-blueprint-grid opacity-30 [mask-image:radial-gradient(ellipse_75%_65%_at_50%_50%,black_35%,transparent_100%)]"
-      />
+      {/* Crisp Radar Telemetry Backdrop Image */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <Image
+          src={CONTACT_BACKDROP_SRC}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-75"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#090A0F] via-transparent to-[#090A0F]" />
+      </div>
 
       {/* Atmospheric Cyan / Sky Spotlight Bleed */}
       <div

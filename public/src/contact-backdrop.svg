@@ -1,0 +1,61 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="contact-bg" x1="960" y1="0" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#090A0F" />
+      <stop offset="25%" stopColor="#0B0F16" />
+      <stop offset="75%" stopColor="#080C12" />
+      <stop offset="100%" stopColor="#090A0F" />
+    </linearGradient>
+
+    <!-- Studio Top Key Spotlight Cone -->
+    <radialGradient id="contact-spotlight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(960 140) scale(780 520)">
+      <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.20" />
+      <stop offset="45%" stopColor="#38BDF8" stopOpacity="0.08" />
+      <stop offset="100%" stopColor="#06B6D4" stopOpacity="0" />
+    </radialGradient>
+
+    <!-- Bottom Left Cyan Telemetry Glow -->
+    <radialGradient id="contact-glow-left" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(320 820) scale(420 380)">
+      <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.14" />
+      <stop offset="60%" stopColor="#14B8A6" stopOpacity="0.03" />
+      <stop offset="100%" stopColor="#14B8A6" stopOpacity="0" />
+    </radialGradient>
+
+    <!-- Blueprint Technical Grid -->
+    <pattern id="contact-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255, 255, 255, 0.02)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Base Studio Canvas -->
+  <rect width="1920" height="1080" fill="url(#contact-bg)" />
+
+  <!-- Overhead Spotlight Cone -->
+  <rect width="1920" height="1080" fill="url(#contact-spotlight)" />
+  <rect width="1920" height="1080" fill="url(#contact-glow-left)" />
+
+  <!-- Technical Grid -->
+  <rect width="1920" height="1080" fill="url(#contact-grid)" />
+
+  <!-- Concentric Telemetry Radar Signal Rings -->
+  <g stroke="rgba(6, 182, 212, 0.12)" stroke-width="1" fill="none">
+    <circle cx="960" cy="540" r="160" stroke-dasharray="4 6" />
+    <circle cx="960" cy="540" r="300" stroke="rgba(255, 255, 255, 0.03)" />
+    <circle cx="960" cy="540" r="460" stroke-dasharray="6 8" />
+    <circle cx="960" cy="540" r="640" stroke="rgba(20, 184, 166, 0.08)" />
+    <circle cx="960" cy="540" r="820" stroke-dasharray="8 12" />
+  </g>
+
+  <!-- Crosshair Radar Scanning Lines -->
+  <line x1="960" y1="40" x2="960" y2="1040" stroke="rgba(6, 182, 212, 0.08)" stroke-width="1" stroke-dasharray="8 8" />
+  <line x1="120" y1="540" x2="1800" y2="540" stroke="rgba(6, 182, 212, 0.08)" stroke-width="1" stroke-dasharray="8 8" />
+
+  <!-- Radar Calibration Ticks -->
+  <g stroke="#06B6D4" stroke-opacity="0.3" stroke-width="1.2">
+    <line x1="950" y1="240" x2="970" y2="240" />
+    <line x1="950" y1="840" x2="970" y2="840" />
+    <line x1="660" y1="530" x2="660" y2="550" />
+    <line x1="1260" y1="530" x2="1260" y2="550" />
+  </g>
+</svg>

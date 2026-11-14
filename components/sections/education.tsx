@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GraduationCap, Calendar, CheckCircle2, Award, BookOpen, Compass } from "lucide-react";
@@ -17,6 +18,8 @@ const EDU_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> 
   "sliit-city-uni": BookOpen,
   "jaffna-hindu-college": Compass,
 };
+
+const EDUCATION_BACKDROP_SRC = "/src/education-backdrop.svg";
 
 export function EducationSection() {
   const sectionRef = React.useRef<HTMLElement>(null);
@@ -59,11 +62,17 @@ export function EducationSection() {
 
   return (
     <section ref={sectionRef} id="education" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/[0.05]">
-      {/* Precision Blueprint & Architectural Ledger Background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-blueprint-grid opacity-35 [mask-image:radial-gradient(ellipse_70%_60%_at_45%_50%,black_35%,transparent_100%)]"
-      />
+      {/* Crisp Architectural Ledger Backdrop Image */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <Image
+          src={EDUCATION_BACKDROP_SRC}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-75"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#090A0F] via-transparent to-[#090A0F]" />
+      </div>
 
       {/* Atmospheric Cyan / Teal Gradient Light Bleed */}
       <div
