@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
+import { Geist, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -8,16 +7,22 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Sabeesan Gnanavel (Sabeesan.G) | Full-Stack Software Engineer",
+  title: "SABEESAN | Full-Stack Software Engineer & Builder",
   description:
-    "Full-Stack Software Engineer & BSc (Hons) Software Engineering Undergraduate specializing in Next.js, React, Django, Node.js, Kotlin, PostgreSQL, and scalable cloud-deployed systems.",
+    "Full-Stack Software Engineer & BSc (Hons) Software Engineering undergraduate specializing in Next.js, React, Django, Node.js, Kotlin, PostgreSQL, and scalable systems.",
   keywords: [
+    "Sabeesan",
     "Sabeesan Gnanavel",
     "Sabeesan.G",
     "Full-Stack Software Engineer",
@@ -29,9 +34,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Sabeesan Gnanavel" }],
   openGraph: {
-    title: "Sabeesan Gnanavel (Sabeesan.G) | Full-Stack Software Engineer",
+    title: "SABEESAN | Full-Stack Software Engineer & Builder",
     description:
-      "Building scalable web, mobile, and enterprise applications with Next.js, Django, Node.js, Kotlin, and PostgreSQL.",
+      "I design and develop scalable web, mobile, and enterprise solutions with a focus on clean architecture, performance, and real-world impact.",
     type: "website",
   },
 };
@@ -44,18 +49,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
+      className={`${geistSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} dark h-full antialiased`}
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var stored=localStorage.getItem("sabeesan-theme");var isDark=stored?(stored==="dark"):(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(isDark){document.documentElement.classList.add("dark");document.documentElement.classList.remove("light");document.documentElement.setAttribute("data-theme","dark");document.documentElement.style.colorScheme="dark";}else{document.documentElement.classList.remove("dark");document.documentElement.classList.add("light");document.documentElement.setAttribute("data-theme","light");document.documentElement.style.colorScheme="light";}}catch(e){}})();`,
-          }}
-        />
-      </head>
-      <body className="min-h-full bg-[#F8FAFD] text-[#102039] dark:bg-[#030B16] dark:text-[#F5F9FF] flex flex-col selection:bg-[#00C8FF]/30 transition-colors duration-300">
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className="min-h-full bg-[#080D16] text-[#EAF3FF] flex flex-col selection:bg-[#00D5E8]/30 selection:text-white font-sans overflow-x-hidden">
+        {children}
       </body>
     </html>
   );

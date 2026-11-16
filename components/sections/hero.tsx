@@ -2,527 +2,286 @@
 
 import * as React from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useSpring, animated } from "@react-spring/web";
-import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Briefcase } from "lucide-react";
 import { PROFILE } from "@/data/portfolio";
-import { Button } from "@/components/ui/button";
-import { useTheme } from "@/components/theme-provider";
-import { cn } from "@/lib/utils";
 
-gsap.registerPlugin(ScrollTrigger);
-
-type BackdropKey = "obsidian" | "cyan" | "teal";
-
-interface BackdropTheme {
-  label: string;
-  darkBg: string;
-  lightBg: string;
-  darkSpotlight: string;
-  lightSpotlight: string;
-  swatchDark: string;
-  swatchLight: string;
-  wordmarkDark: string;
-  wordmarkLight: string;
+function GitHubIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+      <path d="M9 18c-4.51 2-5-2-7-2" />
+    </svg>
+  );
 }
 
-const BACKDROPS: Record<BackdropKey, BackdropTheme> = {
-  obsidian: {
-    label: "Cyber Navy",
-    darkBg: "#030B16",
-    lightBg: "#F8FAFD",
-    darkSpotlight: "rgba(0, 200, 255, 0.22)",
-    lightSpotlight: "rgba(0, 108, 229, 0.12)",
-    swatchDark: "bg-[#0B1C30] border-[rgba(85,190,255,0.4)]",
-    swatchLight: "bg-[#EEF4FA] border-[#006CE5]/40",
-    wordmarkDark: "from-[#F5F9FF] via-[#A1B3C9]/90 to-[#00C8FF]/50",
-    wordmarkLight: "from-[#DFE7F0] via-[#A1B3C9]/60 to-[#006CE5]/30",
-  },
-  cyan: {
-    label: "Electric Cyan",
-    darkBg: "#051324",
-    lightBg: "#F0F8FF",
-    darkSpotlight: "rgba(0, 200, 255, 0.28)",
-    lightSpotlight: "rgba(0, 143, 203, 0.16)",
-    swatchDark: "bg-[#00C8FF] border-[#00C8FF]/50",
-    swatchLight: "bg-[#008FCB] border-[#008FCB]/40",
-    wordmarkDark: "from-[#F5F9FF] via-sky-200 to-[#00C8FF]/65",
-    wordmarkLight: "from-sky-200 via-sky-300 to-[#008FCB]/50",
-  },
-  teal: {
-    label: "Cobalt Tech",
-    darkBg: "#06152B",
-    lightBg: "#F4F8FD",
-    darkSpotlight: "rgba(22, 139, 255, 0.28)",
-    lightSpotlight: "rgba(22, 139, 255, 0.14)",
-    swatchDark: "bg-[#168BFF] border-[#168BFF]/50",
-    swatchLight: "bg-[#168BFF] border-[#168BFF]/40",
-    wordmarkDark: "from-[#F5F9FF] via-blue-200 to-[#168BFF]/65",
-    wordmarkLight: "from-blue-200 via-blue-300 to-[#168BFF]/50",
-  },
-};
+function LinkedInIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
 
-const BACKDROP_ORDER: BackdropKey[] = ["obsidian", "cyan", "teal"];
+function YouTubeIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+      <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" />
+    </svg>
+  );
+}
+
+function MailIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  );
+}
+
 const HERO_CUTOUT_SRC = "/src/staning%20png%20hero%20sec.png";
-const HERO_BACKDROP_SRC = "/src/hero-backdrop.jpg";
 
 export function HeroSection() {
-  const heroRef = React.useRef<HTMLElement>(null);
-  const spotlightRef = React.useRef<HTMLDivElement>(null);
-  const portraitWrapRef = React.useRef<HTMLDivElement>(null);
-  const wordmarkWrapRef = React.useRef<HTMLDivElement>(null);
-
-  const { theme: themeMode } = useTheme();
-  const [backdrop, setBackdrop] = React.useState<BackdropKey>("obsidian");
-  const [jaffnaTime, setJaffnaTime] = React.useState("12:00");
-
-  // Silky 60fps spring physics (zero React re-renders on mousemove)
-  const [motionSpring, api] = useSpring(() => ({
-    px: 0,
-    py: 0,
-    shadowX: 0,
-    shadowY: 6,
-    skewX: 0,
-    wordmarkX: 0,
-    config: { tension: 90, friction: 28, mass: 1.15 },
-  }));
-
-  // Live Jaffna (Asia/Colombo, UTC+5:30) clock
-  React.useEffect(() => {
-    const updateClock = () => {
-      try {
-        const formatted = new Intl.DateTimeFormat("en-GB", {
-          timeZone: "Asia/Colombo",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        }).format(new Date());
-        setJaffnaTime(formatted);
-      } catch {
-        setJaffnaTime("IST");
-      }
-    };
-    updateClock();
-    const timer = setInterval(updateClock, 30_000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // GSAP mount choreography + subtle scroll-scrubbed depth separation
-  React.useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      tl.from(".hero-fade-up", {
-        y: 24,
-        opacity: 0,
-        duration: 0.72,
-        stagger: 0.08,
-      })
-        .from(
-          ".hero-portrait-stage",
-          {
-            y: 44,
-            scale: 0.95,
-            opacity: 0,
-            duration: 1.0,
-            ease: "power3.out",
-          },
-          0.08
-        )
-        .from(
-          ".hero-letter",
-          {
-            yPercent: 110,
-            opacity: 0,
-            duration: 0.85,
-            stagger: 0.04,
-            ease: "power4.out",
-          },
-          0.18
-        );
-
-      // Subtle scroll-linked Z/Y parallax between portrait and oversized wordmark
-      if (portraitWrapRef.current && wordmarkWrapRef.current) {
-        gsap.to(portraitWrapRef.current, {
-          y: -36,
-          ease: "none",
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 0.5,
-          },
-        });
-
-        gsap.to(wordmarkWrapRef.current, {
-          y: 24,
-          ease: "none",
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 0.5,
-          },
-        });
-      }
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (!heroRef.current) return;
-    const rect = heroRef.current.getBoundingClientRect();
-    const nx = (e.clientX - rect.left) / rect.width;
-    const ny = (e.clientY - rect.top) / rect.height;
-
-    // Update spotlight directly via CSS vars for zero-jank 60fps tracking
-    if (spotlightRef.current) {
-      spotlightRef.current.style.setProperty("--lx", `${(nx * 100).toFixed(2)}%`);
-      spotlightRef.current.style.setProperty("--ly", `${(ny * 100).toFixed(2)}%`);
-      spotlightRef.current.style.opacity = "1";
-    }
-
-    const dx = (nx - 0.5) * 2; // -1..1
-    const dy = (ny - 0.5) * 2; // -1..1
-
-    api.start({
-      px: dx * 8,
-      py: dy * 5,
-      shadowX: -dx * 16,
-      shadowY: -dy * 8 + 6,
-      skewX: -dx * 7,
-      wordmarkX: -dx * 6,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    if (spotlightRef.current) {
-      spotlightRef.current.style.opacity = "0.55";
-    }
-    api.start({
-      px: 0,
-      py: 0,
-      shadowX: 0,
-      shadowY: 6,
-      skewX: 0,
-      wordmarkX: 0,
-    });
-  };
-
-  const cycleBackdrop = (e: React.MouseEvent<HTMLElement>) => {
-    const target = e.target as HTMLElement;
-    if (target.closest("a, button")) return;
-    setBackdrop((prev) => {
-      const idx = BACKDROP_ORDER.indexOf(prev);
-      return BACKDROP_ORDER[(idx + 1) % BACKDROP_ORDER.length];
-    });
-  };
-
-  const theme = BACKDROPS[backdrop];
-  const wordmarkLetters = PROFILE.wordmark.split("");
-
-  const currentBg = themeMode === "light" ? theme.lightBg : theme.darkBg;
-  const currentSpotlight =
-    themeMode === "light" ? theme.lightSpotlight : theme.darkSpotlight;
-  const currentWordmarkClass =
-    themeMode === "light" ? theme.wordmarkLight : theme.wordmarkDark;
-
   return (
     <section
-      ref={heroRef}
       id="top"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onClick={cycleBackdrop}
-      style={{ backgroundColor: currentBg }}
-      className="relative flex min-h-screen lg:h-screen flex-col justify-between overflow-hidden pt-20 pb-5 transition-colors duration-700 sm:pt-24 sm:pb-6 cursor-crosshair"
+      className="relative min-h-[92vh] w-full overflow-hidden pt-28 pb-16 flex flex-col justify-between"
     >
-      {/* Crisp Architectural Studio Wall Backdrop Image */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <Image
-          src={HERO_BACKDROP_SRC}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center opacity-40 dark:opacity-85 transition-opacity duration-700"
-        />
-        {/* Theme tint & bottom seam fade into canvas */}
-        <div
-          className="absolute inset-0 transition-colors duration-700"
-          style={{
-            background:
-              themeMode === "light"
-                ? backdrop === "obsidian"
-                  ? "linear-gradient(to bottom, rgba(248,250,253,0.45) 0%, rgba(248,250,253,0.88) 75%, #F8FAFD 100%)"
-                  : backdrop === "cyan"
-                    ? "linear-gradient(to bottom, rgba(240,248,255,0.45) 0%, rgba(240,248,255,0.88) 75%, #F0F8FF 100%)"
-                    : "linear-gradient(to bottom, rgba(244,248,253,0.45) 0%, rgba(244,248,253,0.88) 75%, #F4F8FD 100%)"
-                : backdrop === "obsidian"
-                  ? "linear-gradient(to bottom, rgba(3,11,22,0.3) 0%, rgba(3,11,22,0.68) 75%, #030B16 100%)"
-                  : backdrop === "cyan"
-                    ? "linear-gradient(to bottom, rgba(5,19,36,0.3) 0%, rgba(5,19,36,0.72) 75%, #051324 100%)"
-                    : "linear-gradient(to bottom, rgba(6,21,43,0.3) 0%, rgba(6,21,43,0.72) 75%, #06152B 100%)",
-          }}
-        />
-      </div>
-
-      {/* Crisp cursor-reactive studio key light on the wall */}
+      {/* Background Ambience & Cyan Atmospheric Glows */}
       <div
-        ref={spotlightRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-55 transition-opacity duration-500"
-        style={
-          {
-            "--lx": "50%",
-            "--ly": "35%",
-            background: `radial-gradient(600px circle at var(--lx) var(--ly), ${currentSpotlight}, transparent 68%)`,
-          } as React.CSSProperties
-        }
+        className="pointer-events-none absolute top-10 left-1/4 h-[500px] w-[500px] rounded-full bg-[#00D5E8]/10 blur-[150px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/3 right-10 h-[600px] w-[600px] rounded-full bg-[#00D5E8]/15 blur-[170px]"
       />
 
-      {/* 3-Zone Editorial Stage */}
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-start px-4 sm:px-8">
-        <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-4">
-          {/* Left Column: Role Headline, 2-Line Bio & Dual CTAs */}
-          <div className="order-2 z-30 lg:order-1 lg:col-span-4">
-            <div className="hero-fade-up mb-3 inline-flex items-center gap-2 rounded-full border border-[#006CE5]/25 bg-[#006CE5]/10 px-3 py-1 font-mono text-xs text-[#006CE5] dark:border-[rgba(85,190,255,0.25)] dark:bg-[rgba(0,200,255,0.1)] dark:text-[#00C8FF]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#006CE5] animate-pulse dark:bg-[#00C8FF]" />
-              Full-Stack &amp; Systems Architect
+      {/* Main Container */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* Left Column: Typography & Actions */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 flex flex-col items-start text-left"
+          >
+            {/* Greeting Badge */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#101B2A]/70 px-4 py-1.5 text-xs font-medium text-slate-300 shadow-sm backdrop-blur-md mb-6">
+              <span>👋</span>
+              <span>Hello, I&apos;m</span>
             </div>
 
-            <h1 className="hero-fade-up text-2xl font-semibold tracking-tight text-[#102039] sm:text-3xl lg:text-[2.35rem] lg:leading-[1.14] dark:text-[#F5F9FF]">
-              Full-stack software
-              <br />
-              <span className="bg-gradient-to-r from-[#006CE5] via-[#008FCB] to-[#168BFF] bg-clip-text text-transparent dark:from-[#00C8FF] dark:via-sky-200 dark:to-[#168BFF]">
-                engineer &amp; builder
-              </span>
+            {/* Giant Name */}
+            <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-[#EAF3FF] leading-[1.05]">
+              SABEESAN
             </h1>
 
-            <p className="hero-fade-up mt-4 max-w-sm text-sm leading-relaxed text-[#52647B] sm:text-base dark:text-[#A1B3C9]">
-              Designing and deploying scalable web platforms, native mobile applications, and enterprise microservices with Next.js, Django, Kotlin, and PostgreSQL.
+            {/* Sub-headline with Electric Cyan Gradient */}
+            <h2 className="mt-3 font-heading text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-200">
+              Full-Stack Software{" "}
+              <span className="bg-gradient-to-r from-[#00D5E8] via-[#38BDF8] to-[#00D5E8] bg-clip-text text-transparent">
+                Engineer &amp; Builder
+              </span>
+            </h2>
+
+            {/* Description Text */}
+            <p className="mt-5 max-w-xl text-base sm:text-lg text-[#7A8FAD] leading-relaxed">
+              I design and develop scalable web, mobile, and enterprise solutions with a focus on clean architecture, performance, and real-world impact.
             </p>
 
-            <div className="hero-fade-up mt-6 flex flex-wrap items-center gap-3">
-              <a href="#projects" className="cursor-pointer">
-                <Button
-                  magnetic
-                  className="h-11 rounded-[10px] border border-[#102039]/10 bg-[#102039] pl-4 pr-1.5 text-[#F8FAFD] shadow-[0_8px_24px_rgba(16,32,57,0.18)] transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:bg-[#1E3355] focus-visible:ring-2 focus-visible:ring-[#006CE5] dark:border-[rgba(85,190,255,0.22)] dark:bg-[#071426] dark:text-[#F5F9FF] dark:shadow-[0_8px_24px_rgba(0,0,0,0.6)] dark:hover:border-[#00C8FF]/55 dark:hover:bg-[#0B1C30] dark:focus-visible:ring-[#00C8FF]"
-                >
-                  <span>See my work</span>
-                  <span className="ml-1.5 inline-flex h-8 w-8 items-center justify-center rounded-[7px] bg-gradient-to-br from-[#00C8FF] to-[#168BFF] text-[#030B16]">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
-                </Button>
+            {/* CTA Buttons */}
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <a
+                href="#projects"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#00D5E8] px-6 py-3.5 text-sm font-bold text-[#080D16] shadow-[0_0_30px_rgba(0,213,232,0.45)] transition-all duration-300 hover:bg-[#38BDF8] hover:shadow-[0_0_40px_rgba(0,213,232,0.65)] hover:-translate-y-0.5"
+              >
+                <span>View Projects</span>
+                <ArrowUpRight className="h-4 w-4 stroke-[2.5]" />
               </a>
 
-              <a href="#contact" className="cursor-pointer">
-                <Button
-                  magnetic
-                  variant="outline"
-                  className="h-11 rounded-[10px] border-[#DFE7F0] bg-white/80 px-5 text-[#102039] transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:border-[#006CE5]/40 hover:bg-[#EEF4FA] focus-visible:ring-2 focus-visible:ring-[#006CE5] dark:border-[rgba(85,190,255,0.18)] dark:bg-[#071426]/60 dark:text-[#F5F9FF] dark:hover:border-[#00C8FF]/50 dark:hover:bg-[#0B1C30] dark:focus-visible:ring-[#00C8FF]"
-                >
-                  Get in touch
-                </Button>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-[#101B2A]/80 px-6 py-3.5 text-sm font-semibold text-[#EAF3FF] backdrop-blur-md transition-all duration-300 hover:border-cyan-500/50 hover:bg-[#1A2B3D] hover:-translate-y-0.5"
+              >
+                <Briefcase className="h-4 w-4 text-[#00D5E8]" />
+                <span>Contact Me</span>
               </a>
             </div>
-          </div>
 
-          {/* Center Column: Standing Cutout Portrait + Silky 3D Diffuse Cast Shadow */}
-          <div
-            ref={portraitWrapRef}
-            className="hero-portrait-stage order-1 z-20 flex justify-center lg:order-2 lg:col-span-4"
-          >
-            <div className="relative h-[430px] w-[320px] sm:h-[510px] sm:w-[390px] lg:h-[570px] lg:w-[430px]">
-              {/* Soft Ambient Penumbra Wall Shadow */}
-              <animated.div
-                aria-hidden="true"
-                style={{
-                  transformOrigin: "50% 92%",
-                  transform: motionSpring.shadowX.to(
-                    (sx) =>
-                      `translate3d(${sx * 1.15}px, ${motionSpring.shadowY.get()}px, 0) skewX(${motionSpring.skewX.get() * 0.9}deg)`
-                  ),
-                }}
-                className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+            {/* Social Links Row */}
+            <div className="mt-8 flex items-center gap-3">
+              <a
+                href={PROFILE.socials.github}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub Profile"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#101B2A]/60 text-slate-400 transition-all hover:border-cyan-400/50 hover:bg-cyan-500/10 hover:text-[#00D5E8]"
               >
-                <Image
-                  src={HERO_CUTOUT_SRC}
-                  alt=""
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 360px, 480px"
-                  className="object-contain object-bottom brightness-0 opacity-25 blur-[34px] sm:blur-[42px] dark:opacity-35"
-                />
-              </animated.div>
-
-              {/* Gentle Mid-Depth Silhouette Shadow */}
-              <animated.div
-                aria-hidden="true"
-                style={{
-                  transformOrigin: "50% 92%",
-                  transform: motionSpring.shadowX.to(
-                    (sx) =>
-                      `translate3d(${sx * 0.55}px, ${motionSpring.shadowY.get() * 0.6}px, 0) skewX(${motionSpring.skewX.get() * 0.45}deg)`
-                  ),
-                }}
-                className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+                <GitHubIcon className="h-4 w-4" />
+              </a>
+              <a
+                href={PROFILE.socials.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn Profile"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#101B2A]/60 text-slate-400 transition-all hover:border-cyan-400/50 hover:bg-cyan-500/10 hover:text-[#00D5E8]"
               >
-                <Image
-                  src={HERO_CUTOUT_SRC}
-                  alt=""
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 360px, 480px"
-                  className="object-contain object-bottom brightness-0 opacity-15 blur-[16px] dark:opacity-25"
-                />
-              </animated.div>
-
-              {/* Ground Contact Shadow (Floor Ambient Occlusion under feet) */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -bottom-2 left-1/2 h-7 w-3/4 -translate-x-1/2 rounded-[100%] bg-black/35 blur-lg dark:bg-black/60"
-              />
-
-              {/* Foreground standing portrait with smooth depth parallax */}
-              <animated.div
-                style={{
-                  transform: motionSpring.px.to(
-                    (x) => `translate3d(${x}px, ${motionSpring.py.get()}px, 0)`
-                  ),
-                }}
-                className="relative h-full w-full [mask-image:linear-gradient(to_bottom,black_0%,black_84%,rgba(0,0,0,0.45)_94%,transparent_100%)]"
+                <LinkedInIcon className="h-4 w-4" />
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="YouTube Channel"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#101B2A]/60 text-slate-400 transition-all hover:border-cyan-400/50 hover:bg-cyan-500/10 hover:text-[#00D5E8]"
               >
-                <Image
-                  src={HERO_CUTOUT_SRC}
-                  alt={PROFILE.fullName}
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 360px, 480px"
-                  className="object-contain object-bottom drop-shadow-[0_12px_28px_rgba(0,0,0,0.25)] dark:drop-shadow-[0_12px_28px_rgba(0,0,0,0.35)]"
-                />
-              </animated.div>
+                <YouTubeIcon className="h-4 w-4" />
+              </a>
+              <a
+                href={`mailto:${PROFILE.email}`}
+                aria-label="Send Email"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#101B2A]/60 text-slate-400 transition-all hover:border-cyan-400/50 hover:bg-cyan-500/10 hover:text-[#00D5E8]"
+              >
+                <MailIcon className="h-4 w-4" />
+              </a>
             </div>
-          </div>
 
-          {/* Right Column: Telemetry Bento Card (Executive Status & Metrics) */}
-          <div className="order-3 z-30 flex flex-col lg:col-span-4 lg:items-end">
-            <div className="hero-fade-up w-full max-w-xs space-y-3 rounded-2xl border border-[#DFE7F0] bg-white/90 p-4.5 backdrop-blur-xl shadow-[0_12px_36px_rgba(16,32,57,0.06)] dark:border-[rgba(85,190,255,0.18)] dark:bg-[#071426]/90 dark:shadow-[0_12px_36px_rgba(0,0,0,0.6)]">
-              {/* Availability Header */}
-              <div className="flex items-center justify-between border-b border-[#DFE7F0] pb-2.5 dark:border-[rgba(85,190,255,0.14)]">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#52647B] dark:text-[#A1B3C9]">
-                  Status
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-teal-600/30 bg-teal-50 px-2.5 py-0.5 font-mono text-[11px] font-medium text-teal-700 dark:border-teal-400/30 dark:bg-teal-500/10 dark:text-teal-300">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-500 opacity-75 dark:bg-teal-400" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-600 dark:bg-teal-400" />
-                  </span>
-                  Available for Work
-                </span>
-              </div>
-
-              {/* Location & Time */}
-              <div className="space-y-1.5 font-mono text-xs">
-                <div className="flex items-center justify-between text-[#52647B] dark:text-[#A1B3C9]">
-                  <span>Location</span>
-                  <span className="text-[#102039] dark:text-[#F5F9FF] font-medium">Jaffna, LK</span>
-                </div>
-                <div className="flex items-center justify-between text-[#52647B] dark:text-[#A1B3C9]">
-                  <span>Local Time</span>
-                  <span className="font-semibold text-[#006CE5] dark:text-[#00C8FF]">
-                    {jaffnaTime}{" "}
-                    <span className="text-[10px] text-[#52647B] dark:text-[#A1B3C9] font-normal">IST</span>
-                  </span>
-                </div>
-                <div className="flex items-center justify-between text-[#52647B] dark:text-[#A1B3C9]">
-                  <span>Engagement</span>
-                  <span className="text-[#102039] dark:text-[#F5F9FF] font-medium">Hybrid &amp; Remote</span>
-                </div>
-              </div>
-
-              {/* Metric Chips */}
-              <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#DFE7F0] dark:border-[rgba(85,190,255,0.14)]">
-                <div className="rounded-lg border border-[#DFE7F0] bg-[#EEF4FA]/60 p-2 text-center dark:border-[rgba(85,190,255,0.12)] dark:bg-[#0B1C30]/60">
-                  <div className="text-base font-bold text-[#102039] dark:text-[#F5F9FF]">7+</div>
-                  <div className="text-[10px] font-mono text-[#52647B] dark:text-[#A1B3C9]">
-                    Systems Shipped
-                  </div>
-                </div>
-                <div className="rounded-lg border border-[#DFE7F0] bg-[#EEF4FA]/60 p-2 text-center dark:border-[rgba(85,190,255,0.12)] dark:bg-[#0B1C30]/60">
-                  <div className="text-base font-bold text-teal-600 dark:text-teal-300">100%</div>
-                  <div className="text-[10px] font-mono text-[#52647B] dark:text-[#A1B3C9]">
-                    Type-Safe Code
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Oversized Full-Width Display Wordmark layered BEHIND the portrait */}
-      <div
-        ref={wordmarkWrapRef}
-        aria-hidden="true"
-        className="pointer-events-none relative z-10 mx-auto w-full max-w-7xl -mt-14 px-2 text-center select-none sm:-mt-20 lg:-mt-28"
-      >
-        <animated.div
-          style={{
-            transform: motionSpring.wordmarkX.to(
-              (wx) => `translate3d(${wx}px, 0, 0)`
-            ),
-          }}
-          className="overflow-hidden"
-        >
-          <div className="flex justify-center text-[15.5vw] font-semibold tracking-[-0.055em] leading-[0.84] sm:text-[14vw] xl:text-[11.2rem]">
-            {wordmarkLetters.map((char, idx) => (
-              <span
-                key={`${char}-${idx}`}
-                className={cn(
-                  "hero-letter inline-block bg-gradient-to-b bg-clip-text text-transparent transition-all duration-700",
-                  currentWordmarkClass
-                )}
-              >
-                {char}
+            {/* Status indicator */}
+            <div className="mt-6 flex items-center gap-2.5">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
               </span>
-            ))}
-          </div>
-        </animated.div>
-      </div>
+              <span className="text-xs font-medium text-emerald-400/90 tracking-wide">
+                Available for opportunities
+              </span>
+            </div>
+          </motion.div>
 
-      {/* Bottom Interactive Hint & Backdrop Swatch Switcher */}
-      <div className="relative z-30 mx-auto mt-5 flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-4 sm:px-8">
-        <div className="hero-fade-up inline-flex items-center gap-2 rounded-full border border-[#DFE7F0] bg-white/80 px-3.5 py-1.5 font-mono text-[11px] text-[#52647B] shadow-sm backdrop-blur-md dark:border-[rgba(85,190,255,0.16)] dark:bg-[#071426]/80 dark:text-[#A1B3C9]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#006CE5] dark:bg-[#00C8FF]" />
-          Move the light · click for a new backdrop
-        </div>
-
-        <div className="hero-fade-up flex items-center gap-2.5 rounded-full border border-[#DFE7F0] bg-white/80 px-3.5 py-1.5 shadow-sm backdrop-blur-md dark:border-[rgba(85,190,255,0.16)] dark:bg-[#071426]/80">
-          <span className="font-mono text-[11px] text-[#52647B] dark:text-[#A1B3C9] mr-1">
-            Backdrop
-          </span>
-          {BACKDROP_ORDER.map((key) => (
-            <button
-              key={key}
-              type="button"
-              onClick={() => setBackdrop(key)}
-              aria-label={`Switch backdrop to ${BACKDROPS[key].label}`}
-              className={cn(
-                "h-4 w-4 rounded-full border transition-transform cursor-pointer",
-                themeMode === "light"
-                  ? BACKDROPS[key].swatchLight
-                  : BACKDROPS[key].swatchDark,
-                backdrop === key
-                  ? "scale-125 ring-2 ring-[#006CE5] ring-offset-2 ring-offset-white dark:ring-[#00C8FF] dark:ring-offset-[#030B16]"
-                  : "opacity-65 hover:opacity-100"
-              )}
+          {/* Right Column: Standing Cutout + Neon Portal + Floating Code Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 relative flex items-center justify-center min-h-[480px] sm:min-h-[580px] lg:min-h-[640px]"
+          >
+            {/* Tilted Glowing Neon Cyan Portal Frame */}
+            <div
+              className="absolute inset-x-6 sm:inset-x-12 inset-y-6 sm:inset-y-8 rounded-3xl border-2 border-[#00D5E8]/60 bg-gradient-to-b from-[#00D5E8]/10 via-[#101B2A]/40 to-transparent shadow-[0_0_50px_rgba(0,213,232,0.35)] -rotate-3 transition-transform duration-700 hover:rotate-0"
+              style={{
+                backdropFilter: "blur(12px)",
+              }}
             />
-          ))}
+
+            {/* Back Glow Flare */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute h-72 w-72 rounded-full bg-[#00D5E8]/25 blur-[90px] top-1/4"
+            />
+
+            {/* Sabeesan Standing Cutout */}
+            <div className="relative z-20 w-[280px] sm:w-[350px] lg:w-[380px] h-[460px] sm:h-[540px] lg:h-[600px] flex items-end justify-center">
+              <Image
+                src={HERO_CUTOUT_SRC}
+                alt="Sabeesan Gnanavel - Full-Stack Software Engineer"
+                width={420}
+                height={640}
+                priority
+                className="h-full w-auto object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] filter contrast-[1.03] select-none"
+              />
+            </div>
+
+            {/* Floating Code Card */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="absolute -right-2 sm:right-0 top-16 sm:top-20 z-30 hidden sm:block rounded-xl border border-cyan-400/30 bg-[#080D16]/90 p-4 font-mono text-xs shadow-[0_15px_35px_rgba(0,0,0,0.7)] backdrop-blur-xl"
+            >
+              <div className="flex items-center gap-1.5 pb-2.5 border-b border-white/10 mb-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
+                <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
+              </div>
+              <p className="text-slate-400">
+                <span className="text-cyan-400">const</span> developer = &#123;
+              </p>
+              <p className="pl-4 text-slate-300">
+                name: <span className="text-amber-300">&quot;Sabeesan&quot;</span>,
+              </p>
+              <p className="pl-4 text-slate-300">
+                role: <span className="text-cyan-300">&quot;Full-Stack Engineer&quot;</span>,
+              </p>
+              <p className="pl-4 text-slate-300">
+                build: () =&gt; <span className="text-emerald-300">&quot;Scalable Apps&quot;</span>
+              </p>
+              <p className="text-slate-400">&#125;;</p>
+            </motion.div>
+
+          </motion.div>
+
         </div>
       </div>
+
+      {/* Flowing Cyan Digital Wave / Particle Graphic at Base */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 sm:h-44 w-full overflow-hidden"
+      >
+        <svg
+          viewBox="0 0 1440 280"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full object-cover object-top opacity-40"
+        >
+          <path
+            d="M0,160 C320,300 420,80 720,180 C1020,280 1180,100 1440,190 L1440,280 L0,280 Z"
+            fill="url(#cyan-wave-grad)"
+          />
+          <path
+            d="M0,190 C360,110 520,260 860,140 C1200,20 1320,210 1440,160"
+            stroke="#00D5E8"
+            strokeWidth="1.5"
+            strokeOpacity="0.6"
+          />
+          <path
+            d="M0,220 C280,150 480,280 780,180 C1080,80 1280,230 1440,200"
+            stroke="#38BDF8"
+            strokeWidth="1"
+            strokeOpacity="0.4"
+            strokeDasharray="4 4"
+          />
+          <defs>
+            <linearGradient id="cyan-wave-grad" x1="0" y1="0" x2="1440" y2="280" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#00D5E8" stopOpacity="0.25" />
+              <stop offset="0.5" stopColor="#101B2A" stopOpacity="0.5" />
+              <stop offset="1" stopColor="#080D16" stopOpacity="0.9" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      {/* Bottom Scroll Indicator */}
+      <div className="relative z-20 mt-6 flex flex-col items-center justify-center gap-1 text-slate-500">
+        <div className="flex h-7 w-4.5 items-start justify-center rounded-full border border-slate-600 p-1">
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+            className="h-1.5 w-1 rounded-full bg-[#00D5E8]"
+          />
+        </div>
+        <span className="font-mono text-[11px] tracking-wider uppercase text-slate-400">
+          Scroll to explore
+        </span>
+      </div>
+
     </section>
   );
 }

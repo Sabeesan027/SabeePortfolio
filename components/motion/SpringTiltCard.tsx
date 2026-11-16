@@ -12,7 +12,7 @@ interface SpringTiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function SpringTiltCard({
   className,
-  spotlightColor,
+  spotlightColor = "rgba(6, 182, 212, 0.16)",
   tiltIntensity = 6,
   children,
   onMouseMove,
@@ -79,32 +79,24 @@ export function SpringTiltCard({
           transformStyle: "preserve-3d",
         }}
         className={cn(
-          "group relative h-full overflow-hidden rounded-2xl border border-[#DFE7F0] bg-white/90 shadow-[0_4px_20px_rgba(16,32,57,0.04)] backdrop-blur-xl transition-all duration-300 hover:border-[#006CE5]/40 hover:shadow-[0_8px_30px_rgba(0,108,229,0.08)] dark:border-[rgba(85,190,255,0.16)] dark:bg-[#071426]/80 dark:shadow-none dark:hover:border-[#00C8FF]/45 dark:hover:shadow-[0_0_25px_rgba(0,200,255,0.12)]",
+          "group relative h-full overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl transition-colors duration-300 hover:border-cyan-400/35",
           className
         )}
         {...props}
       >
-        {/* Dynamic radial spotlight */}
+        {/* Dynamic cyan radial spotlight */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -inset-px rounded-2xl transition-opacity duration-300 dark:hidden"
+          className="pointer-events-none absolute -inset-px rounded-2xl transition-opacity duration-300"
           style={{
             opacity: isHovered ? 1 : 0,
-            background: `radial-gradient(440px circle at ${coords.x}px ${coords.y}px, ${spotlightColor || "rgba(0, 108, 229, 0.08)"}, transparent 70%)`,
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -inset-px hidden rounded-2xl transition-opacity duration-300 dark:block"
-          style={{
-            opacity: isHovered ? 1 : 0,
-            background: `radial-gradient(440px circle at ${coords.x}px ${coords.y}px, ${spotlightColor || "rgba(0, 200, 255, 0.16)"}, transparent 70%)`,
+            background: `radial-gradient(440px circle at ${coords.x}px ${coords.y}px, ${spotlightColor}, transparent 70%)`,
           }}
         />
         {/* Top border luminescence */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#006CE5]/35 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:via-[#00C8FF]/45"
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/45 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         />
         <div className="relative z-10 h-full">{children}</div>
       </animated.div>

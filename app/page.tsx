@@ -11,7 +11,7 @@ import { Footer } from "@/components/sections/footer";
 
 export default function HomePage() {
   return (
-    <div className="relative min-h-screen bg-[#090A0F] text-slate-100">
+    <div className="relative min-h-screen bg-[#080D16] text-[#EAF3FF]">
       <ScrollProgress />
       <Navbar />
 

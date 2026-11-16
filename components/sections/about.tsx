@@ -1,247 +1,176 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
-import { animate } from "animejs";
 import {
-  Compass,
-  ShieldCheck,
-  Rocket,
-  MapPin,
-  Sparkles,
+  Code2,
+  Cpu,
+  Lightbulb,
+  Terminal,
   Layers,
-  Laptop2,
-  Server,
-  Shield,
-  ArrowUpRight,
+  TrendingUp,
+  ShieldCheck,
+  Zap,
 } from "lucide-react";
-import { PROFILE } from "@/data/portfolio";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Badge } from "@/components/ui/badge";
-import { SpringTiltCard } from "@/components/motion/SpringTiltCard";
-import { AnimatedDivider } from "@/components/motion/AnimatedDivider";
-import { Reveal, StaggerContainer, StaggerItem } from "@/components/ui/reveal";
-
-const PHILOSOPHY_ICONS = [Compass, ShieldCheck, Rocket];
-const METRIC_ICONS = [Layers, Laptop2, Server, Shield];
-
-const METRIC_TARGETS = [
-  { end: 7, suffix: "+", decimals: 0 },
-  { end: 100, suffix: "%", decimals: 0 },
-  { end: 99.9, suffix: "%", decimals: 1 },
-  { end: 24, suffix: "/7", decimals: 0 },
-];
-
-const ABOUT_BACKDROP_SRC = "/src/about-backdrop.jpg";
 
 export function AboutSection() {
-  const metricsRef = React.useRef<HTMLDivElement>(null);
-  const [displayValues, setDisplayValues] = React.useState<string[]>(
-    PROFILE.metrics.map((m) => m.value)
-  );
-  const hasCounted = React.useRef(false);
+  const capabilities = [
+    {
+      icon: Code2,
+      title: "Full-Stack Development",
+      description: "End-to-end web and mobile application development.",
+      featured: true,
+    },
+    {
+      icon: Cpu,
+      title: "System Design",
+      description: "Build scalable, secure, and maintainable architectures.",
+      featured: false,
+    },
+    {
+      icon: Lightbulb,
+      title: "Problem Solving",
+      description: "Turn business needs into effective digital solutions.",
+      featured: false,
+    },
+    {
+      icon: Terminal,
+      title: "Clean Code",
+      description: "Focused on quality, reusability, and long-term maintainability.",
+      featured: false,
+    },
+  ];
 
-  React.useEffect(() => {
-    const el = metricsRef.current;
-    if (!el) return;
+  const categoryPills = ["Web Apps", "Mobile Apps", "POS Systems", "ERP & Inventory"];
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasCounted.current) {
-            hasCounted.current = true;
-            METRIC_TARGETS.forEach((target, idx) => {
-              const counter = { val: 0 };
-              animate(counter, {
-                val: target.end,
-                duration: 1400,
-                delay: idx * 120,
-                ease: "outExpo",
-                onUpdate: () => {
-                  setDisplayValues((prev) => {
-                    const next = [...prev];
-                    const formatted =
-                      target.decimals > 0
-                        ? counter.val.toFixed(target.decimals)
-                        : Math.round(counter.val).toString();
-                    next[idx] = `${formatted}${target.suffix}`;
-                    return next;
-                  });
-                },
-              });
-            });
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.25 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const stats = [
+    {
+      icon: Layers,
+      value: "5+",
+      label: "Major Projects",
+    },
+    {
+      icon: TrendingUp,
+      value: "43% ↗",
+      label: "Performance Gain",
+    },
+    {
+      icon: ShieldCheck,
+      value: "99.9%",
+      label: "Production Uptime",
+    },
+    {
+      icon: Zap,
+      value: "24/7",
+      label: "Learning & Building",
+    },
+  ];
 
   return (
-    <section id="about" className="relative py-14 sm:py-20 overflow-hidden border-t border-[#DFE7F0] dark:border-[rgba(85,190,255,0.16)] bg-[#F8FAFD] dark:bg-[#030B16]">
-      {/* Architectural Studio Backdrop Image */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <Image
-          src={ABOUT_BACKDROP_SRC}
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center opacity-15 dark:opacity-35 transition-opacity duration-700"
-        />
-        {/* Soft edge fade into canvas */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFD] via-transparent to-[#F8FAFD] dark:from-[#030B16] dark:via-transparent dark:to-[#030B16]" />
-      </div>
-
-      {/* Atmospheric Ambient Glow Bleed */}
+    <section id="about" className="relative py-20 sm:py-28 overflow-hidden">
+      {/* Ambient background glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-32 right-1/4 h-[480px] w-[520px] rounded-full bg-[#006CE5]/10 dark:bg-[#00C8FF]/10 blur-[130px]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-10 h-[360px] w-[420px] rounded-full bg-[#008FCB]/10 dark:bg-[#168BFF]/10 blur-[120px]"
+        className="pointer-events-none absolute top-1/2 left-0 h-96 w-96 rounded-full bg-cyan-500/5 blur-[120px]"
       />
 
-      {/* Giant Architectural Ghost Watermark */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 select-none text-[16vw] font-black uppercase tracking-tighter text-[#102039]/[0.025] dark:text-white/[0.02] whitespace-nowrap"
-      >
-        PHILOSOPHY
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
-        {/* Technical Coordinate & Status Header */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-[#52647B] dark:text-[#A1B3C9]">
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#006CE5] dark:bg-[#00C8FF]" />
-            <span>SEC // 01 · ENGINEERING MINDSET</span>
-          </div>
-          <div className="hidden sm:inline-flex items-center gap-2 text-[#52647B] dark:text-[#A1B3C9]">
-            <span>JAFFNA NODE · LAT 9.66° N // LON 80.02° E</span>
-          </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header Label */}
+        <div className="flex items-center gap-2 mb-4">
+          <span className="h-4 w-1 bg-[#00D5E8] rounded-full" />
+          <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[#00D5E8]">
+            ABOUT ME
+          </span>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center mb-8">
-          <div className="lg:col-span-7">
-            <SectionHeading
-              eyebrow="About & Philosophy"
-              title="Turning Operational Complexity into"
-              highlight="Clean Software"
-              description={PROFILE.headline}
-            />
+        {/* 2-Column Asymmetric Bento Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          
+          {/* Left Column: Heading, Description & Category Pills */}
+          <div className="lg:col-span-6 flex flex-col justify-center">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#EAF3FF] leading-[1.15]">
+              Turning Ideas into{" "}
+              <span className="bg-gradient-to-r from-[#00D5E8] to-[#38BDF8] bg-clip-text text-transparent">
+                Scalable Solutions
+              </span>
+            </h2>
+
+            <p className="mt-6 text-base sm:text-lg text-[#7A8FAD] leading-relaxed">
+              I&apos;m a software engineer who enjoys building practical, user-focused digital products. I work across the full stack &mdash; from intuitive interfaces to reliable backend systems &mdash; and turn complex requirements into clean, maintainable solutions.
+            </p>
+
+            {/* Category Pills */}
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              {categoryPills.map((pill) => (
+                <span
+                  key={pill}
+                  className="rounded-full border border-cyan-500/25 bg-[#101B2A]/80 px-4 py-1.5 text-xs font-medium text-slate-300 shadow-sm backdrop-blur-sm transition-colors hover:border-cyan-400 hover:text-[#00D5E8]"
+                >
+                  {pill}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <Reveal delay={0.1} className="lg:col-span-5">
-            <SpringTiltCard tiltIntensity={4} className="p-5 sm:p-6 border-[#DFE7F0] bg-white/95 dark:border-[rgba(85,190,255,0.2)] dark:bg-[#071426]/85">
-              <div className="flex flex-col sm:flex-row items-center gap-5">
-                <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-2xl border border-[#006CE5]/25 bg-[#EEF4FA] shadow-[0_4px_20px_rgba(0,108,229,0.12)] sm:h-36 sm:w-36 dark:border-[#00C8FF]/40 dark:bg-[#0B1C30] dark:shadow-[0_0_30px_rgba(0,200,255,0.2)]">
-                  <Image
-                    src={PROFILE.profileImage}
-                    alt={PROFILE.fullName}
-                    width={288}
-                    height={288}
-                    className="h-full w-full object-cover object-top"
-                  />
+          {/* Right Column: 2x2 Bento Grid */}
+          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {capabilities.map((cap) => {
+              const Icon = cap.icon;
+              return (
+                <div
+                  key={cap.title}
+                  className={`relative rounded-2xl p-6 transition-all duration-300 ${
+                    cap.featured
+                      ? "border border-[#00D5E8]/60 bg-gradient-to-b from-cyan-500/15 via-[#101B2A]/90 to-[#101B2A] shadow-[0_0_30px_rgba(0,213,232,0.18)]"
+                      : "border border-white/10 bg-[#101B2A]/60 hover:border-white/20 hover:bg-[#101B2A]/90"
+                  }`}
+                >
                   <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#102039]/40 via-transparent to-transparent dark:from-[#030B16]/60"
-                  />
-                </div>
-
-                <div className="text-center sm:text-left">
-                  <Badge variant="teal" className="mb-2.5 font-mono text-[11px]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#006CE5] dark:bg-[#00C8FF] animate-pulse" />
-                    Lead Developer
-                  </Badge>
-                  <h3 className="text-xl font-bold tracking-tight text-[#102039] dark:text-[#F5F9FF]">
-                    {PROFILE.fullName}
+                    className={`inline-flex h-10 w-10 items-center justify-center rounded-xl mb-4 ${
+                      cap.featured
+                        ? "bg-[#00D5E8] text-[#080D16] shadow-[0_0_15px_rgba(0,213,232,0.5)]"
+                        : "bg-[#1A2B3D] text-[#00D5E8]"
+                    }`}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="font-heading text-lg font-bold text-[#EAF3FF]">
+                    {cap.title}
                   </h3>
-                  <p className="mt-1 text-xs font-mono text-[#006CE5] dark:text-[#00C8FF]">
-                    {PROFILE.brandTag}
+                  <p className="mt-2 text-sm text-[#7A8FAD] leading-relaxed">
+                    {cap.description}
                   </p>
-                  <p className="mt-2.5 inline-flex items-center justify-center sm:justify-start gap-1.5 text-xs text-[#52647B] dark:text-[#A1B3C9]">
-                    <MapPin className="h-3.5 w-3.5 text-[#006CE5] dark:text-[#00C8FF] shrink-0" />
-                    {PROFILE.location}
-                  </p>
-                  <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-mono text-[#006CE5] dark:text-[#00C8FF]">
-                    <Sparkles className="h-3 w-3 text-[#006CE5] dark:text-[#00C8FF]" />
-                    Available for Global Opportunities
-                  </div>
                 </div>
-              </div>
-            </SpringTiltCard>
-          </Reveal>
+              );
+            })}
+          </div>
+
         </div>
 
-        {/* Anime.js Animated Metrics Row with Category Icons */}
-        <div
-          ref={metricsRef}
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6"
-        >
-          {PROFILE.metrics.map((metric, idx) => {
-            const MetricIcon = METRIC_ICONS[idx] ?? Layers;
-            return (
-              <SpringTiltCard key={metric.label} tiltIntensity={4} className="p-6 h-full relative group">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#006CE5]/20 bg-[#006CE5]/10 text-[#006CE5] dark:border-[#00C8FF]/25 dark:bg-[#00C8FF]/10 dark:text-[#00C8FF]">
-                    <MetricIcon className="h-4 w-4" />
+        {/* Full-Width Bottom Stats Banner */}
+        <div className="mt-14 rounded-2xl border border-white/10 bg-[#101B2A]/70 p-6 sm:p-8 backdrop-blur-xl shadow-xl">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {stats.map((stat) => {
+              const Icon = stat.icon;
+              return (
+                <div key={stat.label} className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10 text-[#00D5E8]">
+                    <Icon className="h-5 w-5" />
                   </div>
-                  <span className="font-mono text-[10px] text-[#52647B] dark:text-[#A1B3C9]">0{idx + 1}</span>
-                </div>
-                <div className="text-xs font-mono uppercase tracking-wider text-[#006CE5] dark:text-[#00C8FF] mb-1">
-                  {metric.label}
-                </div>
-                <div className="font-mono text-3xl font-bold tracking-tight text-[#102039] sm:text-4xl dark:text-[#F5F9FF] bg-gradient-to-br from-[#102039] via-[#168BFF] to-[#006CE5] dark:from-white dark:via-[#F5F9FF] dark:to-[#00C8FF] bg-clip-text text-transparent">
-                  {displayValues[idx] ?? metric.value}
-                </div>
-                <p className="mt-2.5 text-sm leading-relaxed text-[#52647B] dark:text-[#A1B3C9]">
-                  {metric.detail}
-                </p>
-              </SpringTiltCard>
-            );
-          })}
-        </div>
-
-        {/* Anime.js SVG Hairline Circuit Divider */}
-        <AnimatedDivider className="mb-6" />
-
-        {/* Engineering Philosophy Pillars */}
-        <StaggerContainer className="grid grid-cols-1 gap-5 md:grid-cols-3">
-          {PROFILE.philosophyPoints.map((point, index) => {
-            const Icon = PHILOSOPHY_ICONS[index] ?? Compass;
-            return (
-              <StaggerItem key={point.title}>
-                <SpringTiltCard className="p-6 sm:p-7 h-full flex flex-col justify-between">
                   <div>
-                    <div className="mb-5 flex items-center justify-between">
-                      <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#006CE5]/25 bg-[#006CE5]/10 text-[#006CE5] dark:border-[#00C8FF]/25 dark:bg-[#00C8FF]/10 dark:text-[#00C8FF]">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <span className="font-mono text-xs uppercase tracking-widest text-[#52647B] dark:text-[#A1B3C9]">
-                        PILLAR 0{index + 1}
-                      </span>
+                    <div className="font-heading text-2xl sm:text-3xl font-extrabold text-[#EAF3FF] tracking-tight">
+                      {stat.value}
                     </div>
-                    <h3 className="text-lg font-semibold text-[#102039] dark:text-[#F5F9FF]">
-                      {point.title}
-                    </h3>
-                    <p className="mt-2.5 text-sm leading-relaxed text-[#52647B] dark:text-[#A1B3C9]">
-                      {point.description}
-                    </p>
+                    <div className="text-xs sm:text-sm text-[#7A8FAD] font-medium">
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-[#DFE7F0] dark:border-[rgba(85,190,255,0.16)] flex items-center justify-between text-[11px] font-mono text-[#006CE5] dark:text-[#00C8FF]">
-                    <span>Verified Pattern</span>
-                    <ArrowUpRight className="h-3.5 w-3.5 text-[#006CE5] dark:text-[#00C8FF]" />
-                  </div>
-                </SpringTiltCard>
-              </StaggerItem>
-            );
-          })}
-        </StaggerContainer>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
     </section>
   );

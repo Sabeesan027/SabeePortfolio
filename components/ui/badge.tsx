@@ -8,10 +8,10 @@ const badgeVariants = cva(
     variants: {
       variant: {
         glass:
-          "border-[#DFE7F0] bg-[#EEF4FA] text-[#102039] hover:border-[#006CE5]/40 hover:text-[#006CE5] dark:border-[rgba(85,190,255,0.16)] dark:bg-[#0B1C30]/70 dark:text-[#F5F9FF] dark:hover:border-[#00C8FF]/40 dark:hover:text-[#00C8FF]",
-        cyan: "border-[#006CE5]/25 bg-[#006CE5]/10 text-[#006CE5] dark:border-[#00C8FF]/30 dark:bg-[#00C8FF]/10 dark:text-[#00C8FF]",
-        sky: "border-[#008FCB]/25 bg-[#008FCB]/10 text-[#008FCB] dark:border-[#168BFF]/30 dark:bg-[#168BFF]/10 dark:text-[#168BFF]",
-        teal: "border-[#006CE5]/25 bg-[#006CE5]/10 text-[#006CE5] dark:border-[#00C8FF]/30 dark:bg-[#00C8FF]/10 dark:text-[#00C8FF]",
+          "border-white/10 bg-white/[0.04] text-slate-300 hover:border-cyan-400/35 hover:text-cyan-200",
+        cyan: "border-cyan-500/30 bg-cyan-500/10 text-cyan-300",
+        sky: "border-sky-500/30 bg-sky-500/10 text-sky-300",
+        teal: "border-teal-500/30 bg-teal-500/10 text-teal-300",
       },
     },
     defaultVariants: {

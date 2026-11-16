@@ -63,8 +63,7 @@ export function AnimatedDivider({ className }: AnimatedDividerProps) {
         </defs>
         <path
           d="M0 12 H480 L495 4 L510 20 L525 12 H1200"
-          stroke="currentColor"
-          className="text-slate-200 dark:text-white/[0.06]"
+          stroke="rgba(255,255,255,0.06)"
           strokeWidth="1"
         />
         <path
