@@ -1,380 +1,438 @@
 "use client";
 
 import * as React from "react";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  Layers3,
+  X,
+  Cpu,
+  Sparkles,
+  ShoppingBag,
+  Smartphone,
+  Building2,
+  MessageSquareCode,
+  Gamepad2,
+  Layers,
+} from "lucide-react";
+import {
+  PROJECTS,
+  type ProjectCategory,
+  type ProjectItem,
+} from "@/data/portfolio";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { SpringTiltCard } from "@/components/motion/SpringTiltCard";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { TechIcon } from "@/components/ui/tech-icon";
+import { cn } from "@/lib/utils";
 
-function GitHubIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
-      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-      <path d="M9 18c-4.51 2-5-2-7-2" />
-    </svg>
-  );
-}
+gsap.registerPlugin(ScrollTrigger);
 
-// Crisp Vector Laptop Mockup with Analytics Dashboard
-function LaptopDashboardMockup() {
-  return (
-    <div className="relative w-full max-w-[540px] mx-auto select-none">
-      {/* Laptop Screen Bezel */}
-      <div className="relative rounded-t-2xl border-4 border-[#2A3B4D] bg-[#0B131E] p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
-        {/* Webcam */}
-        <div className="absolute top-1.5 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-slate-700 ring-1 ring-slate-800" />
-        
-        {/* Screen Display */}
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-[#080D16] border border-white/5 font-mono text-[10px]">
-          {/* Top Bar */}
-          <div className="flex items-center justify-between border-b border-white/10 bg-[#101B2A]/90 px-3 py-1.5">
-            <div className="flex items-center gap-1.5">
-              <span className="h-2 w-2 rounded-full bg-rose-500/70" />
-              <span className="h-2 w-2 rounded-full bg-amber-500/70" />
-              <span className="h-2 w-2 rounded-full bg-emerald-500/70" />
-              <span className="ml-2 text-[10px] text-slate-400 font-sans font-medium">Nirals POS &amp; Restaurant Dashboard</span>
-            </div>
-            <span className="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[9px] text-emerald-400">Live Production</span>
-          </div>
+const CATEGORIES: ProjectCategory[] = ["All", "Web", "Mobile", "AI & Systems"];
+const PROJECTS_BACKDROP_SRC = "/src/projects-backdrop.jpg";
 
-          {/* Dashboard Body */}
-          <div className="grid grid-cols-12 h-full p-2.5 gap-2 bg-gradient-to-br from-[#080D16] to-[#0D1826]">
-            {/* Sidebar */}
-            <div className="col-span-3 border-r border-white/10 pr-2 flex flex-col gap-1.5">
-              <div className="h-4 rounded bg-cyan-500/20 text-cyan-300 px-1.5 flex items-center text-[9px] font-sans font-semibold">
-                Overview
-              </div>
-              <div className="h-4 rounded bg-white/5 text-slate-400 px-1.5 flex items-center text-[9px] font-sans">
-                Orders &amp; POS
-              </div>
-              <div className="h-4 rounded bg-white/5 text-slate-400 px-1.5 flex items-center text-[9px] font-sans">
-                Inventory
-              </div>
-              <div className="h-4 rounded bg-white/5 text-slate-400 px-1.5 flex items-center text-[9px] font-sans">
-                Analytics
-              </div>
-            </div>
-
-            {/* Main Content Area */}
-            <div className="col-span-9 flex flex-col gap-2">
-              {/* Mini Stat Cards */}
-              <div className="grid grid-cols-3 gap-1.5">
-                <div className="rounded border border-cyan-500/20 bg-[#101B2A]/80 p-1.5">
-                  <div className="text-[8px] text-slate-400 font-sans">Daily Revenue</div>
-                  <div className="text-xs font-bold text-cyan-300 font-sans">$4,850.00</div>
-                </div>
-                <div className="rounded border border-white/10 bg-[#101B2A]/80 p-1.5">
-                  <div className="text-[8px] text-slate-400 font-sans">Active Orders</div>
-                  <div className="text-xs font-bold text-slate-200 font-sans">142</div>
-                </div>
-                <div className="rounded border border-white/10 bg-[#101B2A]/80 p-1.5">
-                  <div className="text-[8px] text-slate-400 font-sans">Uptime</div>
-                  <div className="text-xs font-bold text-emerald-400 font-sans">99.98%</div>
-                </div>
-              </div>
-
-              {/* Chart / Audio-Wave Visualizer Bar */}
-              <div className="rounded border border-cyan-500/20 bg-[#101B2A]/60 p-2 flex flex-col justify-end h-24">
-                <div className="text-[8px] text-slate-400 mb-1 font-sans">Real-time Terminal Throughput</div>
-                <div className="flex items-end justify-between gap-1 h-16 pt-2">
-                  {[35, 55, 40, 75, 60, 85, 95, 70, 65, 80, 100, 75, 60, 90, 85, 95, 60].map((h, i) => (
-                    <div
-                      key={i}
-                      style={{ height: `${h}%` }}
-                      className="w-full rounded-t bg-gradient-to-t from-cyan-600 to-[#00D5E8] opacity-80"
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Laptop Base / Keyboard Deck */}
-      <div className="relative mx-auto h-3 w-[106%] -translate-x-[3%] rounded-b-xl bg-gradient-to-b from-[#1C2836] to-[#0E1520] border-t border-slate-600 shadow-2xl">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-1 w-14 rounded-b bg-slate-500/40" />
-      </div>
-    </div>
-  );
-}
-
-// Construction Preview Card Mockup
-function ConstructionMockup() {
-  return (
-    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-gradient-to-br from-[#101B2A] to-[#0A101A] border border-white/10 p-3 flex flex-col justify-between">
-      <div className="flex items-center justify-between border-b border-white/10 pb-2">
-        <div className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-cyan-400" />
-          <span className="font-sans text-[11px] font-semibold text-slate-200">AST Constructions Portal</span>
-        </div>
-        <span className="text-[9px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">RSC Next.js</span>
-      </div>
-      <div className="my-auto grid grid-cols-3 gap-2 py-2">
-        <div className="rounded-lg bg-cyan-500/10 border border-cyan-500/20 p-2 flex flex-col gap-1">
-          <div className="h-1.5 w-8 rounded bg-cyan-400/60" />
-          <div className="h-1 w-12 rounded bg-slate-500" />
-          <div className="mt-2 text-xs font-bold text-white">48+</div>
-          <div className="text-[8px] text-slate-400">Sites Active</div>
-        </div>
-        <div className="rounded-lg bg-[#1A2B3D] border border-white/5 p-2 flex flex-col gap-1">
-          <div className="h-1.5 w-8 rounded bg-slate-400" />
-          <div className="h-1 w-12 rounded bg-slate-600" />
-          <div className="mt-2 text-xs font-bold text-white">100%</div>
-          <div className="text-[8px] text-slate-400">SEO Score</div>
-        </div>
-        <div className="rounded-lg bg-[#1A2B3D] border border-white/5 p-2 flex flex-col gap-1">
-          <div className="h-1.5 w-8 rounded bg-slate-400" />
-          <div className="h-1 w-12 rounded bg-slate-600" />
-          <div className="mt-2 text-xs font-bold text-white">WebP</div>
-          <div className="text-[8px] text-slate-400">Galleries</div>
-        </div>
-      </div>
-      <div className="h-2 w-full rounded bg-white/5 overflow-hidden">
-        <div className="h-full w-3/4 bg-[#00D5E8]" />
-      </div>
-    </div>
-  );
-}
-
-// Inventory Mockup Card
-function InventoryMockup() {
-  return (
-    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-gradient-to-br from-[#101B2A] to-[#0A101A] border border-white/10 p-3 flex flex-col justify-between">
-      <div className="flex items-center justify-between border-b border-white/10 pb-2">
-        <div className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-emerald-400" />
-          <span className="font-sans text-[11px] font-semibold text-slate-200">Inventory ERP Core</span>
-        </div>
-        <span className="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">PostgreSQL</span>
-      </div>
-      <div className="my-auto flex flex-col gap-1.5 py-1">
-        <div className="flex items-center justify-between rounded bg-white/5 px-2 py-1 text-[9px] text-slate-300">
-          <span>SKU-9824 Thermal Printer</span>
-          <span className="font-bold text-emerald-400">In Stock (120)</span>
-        </div>
-        <div className="flex items-center justify-between rounded bg-white/5 px-2 py-1 text-[9px] text-slate-300">
-          <span>SKU-4412 POS Terminal Unit</span>
-          <span className="font-bold text-cyan-400">Synced</span>
-        </div>
-        <div className="flex items-center justify-between rounded bg-white/5 px-2 py-1 text-[9px] text-slate-300">
-          <span>SKU-1029 Barcode Scanner</span>
-          <span className="font-bold text-amber-400">Low Stock (8)</span>
-        </div>
-      </div>
-      <div className="flex items-center justify-between text-[9px] font-mono text-slate-400">
-        <span>ACID Transactions</span>
-        <span>Audit Trail Active</span>
-      </div>
-    </div>
-  );
-}
+const PROJECT_ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  "salesphere-pos": ShoppingBag,
+  "naviora-android": Smartphone,
+  "virtual-saree-draping": Sparkles,
+  "enterprise-construction-web": Building2,
+  "whatsapp-automation-bot": MessageSquareCode,
+  "eldoria-dragons-heart": Gamepad2,
+  "renttent-medicare-plus": Layers,
+};
 
 export function ProjectsSection() {
-  const [activeCategory, setActiveCategory] = React.useState<"All" | "Web" | "Mobile" | "System">("All");
+  const sectionRef = React.useRef<HTMLElement>(null);
+  const gridRef = React.useRef<HTMLDivElement>(null);
+  const [activeCategory, setActiveCategory] =
+    React.useState<ProjectCategory>("All");
+  const [selectedProject, setSelectedProject] =
+    React.useState<ProjectItem | null>(null);
 
-  const categories = ["All", "Web", "Mobile", "System"] as const;
+  const filteredProjects = React.useMemo(() => {
+    if (activeCategory === "All") return PROJECTS;
+    return PROJECTS.filter((project) =>
+      project.categories.includes(activeCategory)
+    );
+  }, [activeCategory]);
+
+  const categoryCounts = React.useMemo(() => {
+    return {
+      All: PROJECTS.length,
+      Web: PROJECTS.filter((p) => p.categories.includes("Web")).length,
+      Mobile: PROJECTS.filter((p) => p.categories.includes("Mobile")).length,
+      "AI & Systems": PROJECTS.filter((p) =>
+        p.categories.includes("AI & Systems")
+      ).length,
+    };
+  }, []);
+
+  // GSAP ScrollTrigger initial reveal + filter stagger choreography
+  React.useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".project-grid-item",
+        { opacity: 0, scale: 0.94, y: 22 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.55,
+          stagger: 0.065,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 88%",
+            once: true,
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [activeCategory]);
+
+  React.useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedProject(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  React.useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedProject]);
 
   return (
-    <section id="projects" className="relative py-20 sm:py-28 overflow-hidden">
-      {/* Background glow */}
+    <section ref={sectionRef} id="projects" className="relative py-14 sm:py-20 overflow-hidden border-t border-white/[0.05]">
+      {/* Crisp Architectural Gallery Backdrop Image */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <Image
+          src={PROJECTS_BACKDROP_SRC}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-65"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#090A0F] via-transparent to-[#090A0F]" />
+      </div>
+
+      {/* Atmospheric Cyan / Sky Ambient Glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/4 left-1/3 h-[500px] w-[500px] rounded-full bg-cyan-500/5 blur-[150px]"
+        className="pointer-events-none absolute top-10 right-10 h-[520px] w-[560px] rounded-full bg-cyan-500/10 blur-[150px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-1/4 -left-20 h-[500px] w-[500px] rounded-full bg-teal-500/10 blur-[150px]"
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Label */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className="h-4 w-1 bg-[#00D5E8] rounded-full" />
-          <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[#00D5E8]">
-            FEATURED PROJECTS
-          </span>
-        </div>
-
-        {/* Section Heading & Filter Tabs */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#EAF3FF]">
-            Selected Works
-          </h2>
-
-          {/* Filter Pills */}
-          <div className="flex items-center gap-2 rounded-full border border-white/10 bg-[#101B2A]/80 p-1 backdrop-blur-md">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setActiveCategory(cat)}
-                className={`rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
-                  activeCategory === cat
-                    ? "bg-[#00D5E8] text-[#080D16] font-bold shadow-[0_0_15px_rgba(0,213,232,0.4)]"
-                    : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Top Large Featured Project: SaleSphere / Nirals Restaurant Dashboard */}
-        <div className="rounded-3xl border border-white/10 bg-[#101B2A]/60 p-6 sm:p-8 lg:p-10 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
-            {/* Left Column: Crisp Laptop Mockup */}
-            <div className="lg:col-span-7 flex items-center justify-center">
-              <LaptopDashboardMockup />
-            </div>
-
-            {/* Right Column: Project Meta & Actions */}
-            <div className="lg:col-span-5 flex flex-col justify-center">
-              <div className="inline-flex items-center gap-2 self-start rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-mono font-medium text-[#00D5E8]">
-                Web Application
-              </div>
-
-              <h3 className="mt-4 font-heading text-2xl sm:text-3xl font-extrabold text-[#EAF3FF]">
-                Nirals Restaurant Dashboard
-              </h3>
-
-              <p className="mt-3 text-sm sm:text-base text-[#7A8FAD] leading-relaxed">
-                A complete restaurant management system with table management, bookings, menu, staff, and real-time monitoring. Built with multi-terminal support and thermal receipt generation.
-              </p>
-
-              {/* Tech Badges */}
-              <div className="mt-6 flex flex-wrap items-center gap-2">
-                <span className="rounded-lg border border-white/10 bg-[#1A2B3D] px-3 py-1 font-mono text-xs text-slate-300">
-                  Next.js
-                </span>
-                <span className="rounded-lg border border-white/10 bg-[#1A2B3D] px-3 py-1 font-mono text-xs text-slate-300">
-                  Django
-                </span>
-                <span className="rounded-lg border border-white/10 bg-[#1A2B3D] px-3 py-1 font-mono text-xs text-slate-300">
-                  Tailwind CSS
-                </span>
-                <span className="rounded-lg border border-white/10 bg-[#1A2B3D] px-3 py-1 font-mono text-xs text-slate-300">
-                  PostgreSQL
-                </span>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 rounded-xl bg-[#00D5E8] px-5 py-2.5 text-xs font-bold text-[#080D16] shadow-[0_0_20px_rgba(0,213,232,0.4)] transition-all hover:bg-cyan-300 hover:shadow-[0_0_30px_rgba(0,213,232,0.6)]"
-                >
-                  <span>Live Demo</span>
-                  <ArrowUpRight className="h-3.5 w-3.5 stroke-[2.5]" />
-                </a>
-
-                <a
-                  href="https://github.com/Sabeesan027"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-[#101B2A] px-5 py-2.5 text-xs font-semibold text-slate-200 transition-colors hover:border-cyan-400 hover:text-[#00D5E8]"
-                >
-                  <GitHubIcon className="h-3.5 w-3.5" />
-                  <span>View Code</span>
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Bottom 2-Column Grid */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-          
-          {/* Card 1: AST Constructions Website */}
-          <div className="group rounded-3xl border border-white/10 bg-[#101B2A]/60 p-6 sm:p-8 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/40 hover:shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col justify-between">
-            <div>
-              <ConstructionMockup />
-
-              <div className="mt-6 flex items-center justify-between">
-                <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-0.5 text-xs font-mono font-medium text-[#00D5E8]">
-                  Web Application
-                </span>
-                <a
-                  href="https://github.com/Sabeesan027"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="AST Constructions Website Details"
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-[#1A2B3D] text-slate-400 group-hover:border-cyan-500 group-hover:bg-[#00D5E8] group-hover:text-[#080D16] transition-all"
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </div>
-
-              <h4 className="mt-3 font-heading text-xl font-bold text-[#EAF3FF] group-hover:text-cyan-300 transition-colors">
-                AST Constructions Website
-              </h4>
-
-              <p className="mt-2 text-sm text-[#7A8FAD] leading-relaxed">
-                Corporate website with project showcase, enquiry management, and admin dashboard. Engineered with React Server Components, TypeScript, and WebP asset pipeline.
-              </p>
-            </div>
-
-            <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-white/10 pt-4">
-              <span className="rounded-md bg-[#1A2B3D] px-2.5 py-1 font-mono text-[11px] text-slate-300">
-                React
-              </span>
-              <span className="rounded-md bg-[#1A2B3D] px-2.5 py-1 font-mono text-[11px] text-slate-300">
-                Django
-              </span>
-              <span className="rounded-md bg-[#1A2B3D] px-2.5 py-1 font-mono text-[11px] text-slate-300">
-                Vite
-              </span>
-              <span className="rounded-md bg-[#1A2B3D] px-2.5 py-1 font-mono text-[11px] text-slate-300">
-                Shadcn UI
-              </span>
-            </div>
-          </div>
-
-          {/* Card 2: Inventory Management System */}
-          <div className="group rounded-3xl border border-white/10 bg-[#101B2A]/60 p-6 sm:p-8 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/40 hover:shadow-[0_15px_40px_rgba(0,0,0,0.6)] flex flex-col justify-between">
-            <div>
-              <InventoryMockup />
-
-              <div className="mt-6 flex items-center justify-between">
-                <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-0.5 text-xs font-mono font-medium text-emerald-400">
-                  System
-                </span>
-                <a
-                  href="https://github.com/Sabeesan027"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Inventory Management System Details"
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-[#1A2B3D] text-slate-400 group-hover:border-cyan-500 group-hover:bg-[#00D5E8] group-hover:text-[#080D16] transition-all"
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </div>
-
-              <h4 className="mt-3 font-heading text-xl font-bold text-[#EAF3FF] group-hover:text-cyan-300 transition-colors">
-                Inventory Management System
-              </h4>
-
-              <p className="mt-2 text-sm text-[#7A8FAD] leading-relaxed">
-                Web-based inventory solution to manage stock, purchases, and reports efficiently. Features real-time PostgreSQL transactional reconciliation and thermal printing.
-              </p>
-            </div>
-
-            <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-white/10 pt-4">
-              <span className="rounded-md bg-[#1A2B3D] px-2.5 py-1 font-mono text-[11px] text-slate-300">
-                Django
-              </span>
-              <span className="rounded-md bg-[#1A2B3D] px-2.5 py-1 font-mono text-[11px] text-slate-300">
-                React
-              </span>
-              <span className="rounded-md bg-[#1A2B3D] px-2.5 py-1 font-mono text-[11px] text-slate-300">
-                PostgreSQL
-              </span>
-              <span className="rounded-md bg-[#1A2B3D] px-2.5 py-1 font-mono text-[11px] text-slate-300">
-                Linux VPS
-              </span>
-            </div>
-          </div>
-
-        </div>
-
+      {/* Giant Background Watermark */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 select-none text-[16vw] font-black uppercase tracking-tighter text-white/[0.015] whitespace-nowrap"
+      >
+        SHOWCASE
       </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+        {/* Technical Coordinate Header */}
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+            <span>SEC // 03 · FEATURED ENGINEERING REPOSITORY</span>
+          </div>
+          <span className="text-slate-500">PROD-GRADE SYSTEMS · VERIFIED ARCHITECTURE</span>
+        </div>
+
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-8">
+          <SectionHeading
+            eyebrow="Selected Engineering Work"
+            title="Featured"
+            highlight="Projects"
+            description="Production web platforms, native Android releases, AI computer vision pipelines, and enterprise POS systems."
+          />
+
+          {/* Filter Pills with Counts */}
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-white/[0.1] bg-[#0D1117]/85 p-1.5 backdrop-blur-xl self-start md:mb-8 shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
+            {CATEGORIES.map((category) => {
+              const isActive = activeCategory === category;
+              const count = categoryCounts[category];
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setActiveCategory(category)}
+                  className={cn(
+                    "relative rounded-xl px-3.5 py-2 text-xs font-medium transition-colors cursor-pointer sm:text-sm flex items-center gap-1.5",
+                    isActive
+                      ? "text-slate-950 font-semibold"
+                      : "text-slate-400 hover:text-slate-100"
+                  )}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="active-project-filter"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400 to-teal-300 shadow-[0_0_16px_rgba(6,182,212,0.4)]"
+                    />
+                  )}
+                  <span className="relative z-10">{category}</span>
+                  <span
+                    className={cn(
+                      "relative z-10 font-mono text-[10px] px-1.5 py-0.2 rounded-full",
+                      isActive
+                        ? "bg-slate-950/20 text-slate-950"
+                        : "bg-white/[0.06] text-slate-400"
+                    )}
+                  >
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Projects Grid with SpringTiltCard */}
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {filteredProjects.map((project, index) => {
+            const ProjectIcon = PROJECT_ICON_MAP[project.id] ?? Layers3;
+            return (
+              <div
+                key={`${activeCategory}-${project.id}`}
+                className={cn(
+                  "project-grid-item",
+                  index === 0 && activeCategory === "All" ? "md:col-span-2" : ""
+                )}
+              >
+                <SpringTiltCard
+                  tiltIntensity={4.5}
+                  onClick={() => setSelectedProject(project)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelectedProject(project);
+                    }
+                  }}
+                  className="h-full cursor-pointer p-6 sm:p-7 flex flex-col justify-between group transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_36px_rgba(6,182,212,0.15)] bg-[#0D1117]/75 backdrop-blur-md"
+                >
+                  {/* Subtle top accent wash */}
+                  <div
+                    aria-hidden="true"
+                    className={cn(
+                      "pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b opacity-60",
+                      project.accentGradient
+                    )}
+                  />
+
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between gap-3 mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-cyan-400/30 bg-cyan-500/10 text-cyan-300">
+                          <ProjectIcon className="h-3.5 w-3.5" />
+                        </span>
+                        <Badge variant="cyan" className="font-mono text-[11px] border-cyan-400/30 bg-cyan-500/10">
+                          {project.badge}
+                        </Badge>
+                      </div>
+                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition-colors group-hover:border-cyan-400/50 group-hover:text-cyan-300 group-hover:bg-cyan-500/10">
+                        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-bold tracking-tight text-slate-50 group-hover:text-cyan-200 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="mt-1 text-xs font-mono text-cyan-400/90">
+                      {project.subtitle}
+                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-400 line-clamp-3">
+                      {project.summary}
+                    </p>
+                  </div>
+
+                  <div className="relative z-10 mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.stack.slice(0, 4).map((tech) => (
+                        <span
+                          key={tech}
+                          className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] text-slate-300"
+                        >
+                          <TechIcon name={tech} className="h-3 w-3 text-cyan-400 shrink-0" />
+                          <span>{tech}</span>
+                        </span>
+                      ))}
+                      {project.stack.length > 4 && (
+                        <Badge variant="glass" className="text-[11px]">
+                          +{project.stack.length - 4}
+                        </Badge>
+                      )}
+                    </div>
+                    <span className="text-[11px] font-mono text-cyan-400/90 group-hover:underline flex items-center gap-1 shrink-0 ml-2">
+                      Case Study
+                    </span>
+                  </div>
+                </SpringTiltCard>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Interactive Project Case-Study Drawer/Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="fixed inset-0 bg-black/85 backdrop-blur-md"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94, y: 24 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: 16 }}
+              transition={{ type: "spring", stiffness: 320, damping: 28 }}
+              className="relative z-10 max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-cyan-400/35 bg-[#0D1117] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.85)] sm:p-8"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <Badge variant="cyan" className="font-mono text-xs mb-3">
+                    <Sparkles className="h-3 w-3 mr-1" />
+                    {selectedProject.badge}
+                  </Badge>
+                  <h3 className="text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
+                    {selectedProject.title}
+                  </h3>
+                  <p className="mt-1 font-mono text-xs text-cyan-400 sm:text-sm">
+                    {selectedProject.subtitle}
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setSelectedProject(null)}
+                  aria-label="Close project details"
+                  className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-slate-300 transition-colors hover:border-cyan-400/50 hover:text-white cursor-pointer"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+
+              <div className="mt-6 space-y-6">
+                <div>
+                  <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-slate-400">
+                    <Layers3 className="h-3.5 w-3.5 text-cyan-400" />
+                    Overview
+                  </h4>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-300 sm:text-base">
+                    {selectedProject.summary}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-cyan-500/25 bg-cyan-500/[0.04] p-4 sm:p-5">
+                  <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cyan-300">
+                    <Cpu className="h-3.5 w-3.5" />
+                    Architecture & Deployment
+                  </h4>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                    {selectedProject.architecture}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3">
+                    Key Engineering Highlights
+                  </h4>
+                  <ul className="space-y-2.5">
+                    {selectedProject.highlights.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2.5 text-sm text-slate-300"
+                      >
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-400" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">
+                    Impact
+                  </h4>
+                  <p className="text-sm leading-relaxed text-slate-300">
+                    {selectedProject.impact}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3">
+                    Technology Stack
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1.5 text-xs text-sky-200"
+                      >
+                        <TechIcon name={tech} className="h-3.5 w-3.5 text-sky-300 shrink-0" />
+                        <span>{tech}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/[0.08] pt-5">
+                <span className="font-mono text-[11px] text-slate-500">
+                  SYSTEM // VERIFIED PRODUCTION ARCHITECTURE
+                </span>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="#contact"
+                    onClick={() => setSelectedProject(null)}
+                    className="cursor-pointer"
+                  >
+                    <Button className="h-10 rounded-xl border border-cyan-400/40 bg-[#12161F] px-4 text-xs text-slate-50 hover:bg-[#171D28] hover:border-cyan-300">
+                      Discuss This Architecture
+                    </Button>
+                  </a>
+                  <Button
+                    variant="outline"
+                    className="h-10 rounded-xl"
+                    onClick={() => setSelectedProject(null)}
+                  >
+                    Close
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

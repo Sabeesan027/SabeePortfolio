@@ -1,46 +1,46 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { PROFILE } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { label: "Home", href: "#top" },
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Services", href: "#services" },
-  { label: "Stack", href: "#stack" },
-  { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "#about", id: "about" },
+  { label: "Services", href: "#services", id: "services" },
+  { label: "Projects", href: "#projects", id: "projects" },
+  { label: "Stack", href: "#stack", id: "stack" },
+  { label: "Education", href: "#education", id: "education" },
+  { label: "Contact", href: "#contact", id: "contact" },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [activeSection, setActiveSection] = React.useState("Home");
+  const [activeSection, setActiveSection] = React.useState<string>("");
 
   React.useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 24);
 
-      // Section tracker
-      const sections = NAV_LINKS.map((link) => link.href.replace("#", ""));
-      const scrollPos = window.scrollY + 120;
+      // Scroll Spy logic
+      const sectionElements = NAV_LINKS.map((link) =>
+        document.getElementById(link.id)
+      );
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const id = sections[i];
-        if (id === "top" && window.scrollY < 300) {
-          setActiveSection("Home");
-          break;
-        }
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= scrollPos) {
-          const match = NAV_LINKS.find((l) => l.href === `#${id}`);
-          if (match) setActiveSection(match.label);
+      const scrollPosition = window.scrollY + 200;
+      let currentSection = "";
+
+      for (let i = sectionElements.length - 1; i >= 0; i--) {
+        const el = sectionElements[i];
+        if (el && el.offsetTop <= scrollPosition) {
+          currentSection = NAV_LINKS[i].id;
           break;
         }
       }
+      setActiveSection(currentSection);
     };
 
     onScroll();
@@ -49,110 +49,128 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 pt-4 sm:px-6">
+    <header className="fixed top-0 left-0 right-0 z-40 px-4 pt-3.5 sm:px-6">
       <motion.nav
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
-          "mx-auto flex max-w-5xl items-center justify-between rounded-full border px-4 py-2.5 transition-all duration-300 sm:px-6",
+          "mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-3.5 py-2.5 transition-all duration-300 sm:px-5 sm:py-3",
           scrolled
-            ? "border-cyan-500/20 bg-[#080D16]/85 shadow-[0_10px_35px_-5px_rgba(0,0,0,0.8)] backdrop-blur-xl"
-            : "border-white/[0.08] bg-[#101B2A]/60 backdrop-blur-md"
+            ? "border-white/12 bg-[#090A0F]/85 shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.08)] backdrop-blur-xl"
+            : "border-white/[0.08] bg-[#090A0F]/55 backdrop-blur-md"
         )}
       >
-        {/* Brand Logo */}
+        {/* Brand */}
         <a
           href="#top"
-          className="group flex items-center gap-2.5 text-sm font-bold tracking-tight text-white transition-opacity hover:opacity-90"
+          className="group flex items-center gap-2.5 text-sm font-semibold tracking-tight text-slate-100"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400 to-cyan-600 font-mono text-xs font-black text-[#080D16] shadow-[0_0_15px_rgba(0,213,232,0.4)]">
-            S
+          <span className="relative h-8 w-8 overflow-hidden rounded-lg border border-cyan-400/40 bg-cyan-500/10 shadow-[0_0_12px_rgba(6,182,212,0.25)] transition-all group-hover:border-cyan-300/80 group-hover:scale-105">
+            <Image
+              src={PROFILE.profileImage}
+              alt={PROFILE.fullName}
+              width={32}
+              height={32}
+              className="h-full w-full object-cover object-top"
+              priority
+            />
           </span>
-          <span className="font-heading text-sm font-extrabold tracking-wider text-slate-100">
-            SABEESAN
+          <span className="font-mono text-sm tracking-wide group-hover:text-cyan-300 transition-colors">
+            {PROFILE.brandTag}
           </span>
         </a>
 
-        {/* Desktop Nav Links */}
+        {/* Desktop Links with Animated Active Pill Indicator */}
         <div className="hidden items-center gap-1 md:flex">
           {NAV_LINKS.map((item) => {
-            const isActive = activeSection === item.label;
+            const isActive = activeSection === item.id;
             return (
               <a
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors",
+                  "relative rounded-lg px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors",
                   isActive
-                    ? "text-[#00D5E8]"
-                    : "text-slate-400 hover:text-slate-200"
+                    ? "text-cyan-200 font-medium"
+                    : "text-slate-400 hover:text-slate-100 hover:bg-white/[0.04]"
                 )}
               >
-                {item.label}
                 {isActive && (
-                  <motion.div
-                    layoutId="navbar-active-pill"
-                    className="absolute inset-0 -z-10 rounded-full bg-cyan-500/10 border border-cyan-500/20"
+                  <motion.span
+                    layoutId="active-navbar-pill"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    className="absolute inset-0 rounded-lg bg-cyan-500/15 border border-cyan-400/35 shadow-[0_0_12px_rgba(6,182,212,0.2)]"
                   />
                 )}
+                <span className="relative z-10">{item.label}</span>
               </a>
             );
           })}
         </div>
 
-        {/* CTA: Let's Talk */}
+        {/* Status + Mobile Trigger */}
         <div className="flex items-center gap-3">
           <a
             href="#contact"
-            className="group hidden sm:inline-flex items-center gap-1.5 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-4 py-1.5 text-xs font-semibold text-[#00D5E8] shadow-[0_0_15px_rgba(0,213,232,0.15)] transition-all hover:bg-cyan-500 hover:text-[#080D16] hover:shadow-[0_0_20px_rgba(0,213,232,0.4)]"
+            className="hidden sm:inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-500/10 px-3.5 py-1.5 text-xs font-mono text-teal-300 shadow-[0_0_16px_rgba(20,184,166,0.15)] transition-all hover:border-teal-400/60 hover:bg-teal-500/20 hover:scale-102"
           >
-            <span>Let&apos;s Talk</span>
-            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-400 shadow-[0_0_8px_rgba(20,184,166,0.9)]" />
+            </span>
+            Available for Work
           </a>
 
-          {/* Mobile hamburger */}
           <button
             type="button"
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-200 transition-colors hover:border-cyan-400/40 md:hidden"
           >
             {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
       </motion.nav>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer with Staggered Entrance */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.98 }}
+            initial={{ opacity: 0, y: -12, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            exit={{ opacity: 0, y: -12, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="mx-auto mt-2 max-w-5xl rounded-2xl border border-cyan-500/20 bg-[#080D16]/95 p-4 shadow-[0_15px_40px_rgba(0,0,0,0.8)] backdrop-blur-2xl md:hidden"
+            className="mx-auto mt-2 max-w-6xl rounded-2xl border border-white/12 bg-[#0D1117]/95 p-4 shadow-[0_16px_40px_rgba(0,0,0,0.8)] backdrop-blur-xl md:hidden"
           >
-            <div className="flex flex-col gap-1.5">
-              {NAV_LINKS.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="rounded-xl px-4 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:bg-cyan-500/10 hover:text-[#00D5E8]"
-                >
-                  {item.label}
-                </a>
-              ))}
+            <div className="flex flex-col gap-1">
+              {NAV_LINKS.map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={cn(
+                      "flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium transition-colors",
+                      isActive
+                        ? "bg-cyan-500/15 border border-cyan-400/30 text-cyan-200"
+                        : "text-slate-300 hover:bg-white/[0.06] hover:text-cyan-300"
+                    )}
+                  >
+                    <span>{item.label}</span>
+                    {isActive && <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />}
+                  </a>
+                );
+              })}
               <div className="mt-2 border-t border-white/10 pt-3">
                 <a
                   href="#contact"
                   onClick={() => setMobileOpen(false)}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 to-cyan-500 py-2.5 text-xs font-bold text-[#080D16] shadow-[0_0_18px_rgba(0,213,232,0.3)]"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-teal-400/30 bg-teal-500/10 px-4 py-2.5 text-xs font-mono font-medium text-teal-300"
                 >
-                  <span>Let&apos;s Talk</span>
-                  <ArrowUpRight className="h-4 w-4" />
+                  <span className="h-2 w-2 rounded-full bg-teal-400" />
+                  Available for Work · Remote / Hybrid
                 </a>
               </div>
             </div>
