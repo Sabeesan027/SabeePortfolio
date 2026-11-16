@@ -117,7 +117,7 @@ export function ProjectsSection() {
   }, [selectedProject]);
 
   return (
-    <section ref={sectionRef} id="projects" className="relative py-14 sm:py-20 overflow-hidden border-t border-white/[0.05]">
+    <section ref={sectionRef} id="projects" className="relative py-14 sm:py-20 overflow-hidden border-t border-slate-200/80 dark:border-white/[0.05]">
       {/* Crisp Architectural Gallery Backdrop Image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Image
@@ -125,9 +125,9 @@ export function ProjectsSection() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-center opacity-65"
+          className="object-cover object-center opacity-30 dark:opacity-65 transition-opacity duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090A0F] via-transparent to-[#090A0F]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-transparent to-slate-50 dark:from-[#090A0F] dark:via-transparent dark:to-[#090A0F]" />
       </div>
 
       {/* Atmospheric Cyan / Sky Ambient Glow */}
@@ -143,7 +143,7 @@ export function ProjectsSection() {
       {/* Giant Background Watermark */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 select-none text-[16vw] font-black uppercase tracking-tighter text-white/[0.015] whitespace-nowrap"
+        className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 select-none text-[16vw] font-black uppercase tracking-tighter text-slate-900/[0.025] dark:text-white/[0.015] whitespace-nowrap"
       >
         SHOWCASE
       </div>
@@ -152,7 +152,7 @@ export function ProjectsSection() {
         {/* Technical Coordinate Header */}
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
           <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400" />
             <span>SEC // 03 · FEATURED ENGINEERING REPOSITORY</span>
           </div>
           <span className="text-slate-500">PROD-GRADE SYSTEMS · VERIFIED ARCHITECTURE</span>
@@ -167,7 +167,7 @@ export function ProjectsSection() {
           />
 
           {/* Filter Pills with Counts */}
-          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-white/[0.1] bg-[#0D1117]/85 p-1.5 backdrop-blur-xl self-start md:mb-8 shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-slate-200/90 bg-white/85 p-1.5 shadow-sm backdrop-blur-xl self-start md:mb-8 dark:border-white/[0.1] dark:bg-[#0D1117]/85 dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
             {CATEGORIES.map((category) => {
               const isActive = activeCategory === category;
               const count = categoryCounts[category];
@@ -180,7 +180,7 @@ export function ProjectsSection() {
                     "relative rounded-xl px-3.5 py-2 text-xs font-medium transition-colors cursor-pointer sm:text-sm flex items-center gap-1.5",
                     isActive
                       ? "text-slate-950 font-semibold"
-                      : "text-slate-400 hover:text-slate-100"
+                      : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
                   )}
                 >
                   {isActive && (
@@ -196,7 +196,7 @@ export function ProjectsSection() {
                       "relative z-10 font-mono text-[10px] px-1.5 py-0.2 rounded-full",
                       isActive
                         ? "bg-slate-950/20 text-slate-950"
-                        : "bg-white/[0.06] text-slate-400"
+                        : "bg-slate-100 text-slate-600 dark:bg-white/[0.06] dark:text-slate-400"
                     )}
                   >
                     {count}
@@ -233,13 +233,13 @@ export function ProjectsSection() {
                       setSelectedProject(project);
                     }
                   }}
-                  className="h-full cursor-pointer p-6 sm:p-7 flex flex-col justify-between group transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_36px_rgba(6,182,212,0.15)] bg-[#0D1117]/75 backdrop-blur-md"
+                  className="h-full cursor-pointer p-6 sm:p-7 flex flex-col justify-between group transition-all duration-300 hover:border-cyan-500/50 hover:shadow-[0_0_36px_rgba(6,182,212,0.15)] bg-white/90 dark:bg-[#0D1117]/75 backdrop-blur-md"
                 >
                   {/* Subtle top accent wash */}
                   <div
                     aria-hidden="true"
                     className={cn(
-                      "pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b opacity-60",
+                      "pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b opacity-40 dark:opacity-60",
                       project.accentGradient
                     )}
                   />
@@ -247,37 +247,37 @@ export function ProjectsSection() {
                   <div className="relative z-10">
                     <div className="flex items-center justify-between gap-3 mb-4">
                       <div className="flex items-center gap-2">
-                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-cyan-400/30 bg-cyan-500/10 text-cyan-300">
+                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:border-cyan-400/30 dark:text-cyan-300">
                           <ProjectIcon className="h-3.5 w-3.5" />
                         </span>
-                        <Badge variant="cyan" className="font-mono text-[11px] border-cyan-400/30 bg-cyan-500/10">
+                        <Badge variant="cyan" className="font-mono text-[11px] border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:border-cyan-400/30 dark:text-cyan-300">
                           {project.badge}
                         </Badge>
                       </div>
-                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition-colors group-hover:border-cyan-400/50 group-hover:text-cyan-300 group-hover:bg-cyan-500/10">
+                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-slate-100 text-slate-600 transition-colors group-hover:border-cyan-500/50 group-hover:text-cyan-600 group-hover:bg-cyan-500/10 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300 dark:group-hover:border-cyan-400/50 dark:group-hover:text-cyan-300">
                         <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold tracking-tight text-slate-50 group-hover:text-cyan-200 transition-colors">
+                    <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50 group-hover:text-cyan-600 dark:group-hover:text-cyan-200 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="mt-1 text-xs font-mono text-cyan-400/90">
+                    <p className="mt-1 text-xs font-mono text-cyan-600 dark:text-cyan-400/90">
                       {project.subtitle}
                     </p>
-                    <p className="mt-3 text-sm leading-relaxed text-slate-400 line-clamp-3">
+                    <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">
                       {project.summary}
                     </p>
                   </div>
 
-                  <div className="relative z-10 mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                  <div className="relative z-10 mt-6 pt-4 border-t border-slate-200/80 dark:border-white/[0.06] flex items-center justify-between">
                     <div className="flex flex-wrap gap-1.5">
                       {project.stack.slice(0, 4).map((tech) => (
                         <span
                           key={tech}
-                          className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] text-slate-300"
+                          className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[11px] text-slate-700 dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300"
                         >
-                          <TechIcon name={tech} className="h-3 w-3 text-cyan-400 shrink-0" />
+                          <TechIcon name={tech} className="h-3 w-3 text-cyan-600 dark:text-cyan-400 shrink-0" />
                           <span>{tech}</span>
                         </span>
                       ))}
@@ -287,7 +287,7 @@ export function ProjectsSection() {
                         </Badge>
                       )}
                     </div>
-                    <span className="text-[11px] font-mono text-cyan-400/90 group-hover:underline flex items-center gap-1 shrink-0 ml-2">
+                    <span className="text-[11px] font-mono text-cyan-600 dark:text-cyan-400/90 group-hover:underline flex items-center gap-1 shrink-0 ml-2">
                       Case Study
                     </span>
                   </div>
@@ -307,7 +307,7 @@ export function ProjectsSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
-              className="fixed inset-0 bg-black/85 backdrop-blur-md"
+              className="fixed inset-0 bg-black/60 dark:bg-black/85 backdrop-blur-md"
             />
 
             <motion.div
@@ -315,7 +315,7 @@ export function ProjectsSection() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 16 }}
               transition={{ type: "spring", stiffness: 320, damping: 28 }}
-              className="relative z-10 max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-cyan-400/35 bg-[#0D1117] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.85)] sm:p-8"
+              className="relative z-10 max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl sm:p-8 dark:border-cyan-400/35 dark:bg-[#0D1117] dark:shadow-[0_24px_80px_rgba(0,0,0,0.85)]"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -323,10 +323,10 @@ export function ProjectsSection() {
                     <Sparkles className="h-3 w-3 mr-1" />
                     {selectedProject.badge}
                   </Badge>
-                  <h3 className="text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
+                  <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-50 sm:text-3xl">
                     {selectedProject.title}
                   </h3>
-                  <p className="mt-1 font-mono text-xs text-cyan-400 sm:text-sm">
+                  <p className="mt-1 font-mono text-xs text-cyan-600 dark:text-cyan-400 sm:text-sm">
                     {selectedProject.subtitle}
                   </p>
                 </div>
@@ -335,7 +335,7 @@ export function ProjectsSection() {
                   type="button"
                   onClick={() => setSelectedProject(null)}
                   aria-label="Close project details"
-                  className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-slate-300 transition-colors hover:border-cyan-400/50 hover:text-white cursor-pointer"
+                  className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-slate-100 text-slate-700 transition-colors hover:border-cyan-500 hover:text-cyan-600 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-300 dark:hover:border-cyan-400/50 dark:hover:text-white cursor-pointer"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -343,36 +343,36 @@ export function ProjectsSection() {
 
               <div className="mt-6 space-y-6">
                 <div>
-                  <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-slate-400">
-                    <Layers3 className="h-3.5 w-3.5 text-cyan-400" />
+                  <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                    <Layers3 className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400" />
                     Overview
                   </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-300 sm:text-base">
+                  <p className="mt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300 sm:text-base">
                     {selectedProject.summary}
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-cyan-500/25 bg-cyan-500/[0.04] p-4 sm:p-5">
-                  <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cyan-300">
+                <div className="rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.05] p-4 sm:p-5 dark:border-cyan-500/25 dark:bg-cyan-500/[0.04]">
+                  <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cyan-700 dark:text-cyan-300">
                     <Cpu className="h-3.5 w-3.5" />
                     Architecture & Deployment
                   </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                  <p className="mt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                     {selectedProject.architecture}
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3">
+                  <h4 className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3">
                     Key Engineering Highlights
                   </h4>
                   <ul className="space-y-2.5">
                     {selectedProject.highlights.map((item) => (
                       <li
                         key={item}
-                        className="flex items-start gap-2.5 text-sm text-slate-300"
+                        className="flex items-start gap-2.5 text-sm text-slate-700 dark:text-slate-300"
                       >
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-400" />
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-600 dark:text-teal-400" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -380,25 +380,25 @@ export function ProjectsSection() {
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">
+                  <h4 className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-2">
                     Impact
                   </h4>
-                  <p className="text-sm leading-relaxed text-slate-300">
+                  <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                     {selectedProject.impact}
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3">
+                  <h4 className="text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3">
                     Technology Stack
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1.5 text-xs text-sky-200"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1.5 text-xs text-sky-700 dark:text-sky-200"
                       >
-                        <TechIcon name={tech} className="h-3.5 w-3.5 text-sky-300 shrink-0" />
+                        <TechIcon name={tech} className="h-3.5 w-3.5 text-sky-600 dark:text-sky-300 shrink-0" />
                         <span>{tech}</span>
                       </span>
                     ))}
@@ -406,7 +406,7 @@ export function ProjectsSection() {
                 </div>
               </div>
 
-              <div className="mt-8 flex justify-end border-t border-white/[0.08] pt-5">
+              <div className="mt-8 flex justify-end border-t border-slate-200 dark:border-white/[0.08] pt-5">
                 <Button
                   variant="outline"
                   onClick={() => setSelectedProject(null)}

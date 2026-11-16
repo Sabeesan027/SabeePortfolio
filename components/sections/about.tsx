@@ -82,7 +82,7 @@ export function AboutSection() {
   }, []);
 
   return (
-    <section id="about" className="relative py-14 sm:py-20 overflow-hidden border-t border-white/[0.05]">
+    <section id="about" className="relative py-14 sm:py-20 overflow-hidden border-t border-slate-200/80 dark:border-white/[0.05]">
       {/* Crisp Architectural Studio Backdrop Image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Image
@@ -90,10 +90,10 @@ export function AboutSection() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-center opacity-65"
+          className="object-cover object-center opacity-30 dark:opacity-65 transition-opacity duration-700"
         />
-        {/* Soft edge fade into #090A0F canvas */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090A0F] via-transparent to-[#090A0F]" />
+        {/* Soft edge fade into canvas */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-transparent to-slate-50 dark:from-[#090A0F] dark:via-transparent dark:to-[#090A0F]" />
       </div>
 
       {/* Atmospheric Ambient Glow Bleed */}
@@ -109,7 +109,7 @@ export function AboutSection() {
       {/* Giant Architectural Ghost Watermark */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 select-none text-[16vw] font-black uppercase tracking-tighter text-white/[0.015] whitespace-nowrap"
+        className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 select-none text-[16vw] font-black uppercase tracking-tighter text-slate-900/[0.025] dark:text-white/[0.015] whitespace-nowrap"
       >
         PHILOSOPHY
       </div>
@@ -118,7 +118,7 @@ export function AboutSection() {
         {/* Technical Coordinate & Status Header */}
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
           <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400" />
             <span>SEC // 01 · ENGINEERING MINDSET</span>
           </div>
           <div className="hidden sm:inline-flex items-center gap-2 text-slate-500">
@@ -137,9 +137,9 @@ export function AboutSection() {
           </div>
 
           <Reveal delay={0.1} className="lg:col-span-5">
-            <SpringTiltCard tiltIntensity={4} className="p-5 sm:p-6 border-cyan-400/25 bg-gradient-to-br from-white/[0.05] via-[#0D1117] to-white/[0.02]">
+            <SpringTiltCard tiltIntensity={4} className="p-5 sm:p-6 border-cyan-500/30 bg-white/90 dark:border-cyan-400/25 dark:bg-gradient-to-br dark:from-white/[0.05] dark:via-[#0D1117] dark:to-white/[0.02]">
               <div className="flex flex-col sm:flex-row items-center gap-5">
-                <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-2xl border border-cyan-400/40 bg-[#0D1117] shadow-[0_0_32px_rgba(6,182,212,0.22)] sm:h-36 sm:w-36">
+                <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-2xl border border-cyan-500/30 bg-slate-100 shadow-[0_0_32px_rgba(6,182,212,0.15)] sm:h-36 sm:w-36 dark:border-cyan-400/40 dark:bg-[#0D1117] dark:shadow-[0_0_32px_rgba(6,182,212,0.22)]">
                   <Image
                     src={PROFILE.profileImage}
                     alt={PROFILE.fullName}
@@ -149,27 +149,27 @@ export function AboutSection() {
                   />
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#090A0F]/60 via-transparent to-transparent"
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent dark:from-[#090A0F]/60"
                   />
                 </div>
 
                 <div className="text-center sm:text-left">
                   <Badge variant="teal" className="mb-2.5 font-mono text-[11px]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-teal-400 animate-pulse" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-teal-500 animate-pulse dark:bg-teal-400" />
                     Lead Developer
                   </Badge>
-                  <h3 className="text-xl font-bold tracking-tight text-slate-50">
+                  <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">
                     {PROFILE.fullName}
                   </h3>
-                  <p className="mt-1 text-xs font-mono text-cyan-300">
+                  <p className="mt-1 text-xs font-mono text-cyan-600 dark:text-cyan-300">
                     {PROFILE.brandTag}
                   </p>
-                  <p className="mt-2.5 inline-flex items-center justify-center sm:justify-start gap-1.5 text-xs text-slate-400">
-                    <MapPin className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+                  <p className="mt-2.5 inline-flex items-center justify-center sm:justify-start gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+                    <MapPin className="h-3.5 w-3.5 text-cyan-500 dark:text-cyan-400 shrink-0" />
                     {PROFILE.location}
                   </p>
-                  <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-mono text-teal-300/90">
-                    <Sparkles className="h-3 w-3 text-teal-400" />
+                  <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-mono text-teal-600 dark:text-teal-300/90">
+                    <Sparkles className="h-3 w-3 text-teal-500 dark:text-teal-400" />
                     Available for Global Opportunities
                   </div>
                 </div>
@@ -188,18 +188,18 @@ export function AboutSection() {
             return (
               <SpringTiltCard key={metric.label} tiltIntensity={4} className="p-6 h-full relative group">
                 <div className="flex items-center justify-between mb-3">
-                  <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-cyan-400/25 bg-cyan-500/10 text-cyan-300">
+                  <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-cyan-500/25 bg-cyan-500/10 text-cyan-700 dark:border-cyan-400/25 dark:bg-cyan-500/10 dark:text-cyan-300">
                     <MetricIcon className="h-4 w-4" />
                   </div>
-                  <span className="font-mono text-[10px] text-slate-500">0{idx + 1}</span>
+                  <span className="font-mono text-[10px] text-slate-400 dark:text-slate-500">0{idx + 1}</span>
                 </div>
-                <div className="text-xs font-mono uppercase tracking-wider text-cyan-400 mb-1">
+                <div className="text-xs font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400 mb-1">
                   {metric.label}
                 </div>
-                <div className="font-mono text-3xl font-bold tracking-tight text-slate-50 sm:text-4xl bg-gradient-to-br from-white via-slate-100 to-cyan-200 bg-clip-text text-transparent">
+                <div className="font-mono text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-slate-50 bg-gradient-to-br from-slate-900 via-slate-800 to-cyan-700 dark:from-white dark:via-slate-100 dark:to-cyan-200 bg-clip-text text-transparent">
                   {displayValues[idx] ?? metric.value}
                 </div>
-                <p className="mt-2.5 text-sm leading-relaxed text-slate-400">
+                <p className="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                   {metric.detail}
                 </p>
               </SpringTiltCard>
@@ -219,23 +219,23 @@ export function AboutSection() {
                 <SpringTiltCard className="p-6 sm:p-7 h-full flex flex-col justify-between">
                   <div>
                     <div className="mb-5 flex items-center justify-between">
-                      <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-400/30 bg-cyan-500/10 text-cyan-300">
+                      <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:border-cyan-400/30 dark:bg-cyan-500/10 dark:text-cyan-300">
                         <Icon className="h-5 w-5" />
                       </div>
-                      <span className="font-mono text-xs uppercase tracking-widest text-slate-600">
+                      <span className="font-mono text-xs uppercase tracking-widest text-slate-400 dark:text-slate-600">
                         PILLAR 0{index + 1}
                       </span>
                     </div>
-                    <h3 className="text-lg font-semibold text-slate-100">
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
                       {point.title}
                     </h3>
-                    <p className="mt-2.5 text-sm leading-relaxed text-slate-400">
+                    <p className="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                       {point.description}
                     </p>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-white/[0.05] flex items-center justify-between text-[11px] font-mono text-cyan-400/80">
+                  <div className="mt-6 pt-4 border-t border-slate-200/80 dark:border-white/[0.05] flex items-center justify-between text-[11px] font-mono text-cyan-600 dark:text-cyan-400/80">
                     <span>Verified Pattern</span>
-                    <ArrowUpRight className="h-3.5 w-3.5 text-cyan-400" />
+                    <ArrowUpRight className="h-3.5 w-3.5 text-cyan-500 dark:text-cyan-400" />
                   </div>
                 </SpringTiltCard>
               </StaggerItem>

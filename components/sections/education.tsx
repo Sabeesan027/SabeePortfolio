@@ -61,7 +61,7 @@ export function EducationSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="education" className="relative py-14 sm:py-20 overflow-hidden border-t border-white/[0.05]">
+    <section ref={sectionRef} id="education" className="relative py-14 sm:py-20 overflow-hidden border-t border-slate-200/80 dark:border-white/[0.05]">
       {/* Crisp Architectural Ledger Backdrop Image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Image
@@ -69,9 +69,9 @@ export function EducationSection() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-center opacity-75"
+          className="object-cover object-center opacity-30 dark:opacity-75 transition-opacity duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090A0F] via-transparent to-[#090A0F]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-transparent to-slate-50 dark:from-[#090A0F] dark:via-transparent dark:to-[#090A0F]" />
       </div>
 
       {/* Atmospheric Cyan / Teal Gradient Light Bleed */}
@@ -87,7 +87,7 @@ export function EducationSection() {
       {/* Giant Background Watermark */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 select-none text-[17vw] font-black uppercase tracking-tighter text-white/[0.015] whitespace-nowrap"
+        className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 select-none text-[17vw] font-black uppercase tracking-tighter text-slate-900/[0.025] dark:text-white/[0.015] whitespace-nowrap"
       >
         TIMELINE
       </div>
@@ -96,7 +96,7 @@ export function EducationSection() {
         {/* Technical Coordinate Header */}
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
           <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400" />
             <span>SEC // 05 · ACADEMIC MILESTONES</span>
           </div>
           <span className="text-slate-500">COMPUTER SOFTWARE ENGINEERING &amp; MATHEMATICS</span>
@@ -130,7 +130,7 @@ export function EducationSection() {
               y1="0"
               x2="2"
               y2="1000"
-              stroke="rgba(255,255,255,0.08)"
+              stroke="rgba(148,163,184,0.25)"
               strokeWidth="2"
             />
             {/* Scrubbed glowing cyan beam */}
@@ -157,14 +157,14 @@ export function EducationSection() {
                     className={cn(
                       "absolute -left-[1.72rem] top-7 flex h-5 w-5 items-center justify-center rounded-full border transition-all duration-500 sm:-left-[2.52rem]",
                       isLit
-                        ? "border-cyan-300 bg-cyan-400/25 shadow-[0_0_24px_rgba(6,182,212,0.9)] scale-110"
-                        : "border-white/20 bg-[#0D1117]"
+                        ? "border-cyan-500 bg-cyan-400/25 shadow-[0_0_24px_rgba(6,182,212,0.6)] dark:border-cyan-300 dark:shadow-[0_0_24px_rgba(6,182,212,0.9)] scale-110"
+                        : "border-slate-300 bg-slate-100 dark:border-white/20 dark:bg-[#0D1117]"
                     )}
                   >
                     <span
                       className={cn(
                         "h-2 w-2 rounded-full transition-colors duration-300",
-                        isLit ? "bg-cyan-300" : "bg-slate-600"
+                        isLit ? "bg-cyan-500 dark:bg-cyan-300" : "bg-slate-400 dark:bg-slate-600"
                       )}
                     />
                   </span>
@@ -172,25 +172,25 @@ export function EducationSection() {
                   <SpringTiltCard
                     tiltIntensity={3.5}
                     className={cn(
-                      "p-6 sm:p-7 transition-all duration-500 border-white/[0.08] bg-[#0D1117]/80 backdrop-blur-md",
-                      isLit && "border-cyan-400/35 bg-white/[0.04] shadow-[0_8px_32px_rgba(6,182,212,0.08)]"
+                      "p-6 sm:p-7 transition-all duration-500 border-slate-200/90 bg-white/90 shadow-sm dark:border-white/[0.08] dark:bg-[#0D1117]/80 dark:shadow-none backdrop-blur-md",
+                      isLit && "border-cyan-500/40 bg-white shadow-md dark:border-cyan-400/35 dark:bg-white/[0.04] dark:shadow-[0_8px_32px_rgba(6,182,212,0.08)]"
                     )}
                   >
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                       <div className="flex items-center gap-3.5">
-                        <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-400/25 bg-cyan-500/10 text-cyan-300 shadow-[0_0_16px_rgba(6,182,212,0.15)]">
+                        <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:border-cyan-400/25 dark:bg-cyan-500/10 dark:text-cyan-300 shadow-[0_0_16px_rgba(6,182,212,0.15)]">
                           <EduIcon className="h-5 w-5" />
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <h3 className="text-lg font-semibold text-slate-100 sm:text-xl">
+                            <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 sm:text-xl">
                               {item.institution}
                             </h3>
                             {item.status === "Current" && (
-                              <Award className="h-4 w-4 text-teal-400" />
+                              <Award className="h-4 w-4 text-teal-600 dark:text-teal-400" />
                             )}
                           </div>
-                          <p className="text-sm font-medium text-cyan-300 mt-0.5">
+                          <p className="text-sm font-medium text-cyan-600 dark:text-cyan-300 mt-0.5">
                             {item.degree}
                           </p>
                         </div>
@@ -203,21 +203,21 @@ export function EducationSection() {
                         >
                           {item.status}
                         </Badge>
-                        <span className="inline-flex items-center gap-1.5 font-mono text-xs text-slate-400 border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 rounded-full">
-                          <Calendar className="h-3 w-3 text-cyan-400" />
+                        <span className="inline-flex items-center gap-1.5 font-mono text-xs text-slate-500 dark:text-slate-400 border border-slate-200 bg-slate-100 dark:border-white/[0.08] dark:bg-white/[0.02] px-2.5 py-1 rounded-full">
+                          <Calendar className="h-3 w-3 text-cyan-600 dark:text-cyan-400" />
                           {item.period}
                         </span>
                       </div>
                     </div>
 
-                    <div className="mt-5 pt-4 border-t border-white/[0.05]">
-                      <p className="text-sm leading-relaxed text-slate-300">
+                    <div className="mt-5 pt-4 border-t border-slate-200/80 dark:border-white/[0.05]">
+                      <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                         {item.focus}
                       </p>
                       <div className="mt-4 flex flex-wrap gap-2">
                         {item.highlights.map((hl) => (
                           <Badge key={hl} variant="glass" className="text-xs flex items-center gap-1.5 py-1 px-3">
-                            <CheckCircle2 className="h-3 w-3 text-cyan-400" />
+                            <CheckCircle2 className="h-3 w-3 text-cyan-600 dark:text-cyan-400" />
                             {hl}
                           </Badge>
                         ))}

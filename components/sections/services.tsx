@@ -47,7 +47,7 @@ export function ServicesSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="services" className="relative py-14 sm:py-20 overflow-hidden border-t border-white/[0.05]">
+    <section ref={sectionRef} id="services" className="relative py-14 sm:py-20 overflow-hidden border-t border-slate-200/80 dark:border-white/[0.05]">
       {/* Crisp Architectural Blueprint Backdrop Image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <Image
@@ -55,9 +55,9 @@ export function ServicesSection() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-center opacity-75"
+          className="object-cover object-center opacity-30 dark:opacity-75 transition-opacity duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090A0F] via-transparent to-[#090A0F]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-transparent to-slate-50 dark:from-[#090A0F] dark:via-transparent dark:to-[#090A0F]" />
       </div>
 
       {/* Atmospheric Cyan / Sky Glow Bleed */}
@@ -73,7 +73,7 @@ export function ServicesSection() {
       {/* Giant Background Watermark */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-12 left-1/2 -translate-x-1/2 select-none text-[17vw] font-black uppercase tracking-tighter text-white/[0.015] whitespace-nowrap"
+        className="pointer-events-none absolute top-12 left-1/2 -translate-x-1/2 select-none text-[17vw] font-black uppercase tracking-tighter text-slate-900/[0.025] dark:text-white/[0.015] whitespace-nowrap"
       >
         CAPABILITIES
       </div>
@@ -82,7 +82,7 @@ export function ServicesSection() {
         {/* Technical Coordinate Header */}
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-500">
           <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400" />
             <span>SEC // 02 · FULL-CYCLE CAPABILITIES</span>
           </div>
           <span className="text-slate-500">6 CORE DISCIPLINES · PRODUCTION READY</span>
@@ -108,39 +108,39 @@ export function ServicesSection() {
               >
                 <SpotlightCard
                   spotlightColor={SPOTLIGHT_MAP[service.accent]}
-                  className="p-6 sm:p-7 h-full flex flex-col justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-cyan-400/50 hover:shadow-[0_0_36px_rgba(6,182,212,0.15)] group"
+                  className="p-6 sm:p-7 h-full flex flex-col justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-cyan-500/50 dark:hover:border-cyan-400/50 hover:shadow-[0_0_36px_rgba(6,182,212,0.15)] group"
                 >
                   <div>
                     <div className="mb-5 flex items-center justify-between">
-                      <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-400/25 bg-cyan-500/10 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:border-cyan-300/60 shadow-[0_0_16px_rgba(6,182,212,0.12)]">
+                      <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-500/25 bg-cyan-500/10 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:border-cyan-500/60 dark:border-cyan-400/25 dark:group-hover:border-cyan-300/60 shadow-[0_0_16px_rgba(6,182,212,0.12)]">
                         <LottieServiceIcon
                           type={service.iconName}
                           isHovered={isHovered}
                         />
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-[11px] uppercase tracking-widest text-slate-500 group-hover:text-cyan-300 transition-colors">
+                        <span className="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
                           0{index + 1}
                         </span>
-                        <ArrowUpRight className="h-3.5 w-3.5 text-slate-500 transition-all duration-300 group-hover:text-cyan-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        <ArrowUpRight className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500 transition-all duration-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-semibold tracking-tight text-slate-100 group-hover:text-white transition-colors">
+                    <h3 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-cyan-600 dark:group-hover:text-white transition-colors">
                       {service.title}
                     </h3>
-                    <p className="mt-2.5 text-sm leading-relaxed text-slate-400">
+                    <p className="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                       {service.description}
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-white/[0.05] flex flex-wrap gap-2">
+                  <div className="mt-6 pt-4 border-t border-slate-200/80 dark:border-white/[0.05] flex flex-wrap gap-2">
                     {service.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-xs text-slate-300 group-hover:border-cyan-500/30 transition-colors"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-slate-200/80 bg-slate-100/80 px-2.5 py-1 text-xs text-slate-700 transition-colors group-hover:border-cyan-500/40 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-300 dark:group-hover:border-cyan-500/30"
                       >
-                        <TechIcon name={tag} className="h-3 w-3 text-cyan-400 shrink-0" />
+                        <TechIcon name={tag} className="h-3 w-3 text-cyan-600 dark:text-cyan-400 shrink-0" />
                         <span>{tag}</span>
                       </span>
                     ))}
