@@ -67,12 +67,11 @@ export function HeroSection() {
   const [motionSpring, api] = useSpring(() => ({
     px: 0,
     py: 0,
-    shadowX: 8,
+    shadowX: 0,
     shadowY: 6,
-    skewX: -5,
-    scaleY: 1.02,
+    skewX: 0,
     wordmarkX: 0,
-    config: { tension: 95, friction: 26, mass: 1.1 },
+    config: { tension: 90, friction: 28, mass: 1.15 },
   }));
 
   // Live Jaffna (Asia/Colombo, UTC+5:30) clock
@@ -175,13 +174,12 @@ export function HeroSection() {
     const dy = (ny - 0.5) * 2; // -1..1
 
     api.start({
-      px: dx * 10,
-      py: dy * 6,
-      shadowX: -dx * 20,
-      shadowY: -dy * 10 + 6,
-      skewX: -dx * 15,
-      scaleY: 1.02 - dy * 0.05,
-      wordmarkX: -dx * 8,
+      px: dx * 8,
+      py: dy * 5,
+      shadowX: -dx * 16,
+      shadowY: -dy * 8 + 6,
+      skewX: -dx * 7,
+      wordmarkX: -dx * 6,
     });
   };
 
@@ -192,10 +190,9 @@ export function HeroSection() {
     api.start({
       px: 0,
       py: 0,
-      shadowX: 8,
+      shadowX: 0,
       shadowY: 6,
-      skewX: -5,
-      scaleY: 1.02,
+      skewX: 0,
       wordmarkX: 0,
     });
   };
@@ -265,22 +262,28 @@ export function HeroSection() {
         <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-4">
           {/* Left Column: Role Headline, 2-Line Bio & Dual CTAs */}
           <div className="order-2 z-30 lg:order-1 lg:col-span-4">
-            <h1 className="hero-fade-up text-2xl font-medium tracking-tight text-slate-100 sm:text-3xl lg:text-[2.2rem] lg:leading-[1.15]">
+            <div className="hero-fade-up mb-3 inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-500/10 px-3 py-1 font-mono text-xs text-cyan-300">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              Full-Stack &amp; Systems Architect
+            </div>
+
+            <h1 className="hero-fade-up text-2xl font-semibold tracking-tight text-slate-100 sm:text-3xl lg:text-[2.35rem] lg:leading-[1.14]">
               Full-stack software
               <br />
-              <span className="text-cyan-300">engineer &amp; builder</span>
+              <span className="bg-gradient-to-r from-cyan-300 via-sky-200 to-teal-300 bg-clip-text text-transparent">
+                engineer &amp; builder
+              </span>
             </h1>
 
             <p className="hero-fade-up mt-4 max-w-sm text-sm leading-relaxed text-slate-300 sm:text-base">
-              Designing and deploying scalable web, mobile, and enterprise
-              applications with Next.js, Django, Kotlin, and PostgreSQL.
+              Designing and deploying scalable web platforms, native mobile applications, and enterprise microservices with Next.js, Django, Kotlin, and PostgreSQL.
             </p>
 
-            <div className="hero-fade-up mt-7 flex flex-wrap items-center gap-3">
+            <div className="hero-fade-up mt-6 flex flex-wrap items-center gap-3">
               <a href="#projects" className="cursor-pointer">
                 <Button
                   magnetic
-                  className="h-11 rounded-[10px] border border-white/15 bg-[#12161F] pl-4 pr-1.5 text-slate-50 shadow-[0_8px_24px_rgba(0,0,0,0.45)] transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:border-cyan-400/55 hover:bg-[#171D28]"
+                  className="h-11 rounded-[10px] border border-white/15 bg-[#12161F] pl-4 pr-1.5 text-slate-50 shadow-[0_8px_24px_rgba(0,0,0,0.45)] transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:border-cyan-400/55 hover:bg-[#171D28] focus-visible:ring-2 focus-visible:ring-cyan-400"
                 >
                   <span>See my work</span>
                   <span className="ml-1.5 inline-flex h-8 w-8 items-center justify-center rounded-[7px] bg-gradient-to-br from-cyan-400 to-teal-400 text-slate-950">
@@ -293,7 +296,7 @@ export function HeroSection() {
                 <Button
                   magnetic
                   variant="outline"
-                  className="h-11 rounded-[10px] border-white/15 bg-white/[0.04] px-5 text-slate-100 transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:border-cyan-400/45 hover:bg-white/[0.08]"
+                  className="h-11 rounded-[10px] border-white/15 bg-white/[0.04] px-5 text-slate-100 transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:border-cyan-400/45 hover:bg-white/[0.08] focus-visible:ring-2 focus-visible:ring-cyan-400"
                 >
                   Get in touch
                 </Button>
@@ -301,103 +304,144 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Center Column: Standing Cutout Portrait + True-Silhouette Cast Shadow */}
+          {/* Center Column: Standing Cutout Portrait + Silky 3D Diffuse Cast Shadow */}
           <div
             ref={portraitWrapRef}
-            className="hero-portrait-stage order-1 z-10 flex justify-center lg:order-2 lg:col-span-4 lg:mt-2"
+            className="hero-portrait-stage order-1 z-20 flex justify-center lg:order-2 lg:col-span-4"
           >
-            <div className="relative h-[400px] w-[320px] sm:h-[490px] sm:w-[400px] lg:h-[560px] lg:w-[460px]">
-              {/* Penumbra: soft wide ambient shadow anchored at feet */}
+            <div className="relative h-[430px] w-[320px] sm:h-[510px] sm:w-[390px] lg:h-[570px] lg:w-[430px]">
+              {/* Soft Ambient Penumbra Wall Shadow */}
               <animated.div
                 aria-hidden="true"
                 style={{
-                  transformOrigin: "50% 88%",
+                  transformOrigin: "50% 92%",
                   transform: motionSpring.shadowX.to(
                     (sx) =>
-                      `translate3d(${sx * 1.25}px, ${motionSpring.shadowY.get()}px, 0) skewX(${motionSpring.skewX.get() * 1.15}deg) scaleY(${motionSpring.scaleY.get()})`
+                      `translate3d(${sx * 1.15}px, ${motionSpring.shadowY.get()}px, 0) skewX(${motionSpring.skewX.get() * 0.9}deg)`
                   ),
                 }}
-                className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]"
+                className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
               >
                 <Image
                   src={HERO_CUTOUT_SRC}
                   alt=""
                   fill
                   priority
-                  sizes="(max-width: 768px) 360px, 520px"
-                  className="object-contain object-top scale-[1.28] origin-top brightness-0 opacity-45 blur-[11px]"
+                  sizes="(max-width: 768px) 360px, 480px"
+                  className="object-contain object-bottom brightness-0 opacity-35 blur-[34px] sm:blur-[42px]"
                 />
               </animated.div>
 
-              {/* Umbra: crisp, accurate silhouette cast shadow anchored at feet */}
+              {/* Gentle Mid-Depth Silhouette Shadow */}
               <animated.div
                 aria-hidden="true"
                 style={{
-                  transformOrigin: "50% 88%",
+                  transformOrigin: "50% 92%",
                   transform: motionSpring.shadowX.to(
                     (sx) =>
-                      `translate3d(${sx}px, ${motionSpring.shadowY.get()}px, 0) skewX(${motionSpring.skewX.get()}deg) scaleY(${motionSpring.scaleY.get()})`
+                      `translate3d(${sx * 0.55}px, ${motionSpring.shadowY.get() * 0.6}px, 0) skewX(${motionSpring.skewX.get() * 0.45}deg)`
                   ),
                 }}
-                className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]"
+                className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
               >
                 <Image
                   src={HERO_CUTOUT_SRC}
                   alt=""
                   fill
                   priority
-                  sizes="(max-width: 768px) 360px, 520px"
-                  className="object-contain object-top scale-[1.28] origin-top brightness-0 contrast-200 opacity-75 blur-[2px]"
+                  sizes="(max-width: 768px) 360px, 480px"
+                  className="object-contain object-bottom brightness-0 opacity-25 blur-[16px]"
                 />
               </animated.div>
 
-              {/* Foreground standing portrait with spring parallax */}
+              {/* Ground Contact Shadow (Floor Ambient Occlusion under feet) */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-2 left-1/2 h-7 w-3/4 -translate-x-1/2 rounded-[100%] bg-black/60 blur-lg"
+              />
+
+              {/* Foreground standing portrait with smooth depth parallax */}
               <animated.div
                 style={{
                   transform: motionSpring.px.to(
                     (x) => `translate3d(${x}px, ${motionSpring.py.get()}px, 0)`
                   ),
                 }}
-                className="relative h-full w-full [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]"
+                className="relative h-full w-full [mask-image:linear-gradient(to_bottom,black_0%,black_84%,rgba(0,0,0,0.45)_94%,transparent_100%)]"
               >
                 <Image
                   src={HERO_CUTOUT_SRC}
                   alt={PROFILE.fullName}
                   fill
                   priority
-                  sizes="(max-width: 768px) 360px, 520px"
-                  className="object-contain object-top scale-[1.28] origin-top drop-shadow-[0_18px_36px_rgba(0,0,0,0.7)]"
+                  sizes="(max-width: 768px) 360px, 480px"
+                  className="object-contain object-bottom drop-shadow-[0_12px_28px_rgba(0,0,0,0.35)]"
                 />
               </animated.div>
             </div>
           </div>
 
-          {/* Right Column: Monospace Availability, Live Clock & Experience */}
-          <div className="order-3 z-30 flex flex-col lg:col-span-4 lg:items-end lg:text-right">
-            <div className="hero-fade-up space-y-2 font-mono text-xs text-slate-300">
-              <div className="inline-flex items-center gap-2 text-slate-100">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-400" />
+          {/* Right Column: Telemetry Bento Card (Executive Status & Metrics) */}
+          <div className="order-3 z-30 flex flex-col lg:col-span-4 lg:items-end">
+            <div className="hero-fade-up w-full max-w-xs space-y-3 rounded-2xl border border-white/10 bg-[#090D14]/75 p-4.5 backdrop-blur-xl shadow-[0_12px_36px_rgba(0,0,0,0.4)]">
+              {/* Availability Header */}
+              <div className="flex items-center justify-between border-b border-white/[0.08] pb-2.5">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-slate-400">
+                  Status
                 </span>
-                Available for work · Hybrid &amp; Remote
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-teal-400/30 bg-teal-500/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-teal-300">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-400" />
+                  </span>
+                  Available for Work
+                </span>
               </div>
-              <div className="text-slate-400">
-                Jaffna, LK · <span className="text-slate-200">{jaffnaTime}</span>
+
+              {/* Location & Time */}
+              <div className="space-y-1.5 font-mono text-xs">
+                <div className="flex items-center justify-between text-slate-300">
+                  <span className="text-slate-400">Location</span>
+                  <span className="text-slate-200">Jaffna, LK</span>
+                </div>
+                <div className="flex items-center justify-between text-slate-300">
+                  <span className="text-slate-400">Local Time</span>
+                  <span className="font-semibold text-cyan-300">
+                    {jaffnaTime}{" "}
+                    <span className="text-[10px] text-slate-400 font-normal">IST</span>
+                  </span>
+                </div>
+                <div className="flex items-center justify-between text-slate-300">
+                  <span className="text-slate-400">Engagement</span>
+                  <span className="text-slate-200">Hybrid &amp; Remote</span>
+                </div>
               </div>
-              <div className="text-slate-400">
-                7+ production systems shipped
+
+              {/* Metric Chips */}
+              <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/[0.08]">
+                <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-2 text-center">
+                  <div className="text-base font-bold text-slate-100">7+</div>
+                  <div className="text-[10px] font-mono text-slate-400">
+                    Systems Shipped
+                  </div>
+                </div>
+                <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-2 text-center">
+                  <div className="text-base font-bold text-teal-300">100%</div>
+                  <div className="text-[10px] font-mono text-slate-400">
+                    Type-Safe Code
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Oversized Full-Width Display Wordmark layered across the lower portrait */}
+      {/* Oversized Full-Width Display Wordmark layered BEHIND the portrait */}
       <div
         ref={wordmarkWrapRef}
         aria-hidden="true"
-        className="pointer-events-none relative z-20 mx-auto w-full max-w-7xl -mt-16 px-2 text-center select-none sm:-mt-24 lg:-mt-32"
+        className="pointer-events-none relative z-10 mx-auto w-full max-w-7xl -mt-14 px-2 text-center select-none sm:-mt-20 lg:-mt-28"
       >
         <animated.div
           style={{
