@@ -29,37 +29,37 @@ interface BackdropTheme {
 
 const BACKDROPS: Record<BackdropKey, BackdropTheme> = {
   obsidian: {
-    label: "Obsidian",
-    darkBg: "#090A0F",
-    lightBg: "#F8FAFC",
-    darkSpotlight: "rgba(6, 182, 212, 0.26)",
-    lightSpotlight: "rgba(6, 182, 212, 0.16)",
-    swatchDark: "bg-[#111827] border-white/30",
-    swatchLight: "bg-slate-200 border-slate-400",
-    wordmarkDark: "from-slate-50 via-slate-200/95 to-cyan-400/55",
-    wordmarkLight: "from-slate-300 via-slate-400/80 to-cyan-600/35",
+    label: "Cyber Navy",
+    darkBg: "#030B16",
+    lightBg: "#F8FAFD",
+    darkSpotlight: "rgba(0, 200, 255, 0.22)",
+    lightSpotlight: "rgba(0, 108, 229, 0.12)",
+    swatchDark: "bg-[#0B1C30] border-[rgba(85,190,255,0.4)]",
+    swatchLight: "bg-[#EEF4FA] border-[#006CE5]/40",
+    wordmarkDark: "from-[#F5F9FF] via-[#A1B3C9]/90 to-[#00C8FF]/50",
+    wordmarkLight: "from-[#DFE7F0] via-[#A1B3C9]/60 to-[#006CE5]/30",
   },
   cyan: {
-    label: "Cyan",
-    darkBg: "#07131A",
-    lightBg: "#F0F9FF",
-    darkSpotlight: "rgba(56, 189, 248, 0.32)",
-    lightSpotlight: "rgba(56, 189, 248, 0.20)",
-    swatchDark: "bg-cyan-500 border-cyan-200/50",
-    swatchLight: "bg-cyan-500 border-cyan-600/40",
-    wordmarkDark: "from-cyan-50 via-sky-200 to-cyan-400/65",
-    wordmarkLight: "from-sky-300 via-sky-400/80 to-cyan-600/45",
+    label: "Electric Cyan",
+    darkBg: "#051324",
+    lightBg: "#F0F8FF",
+    darkSpotlight: "rgba(0, 200, 255, 0.28)",
+    lightSpotlight: "rgba(0, 143, 203, 0.16)",
+    swatchDark: "bg-[#00C8FF] border-[#00C8FF]/50",
+    swatchLight: "bg-[#008FCB] border-[#008FCB]/40",
+    wordmarkDark: "from-[#F5F9FF] via-sky-200 to-[#00C8FF]/65",
+    wordmarkLight: "from-sky-200 via-sky-300 to-[#008FCB]/50",
   },
   teal: {
-    label: "Teal",
-    darkBg: "#071412",
-    lightBg: "#F0FDFA",
-    darkSpotlight: "rgba(20, 184, 166, 0.30)",
-    lightSpotlight: "rgba(20, 184, 166, 0.18)",
-    swatchDark: "bg-teal-500 border-teal-200/50",
-    swatchLight: "bg-teal-500 border-teal-600/40",
-    wordmarkDark: "from-teal-50 via-emerald-100 to-teal-400/65",
-    wordmarkLight: "from-teal-300 via-emerald-400/80 to-teal-600/45",
+    label: "Cobalt Tech",
+    darkBg: "#06152B",
+    lightBg: "#F4F8FD",
+    darkSpotlight: "rgba(22, 139, 255, 0.28)",
+    lightSpotlight: "rgba(22, 139, 255, 0.14)",
+    swatchDark: "bg-[#168BFF] border-[#168BFF]/50",
+    swatchLight: "bg-[#168BFF] border-[#168BFF]/40",
+    wordmarkDark: "from-[#F5F9FF] via-blue-200 to-[#168BFF]/65",
+    wordmarkLight: "from-blue-200 via-blue-300 to-[#168BFF]/50",
   },
 };
 
@@ -256,15 +256,15 @@ export function HeroSection() {
             background:
               themeMode === "light"
                 ? backdrop === "obsidian"
-                  ? "linear-gradient(to bottom, rgba(248,250,252,0.45) 0%, rgba(248,250,252,0.85) 75%, #F8FAFC 100%)"
+                  ? "linear-gradient(to bottom, rgba(248,250,253,0.45) 0%, rgba(248,250,253,0.88) 75%, #F8FAFD 100%)"
                   : backdrop === "cyan"
-                    ? "linear-gradient(to bottom, rgba(240,249,255,0.45) 0%, rgba(240,249,255,0.85) 75%, #F0F9FF 100%)"
-                    : "linear-gradient(to bottom, rgba(240,253,250,0.45) 0%, rgba(240,253,250,0.85) 75%, #F0FDFA 100%)"
+                    ? "linear-gradient(to bottom, rgba(240,248,255,0.45) 0%, rgba(240,248,255,0.88) 75%, #F0F8FF 100%)"
+                    : "linear-gradient(to bottom, rgba(244,248,253,0.45) 0%, rgba(244,248,253,0.88) 75%, #F4F8FD 100%)"
                 : backdrop === "obsidian"
-                  ? "linear-gradient(to bottom, rgba(9,10,15,0.22) 0%, rgba(9,10,15,0.45) 75%, #090A0F 100%)"
+                  ? "linear-gradient(to bottom, rgba(3,11,22,0.3) 0%, rgba(3,11,22,0.68) 75%, #030B16 100%)"
                   : backdrop === "cyan"
-                    ? "linear-gradient(to bottom, rgba(6,182,212,0.10) 0%, rgba(7,19,26,0.55) 75%, #090A0F 100%)"
-                    : "linear-gradient(to bottom, rgba(20,184,166,0.10) 0%, rgba(7,20,18,0.55) 75%, #090A0F 100%)",
+                    ? "linear-gradient(to bottom, rgba(5,19,36,0.3) 0%, rgba(5,19,36,0.72) 75%, #051324 100%)"
+                    : "linear-gradient(to bottom, rgba(6,21,43,0.3) 0%, rgba(6,21,43,0.72) 75%, #06152B 100%)",
           }}
         />
       </div>
@@ -288,20 +288,20 @@ export function HeroSection() {
         <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-4">
           {/* Left Column: Role Headline, 2-Line Bio & Dual CTAs */}
           <div className="order-2 z-30 lg:order-1 lg:col-span-4">
-            <div className="hero-fade-up mb-3 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 font-mono text-xs text-cyan-700 dark:border-cyan-400/25 dark:bg-cyan-500/10 dark:text-cyan-300">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-pulse dark:bg-cyan-400" />
+            <div className="hero-fade-up mb-3 inline-flex items-center gap-2 rounded-full border border-[#006CE5]/25 bg-[#006CE5]/10 px-3 py-1 font-mono text-xs text-[#006CE5] dark:border-[rgba(85,190,255,0.25)] dark:bg-[rgba(0,200,255,0.1)] dark:text-[#00C8FF]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#006CE5] animate-pulse dark:bg-[#00C8FF]" />
               Full-Stack &amp; Systems Architect
             </div>
 
-            <h1 className="hero-fade-up text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl lg:text-[2.35rem] lg:leading-[1.14] dark:text-slate-100">
+            <h1 className="hero-fade-up text-2xl font-semibold tracking-tight text-[#102039] sm:text-3xl lg:text-[2.35rem] lg:leading-[1.14] dark:text-[#F5F9FF]">
               Full-stack software
               <br />
-              <span className="bg-gradient-to-r from-cyan-600 via-sky-600 to-teal-600 bg-clip-text text-transparent dark:from-cyan-300 dark:via-sky-200 dark:to-teal-300">
+              <span className="bg-gradient-to-r from-[#006CE5] via-[#008FCB] to-[#168BFF] bg-clip-text text-transparent dark:from-[#00C8FF] dark:via-sky-200 dark:to-[#168BFF]">
                 engineer &amp; builder
               </span>
             </h1>
 
-            <p className="hero-fade-up mt-4 max-w-sm text-sm leading-relaxed text-slate-600 sm:text-base dark:text-slate-300">
+            <p className="hero-fade-up mt-4 max-w-sm text-sm leading-relaxed text-[#52647B] sm:text-base dark:text-[#A1B3C9]">
               Designing and deploying scalable web platforms, native mobile applications, and enterprise microservices with Next.js, Django, Kotlin, and PostgreSQL.
             </p>
 
@@ -309,10 +309,10 @@ export function HeroSection() {
               <a href="#projects" className="cursor-pointer">
                 <Button
                   magnetic
-                  className="h-11 rounded-[10px] border border-slate-900/10 bg-slate-900 pl-4 pr-1.5 text-slate-50 shadow-[0_8px_24px_rgba(0,0,0,0.18)] transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-cyan-500 dark:border-white/15 dark:bg-[#12161F] dark:text-slate-50 dark:shadow-[0_8px_24px_rgba(0,0,0,0.45)] dark:hover:border-cyan-400/55 dark:hover:bg-[#171D28] dark:focus-visible:ring-cyan-400"
+                  className="h-11 rounded-[10px] border border-[#102039]/10 bg-[#102039] pl-4 pr-1.5 text-[#F8FAFD] shadow-[0_8px_24px_rgba(16,32,57,0.18)] transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:bg-[#1E3355] focus-visible:ring-2 focus-visible:ring-[#006CE5] dark:border-[rgba(85,190,255,0.22)] dark:bg-[#071426] dark:text-[#F5F9FF] dark:shadow-[0_8px_24px_rgba(0,0,0,0.6)] dark:hover:border-[#00C8FF]/55 dark:hover:bg-[#0B1C30] dark:focus-visible:ring-[#00C8FF]"
                 >
                   <span>See my work</span>
-                  <span className="ml-1.5 inline-flex h-8 w-8 items-center justify-center rounded-[7px] bg-gradient-to-br from-cyan-400 to-teal-400 text-slate-950">
+                  <span className="ml-1.5 inline-flex h-8 w-8 items-center justify-center rounded-[7px] bg-gradient-to-br from-[#00C8FF] to-[#168BFF] text-[#030B16]">
                     <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </Button>
@@ -322,7 +322,7 @@ export function HeroSection() {
                 <Button
                   magnetic
                   variant="outline"
-                  className="h-11 rounded-[10px] border-slate-300/80 bg-white/80 px-5 text-slate-800 transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:border-cyan-500/50 hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-cyan-500 dark:border-white/15 dark:bg-white/[0.04] dark:text-slate-100 dark:hover:border-cyan-400/45 dark:hover:bg-white/[0.08] dark:focus-visible:ring-cyan-400"
+                  className="h-11 rounded-[10px] border-[#DFE7F0] bg-white/80 px-5 text-[#102039] transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:border-[#006CE5]/40 hover:bg-[#EEF4FA] focus-visible:ring-2 focus-visible:ring-[#006CE5] dark:border-[rgba(85,190,255,0.18)] dark:bg-[#071426]/60 dark:text-[#F5F9FF] dark:hover:border-[#00C8FF]/50 dark:hover:bg-[#0B1C30] dark:focus-visible:ring-[#00C8FF]"
                 >
                   Get in touch
                 </Button>
@@ -409,13 +409,13 @@ export function HeroSection() {
 
           {/* Right Column: Telemetry Bento Card (Executive Status & Metrics) */}
           <div className="order-3 z-30 flex flex-col lg:col-span-4 lg:items-end">
-            <div className="hero-fade-up w-full max-w-xs space-y-3 rounded-2xl border border-slate-200/90 bg-white/85 p-4.5 backdrop-blur-xl shadow-[0_12px_36px_rgba(0,0,0,0.06)] dark:border-white/10 dark:bg-[#090D14]/75 dark:shadow-[0_12px_36px_rgba(0,0,0,0.4)]">
+            <div className="hero-fade-up w-full max-w-xs space-y-3 rounded-2xl border border-[#DFE7F0] bg-white/90 p-4.5 backdrop-blur-xl shadow-[0_12px_36px_rgba(16,32,57,0.06)] dark:border-[rgba(85,190,255,0.18)] dark:bg-[#071426]/90 dark:shadow-[0_12px_36px_rgba(0,0,0,0.6)]">
               {/* Availability Header */}
-              <div className="flex items-center justify-between border-b border-slate-200/80 pb-2.5 dark:border-white/[0.08]">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              <div className="flex items-center justify-between border-b border-[#DFE7F0] pb-2.5 dark:border-[rgba(85,190,255,0.14)]">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#52647B] dark:text-[#A1B3C9]">
                   Status
                 </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-teal-500/30 bg-teal-500/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-teal-700 dark:border-teal-400/30 dark:bg-teal-500/10 dark:text-teal-300">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-teal-600/30 bg-teal-50 px-2.5 py-0.5 font-mono text-[11px] font-medium text-teal-700 dark:border-teal-400/30 dark:bg-teal-500/10 dark:text-teal-300">
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-500 opacity-75 dark:bg-teal-400" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-600 dark:bg-teal-400" />
@@ -426,34 +426,34 @@ export function HeroSection() {
 
               {/* Location & Time */}
               <div className="space-y-1.5 font-mono text-xs">
-                <div className="flex items-center justify-between text-slate-600 dark:text-slate-300">
-                  <span className="text-slate-500 dark:text-slate-400">Location</span>
-                  <span className="text-slate-800 dark:text-slate-200 font-medium">Jaffna, LK</span>
+                <div className="flex items-center justify-between text-[#52647B] dark:text-[#A1B3C9]">
+                  <span>Location</span>
+                  <span className="text-[#102039] dark:text-[#F5F9FF] font-medium">Jaffna, LK</span>
                 </div>
-                <div className="flex items-center justify-between text-slate-600 dark:text-slate-300">
-                  <span className="text-slate-500 dark:text-slate-400">Local Time</span>
-                  <span className="font-semibold text-cyan-600 dark:text-cyan-300">
+                <div className="flex items-center justify-between text-[#52647B] dark:text-[#A1B3C9]">
+                  <span>Local Time</span>
+                  <span className="font-semibold text-[#006CE5] dark:text-[#00C8FF]">
                     {jaffnaTime}{" "}
-                    <span className="text-[10px] text-slate-500 dark:text-slate-400 font-normal">IST</span>
+                    <span className="text-[10px] text-[#52647B] dark:text-[#A1B3C9] font-normal">IST</span>
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-slate-600 dark:text-slate-300">
-                  <span className="text-slate-500 dark:text-slate-400">Engagement</span>
-                  <span className="text-slate-800 dark:text-slate-200 font-medium">Hybrid &amp; Remote</span>
+                <div className="flex items-center justify-between text-[#52647B] dark:text-[#A1B3C9]">
+                  <span>Engagement</span>
+                  <span className="text-[#102039] dark:text-[#F5F9FF] font-medium">Hybrid &amp; Remote</span>
                 </div>
               </div>
 
               {/* Metric Chips */}
-              <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-200/80 dark:border-white/[0.08]">
-                <div className="rounded-lg border border-slate-200/80 bg-slate-50/80 p-2 text-center dark:border-white/[0.06] dark:bg-white/[0.02]">
-                  <div className="text-base font-bold text-slate-900 dark:text-slate-100">7+</div>
-                  <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400">
+              <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#DFE7F0] dark:border-[rgba(85,190,255,0.14)]">
+                <div className="rounded-lg border border-[#DFE7F0] bg-[#EEF4FA]/60 p-2 text-center dark:border-[rgba(85,190,255,0.12)] dark:bg-[#0B1C30]/60">
+                  <div className="text-base font-bold text-[#102039] dark:text-[#F5F9FF]">7+</div>
+                  <div className="text-[10px] font-mono text-[#52647B] dark:text-[#A1B3C9]">
                     Systems Shipped
                   </div>
                 </div>
-                <div className="rounded-lg border border-slate-200/80 bg-slate-50/80 p-2 text-center dark:border-white/[0.06] dark:bg-white/[0.02]">
+                <div className="rounded-lg border border-[#DFE7F0] bg-[#EEF4FA]/60 p-2 text-center dark:border-[rgba(85,190,255,0.12)] dark:bg-[#0B1C30]/60">
                   <div className="text-base font-bold text-teal-600 dark:text-teal-300">100%</div>
-                  <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400">
+                  <div className="text-[10px] font-mono text-[#52647B] dark:text-[#A1B3C9]">
                     Type-Safe Code
                   </div>
                 </div>
@@ -495,13 +495,13 @@ export function HeroSection() {
 
       {/* Bottom Interactive Hint & Backdrop Swatch Switcher */}
       <div className="relative z-30 mx-auto mt-5 flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-4 sm:px-8">
-        <div className="hero-fade-up inline-flex items-center gap-2 rounded-full border border-slate-200/90 bg-white/80 px-3.5 py-1.5 font-mono text-[11px] text-slate-600 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300">
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400" />
+        <div className="hero-fade-up inline-flex items-center gap-2 rounded-full border border-[#DFE7F0] bg-white/80 px-3.5 py-1.5 font-mono text-[11px] text-[#52647B] shadow-sm backdrop-blur-md dark:border-[rgba(85,190,255,0.16)] dark:bg-[#071426]/80 dark:text-[#A1B3C9]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#006CE5] dark:bg-[#00C8FF]" />
           Move the light · click for a new backdrop
         </div>
 
-        <div className="hero-fade-up flex items-center gap-2.5 rounded-full border border-slate-200/90 bg-white/80 px-3.5 py-1.5 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/[0.04]">
-          <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400 mr-1">
+        <div className="hero-fade-up flex items-center gap-2.5 rounded-full border border-[#DFE7F0] bg-white/80 px-3.5 py-1.5 shadow-sm backdrop-blur-md dark:border-[rgba(85,190,255,0.16)] dark:bg-[#071426]/80">
+          <span className="font-mono text-[11px] text-[#52647B] dark:text-[#A1B3C9] mr-1">
             Backdrop
           </span>
           {BACKDROP_ORDER.map((key) => (
@@ -516,7 +516,7 @@ export function HeroSection() {
                   ? BACKDROPS[key].swatchLight
                   : BACKDROPS[key].swatchDark,
                 backdrop === key
-                  ? "scale-125 ring-2 ring-cyan-500 ring-offset-2 ring-offset-white dark:ring-cyan-300/80 dark:ring-offset-[#090A0F]"
+                  ? "scale-125 ring-2 ring-[#006CE5] ring-offset-2 ring-offset-white dark:ring-[#00C8FF] dark:ring-offset-[#030B16]"
                   : "opacity-65 hover:opacity-100"
               )}
             />

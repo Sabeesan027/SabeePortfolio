@@ -50,11 +50,11 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("sabeesan-theme");if(t==="light"){document.documentElement.classList.remove("dark");document.documentElement.classList.add("light");document.documentElement.setAttribute("data-theme","light");document.documentElement.style.colorScheme="light";}else{document.documentElement.classList.add("dark");document.documentElement.classList.remove("light");document.documentElement.setAttribute("data-theme","dark");document.documentElement.style.colorScheme="dark";}}catch(e){}})();`,
+            __html: `(function(){try{var stored=localStorage.getItem("sabeesan-theme");var isDark=stored?(stored==="dark"):(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(isDark){document.documentElement.classList.add("dark");document.documentElement.classList.remove("light");document.documentElement.setAttribute("data-theme","dark");document.documentElement.style.colorScheme="dark";}else{document.documentElement.classList.remove("dark");document.documentElement.classList.add("light");document.documentElement.setAttribute("data-theme","light");document.documentElement.style.colorScheme="light";}}catch(e){}})();`,
           }}
         />
       </head>
-      <body className="min-h-full bg-slate-50 text-slate-900 dark:bg-[#090A0F] dark:text-slate-100 flex flex-col selection:bg-cyan-500/30 transition-colors duration-300">
+      <body className="min-h-full bg-[#F8FAFD] text-[#102039] dark:bg-[#030B16] dark:text-[#F5F9FF] flex flex-col selection:bg-[#00C8FF]/30 transition-colors duration-300">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

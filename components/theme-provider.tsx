@@ -21,24 +21,40 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
     try {
       const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
       if (stored === "light" || stored === "dark") {
         setThemeState(stored);
         applyTheme(stored);
       } else {
-        // Default to dark, or system preference
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
-        const initialTheme: Theme = prefersDark ? "dark" : "dark";
+        // Follow system preference without writing to localStorage yet
+        const initialTheme: Theme = mediaQuery.matches ? "dark" : "light";
         setThemeState(initialTheme);
         applyTheme(initialTheme);
       }
     } catch {
       applyTheme("dark");
     }
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        // Only adapt to system change if user has not manually set a preference
+        if (!stored) {
+          const next: Theme = e.matches ? "dark" : "light";
+          setThemeState(next);
+          applyTheme(next);
+        }
+      } catch {
+        // storage error
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
     setMounted(true);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   const applyTheme = (t: Theme) => {

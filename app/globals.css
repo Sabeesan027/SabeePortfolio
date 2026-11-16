@@ -3,32 +3,60 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --surface: #ffffff;
-  --card: rgba(255, 255, 255, 0.85);
-  --border: rgba(15, 23, 42, 0.08);
-  --muted: #64748b;
-  --accent-cyan: #0284c7;
-  --accent-sky: #0ea5e9;
-  --accent-teal: #0d9488;
+  /* LIGHT MODE — Premium Minimal Tech (Master Prompt Spec) */
+  --bg-primary: #F8FAFD;
+  --bg-secondary: #FFFFFF;
+  --bg-elevated: #EEF4FA;
+  --text-primary: #102039;
+  --text-secondary: #52647B;
+  --text-muted: #6B7C93;
+  --accent-primary: #006CE5;
+  --accent-secondary: #008FCB;
+  --border-color: #DFE7F0;
+  --border-subtle: rgba(223, 231, 240, 0.7);
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --card-border: #DFE7F0;
+  --nav-bg: rgba(255, 255, 255, 0.82);
+  --nav-border: #DFE7F0;
+  --shadow-sm: 0 2px 8px rgba(16, 32, 57, 0.04);
+  --shadow-md: 0 8px 24px rgba(16, 32, 57, 0.06);
+  --shadow-lg: 0 16px 40px rgba(16, 32, 57, 0.08);
+  --spotlight-glow: rgba(0, 108, 229, 0.12);
+  --grid-line: rgba(16, 32, 57, 0.04);
 }
 
 .dark, [data-theme="dark"] {
-  --background: #090a0f;
-  --foreground: #f1f5f9;
-  --surface: #0d1117;
-  --card: rgba(255, 255, 255, 0.03);
-  --border: rgba(255, 255, 255, 0.08);
-  --muted: #94a3b8;
-  --accent-cyan: #06b6d4;
-  --accent-sky: #38bdf8;
-  --accent-teal: #14b8a6;
+  /* DARK MODE — Premium Cyber-Tech (Master Prompt Spec) */
+  --bg-primary: #030B16;
+  --bg-secondary: #071426;
+  --bg-elevated: #0B1C30;
+  --text-primary: #F5F9FF;
+  --text-secondary: #A1B3C9;
+  --text-muted: #647B95;
+  --accent-primary: #00C8FF;
+  --accent-secondary: #168BFF;
+  --border-color: rgba(85, 190, 255, 0.16);
+  --border-subtle: rgba(85, 190, 255, 0.08);
+  --card-bg: rgba(7, 20, 38, 0.75);
+  --card-border: rgba(85, 190, 255, 0.16);
+  --nav-bg: rgba(3, 11, 22, 0.85);
+  --nav-border: rgba(85, 190, 255, 0.16);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --spotlight-glow: rgba(0, 200, 255, 0.18);
+  --grid-line: rgba(85, 190, 255, 0.04);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-border-custom: var(--border-color);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -51,6 +79,27 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fluid Heading Scales */
+h1 {
+  font-size: clamp(2rem, 3.5vw + 1rem, 3.25rem);
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 2.5vw + 0.75rem, 2.5rem);
+  line-height: 1.2;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Architectural subtle background grid */
