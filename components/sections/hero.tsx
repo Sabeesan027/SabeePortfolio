@@ -239,7 +239,7 @@ export function HeroSection() {
       onMouseLeave={handleMouseLeave}
       onClick={cycleBackdrop}
       style={{ backgroundColor: theme.bg }}
-      className="relative flex min-h-[92vh] lg:min-h-screen flex-col justify-between overflow-hidden pt-20 pb-4 transition-colors duration-700 sm:pt-24 sm:pb-5 cursor-crosshair select-none"
+      className="relative flex min-h-screen flex-col justify-between overflow-hidden pt-14 pb-3 transition-colors duration-700 sm:pt-16 sm:pb-4 cursor-crosshair select-none"
     >
       {/* Crisp Architectural Studio Wall Backdrop Image */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -273,17 +273,17 @@ export function HeroSection() {
         style={
           {
             "--lx": "50%",
-            "--ly": "35%",
+            "--ly": "26%",
             background: `radial-gradient(650px circle at var(--lx) var(--ly), ${theme.spotlight}, transparent 70%)`,
           } as React.CSSProperties
         }
       />
 
-      {/* 3-Zone Editorial Stage */}
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 sm:px-8">
-        <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-6">
+      {/* 3-Zone Editorial Stage: top-aligned to eliminate unwanted dead space */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-start pt-1 sm:pt-2 lg:pt-3 px-4 sm:px-8">
+        <div className="grid grid-cols-1 items-start lg:items-center gap-6 lg:grid-cols-12 lg:gap-6">
           {/* Left Column: Role Headline, 2-Line Bio & Dual CTAs */}
-          <div className="order-2 z-30 lg:order-1 lg:col-span-4">
+          <div className="order-2 z-30 lg:order-1 lg:col-span-4 lg:pt-2">
             <div className="hero-fade-up mb-3 inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-500/10 px-3 py-1 text-[11px] font-mono text-cyan-300">
               <Terminal className="h-3 w-3" />
               <span>Full-Stack Architect &amp; Systems Engineer</span>
@@ -333,7 +333,7 @@ export function HeroSection() {
             ref={portraitWrapRef}
             className="hero-portrait-stage order-1 z-20 flex justify-center lg:order-2 lg:col-span-4"
           >
-            <div className="relative h-[380px] w-[300px] sm:h-[460px] sm:w-[380px] lg:h-[540px] lg:w-[440px]">
+            <div className="relative h-[440px] w-[320px] sm:h-[520px] sm:w-[400px] lg:h-[610px] lg:w-[470px] xl:h-[650px] xl:w-[500px]">
               {/* Ground Contact Floor Shadow (anchored at shoes) */}
               <div
                 aria-hidden="true"
@@ -357,8 +357,8 @@ export function HeroSection() {
                   alt=""
                   fill
                   priority
-                  sizes="(max-width: 768px) 360px, 520px"
-                  className="object-contain object-top scale-[1.26] origin-top brightness-0 opacity-28 blur-[28px]"
+                  sizes="(max-width: 768px) 380px, 560px"
+                  className="object-contain object-top scale-[1.16] origin-top brightness-0 opacity-28 blur-[28px]"
                 />
               </animated.div>
 
@@ -379,12 +379,12 @@ export function HeroSection() {
                   alt=""
                   fill
                   priority
-                  sizes="(max-width: 768px) 360px, 520px"
-                  className="object-contain object-top scale-[1.26] origin-top brightness-0 opacity-40 blur-[14px]"
+                  sizes="(max-width: 768px) 380px, 560px"
+                  className="object-contain object-top scale-[1.16] origin-top brightness-0 opacity-40 blur-[14px]"
                 />
               </animated.div>
 
-              {/* Foreground standing portrait with smooth micro-parallax (no harsh drop-shadow) */}
+              {/* Foreground standing portrait with smooth micro-parallax */}
               <animated.div
                 style={{
                   transform: motionSpring.px.to(
@@ -398,15 +398,15 @@ export function HeroSection() {
                   alt={PROFILE.fullName}
                   fill
                   priority
-                  sizes="(max-width: 768px) 360px, 520px"
-                  className="object-contain object-top scale-[1.26] origin-top drop-shadow-[0_10px_25px_rgba(0,0,0,0.45)]"
+                  sizes="(max-width: 768px) 380px, 560px"
+                  className="object-contain object-top scale-[1.16] origin-top drop-shadow-[0_10px_25px_rgba(0,0,0,0.45)]"
                 />
               </animated.div>
             </div>
           </div>
 
           {/* Right Column: Architectural Telemetry & Operational Status Card */}
-          <div className="order-3 z-30 flex flex-col lg:col-span-4 lg:items-end">
+          <div className="order-3 z-30 flex flex-col lg:col-span-4 lg:items-end lg:pt-2">
             <div className="hero-fade-up w-full max-w-xs space-y-3 rounded-2xl border border-white/10 bg-[#0D1117]/75 p-4.5 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-cyan-400/40">
               {/* Header Status Beacon */}
               <div className="flex items-center justify-between border-b border-white/[0.07] pb-3">
@@ -482,7 +482,7 @@ export function HeroSection() {
       <div
         ref={wordmarkWrapRef}
         aria-hidden="true"
-        className="pointer-events-none relative z-10 mx-auto w-full max-w-7xl -mt-10 sm:-mt-16 lg:-mt-22 px-2 text-center select-none"
+        className="pointer-events-none relative z-10 mx-auto w-full max-w-7xl -mt-16 sm:-mt-24 lg:-mt-32 px-2 text-center select-none"
       >
         <animated.div
           style={{
@@ -509,7 +509,7 @@ export function HeroSection() {
       </div>
 
       {/* Bottom Interactive Dock & Backdrop Swatch Switcher */}
-      <div className="relative z-30 mx-auto mt-2 flex w-full max-w-7xl flex-wrap items-center justify-between gap-3 px-4 sm:px-8">
+      <div className="relative z-30 mx-auto mt-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-3 px-4 sm:px-8 pb-3">
         <div className="hero-fade-up inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0D1117]/80 px-3.5 py-1.5 font-mono text-[11px] text-slate-300 backdrop-blur-md shadow-sm">
           <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
           <span>Move cursor to direct studio light · Click anywhere to switch theme</span>
