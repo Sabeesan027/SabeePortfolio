@@ -34,6 +34,14 @@ export function LoadingScreen({ onComplete }: { onComplete?: () => void }) {
   const [isDone, setIsDone] = React.useState(false);
 
   React.useEffect(() => {
+    // Ensure viewport resets to top and disable automatic scroll restoration
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+    }
+
     // Disable body scroll while loading
     document.body.style.overflow = "hidden";
 
@@ -70,6 +78,7 @@ export function LoadingScreen({ onComplete }: { onComplete?: () => void }) {
         setTimeout(() => {
           setIsDone(true);
           document.body.style.overflow = "";
+          window.scrollTo(0, 0);
           onComplete?.();
         }, 320);
       }
@@ -82,6 +91,7 @@ export function LoadingScreen({ onComplete }: { onComplete?: () => void }) {
         setProgress(100);
         setIsDone(true);
         document.body.style.overflow = "";
+        window.scrollTo(0, 0);
         onComplete?.();
       }
     };
