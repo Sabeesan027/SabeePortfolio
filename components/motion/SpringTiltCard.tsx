@@ -76,14 +76,20 @@ export function SpringTiltCard({
             (s) =>
               `rotateX(${springStyles.rotateX.get()}deg) rotateY(${springStyles.rotateY.get()}deg) scale(${s})`
           ),
-          transformStyle: "preserve-3d",
+          WebkitMaskImage: "-webkit-radial-gradient(white, black)",
         }}
         className={cn(
-          "group relative h-full overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl transition-colors duration-300 hover:border-cyan-400/35",
+          "group relative h-full overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0D1117]/85 backdrop-blur-xl transition-all duration-300 hover:border-cyan-400/40",
           className
         )}
         {...props}
       >
+        {/* Soft, perfectly feathered top-edge ambient radial glow (no hard edges) */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(ellipse_90%_40%_at_50%_0%,rgba(6,182,212,0.14),transparent_72%)] opacity-75 transition-opacity duration-500 group-hover:opacity-100"
+        />
+
         {/* Dynamic cyan radial spotlight */}
         <div
           aria-hidden="true"
@@ -93,12 +99,14 @@ export function SpringTiltCard({
             background: `radial-gradient(440px circle at ${coords.x}px ${coords.y}px, ${spotlightColor}, transparent 70%)`,
           }}
         />
+
         {/* Top border luminescence */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/45 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 rounded-t-2xl"
         />
-        <div className="relative z-10 h-full">{children}</div>
+
+        <div className="relative z-10 flex h-full flex-col justify-between">{children}</div>
       </animated.div>
     </div>
   );

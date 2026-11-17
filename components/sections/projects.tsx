@@ -233,28 +233,19 @@ export function ProjectsSection() {
                       setSelectedProject(project);
                     }
                   }}
-                  className="h-full cursor-pointer p-6 sm:p-7 flex flex-col justify-between group transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_36px_rgba(6,182,212,0.15)] bg-[#0D1117]/75 backdrop-blur-md"
+                  className="h-full cursor-pointer p-6 sm:p-7 group transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_36px_rgba(6,182,212,0.18)] bg-[#0D1117]/92 backdrop-blur-md"
                 >
-                  {/* Subtle top accent wash */}
-                  <div
-                    aria-hidden="true"
-                    className={cn(
-                      "pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b opacity-60",
-                      project.accentGradient
-                    )}
-                  />
-
-                  <div className="relative z-10">
+                  <div className="w-full">
                     <div className="flex items-center justify-between gap-3 mb-4">
                       <div className="flex items-center gap-2">
-                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-cyan-400/30 bg-cyan-500/10 text-cyan-300">
+                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-cyan-400/30 bg-cyan-500/10 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.15)]">
                           <ProjectIcon className="h-3.5 w-3.5" />
                         </span>
                         <Badge variant="cyan" className="font-mono text-[11px] border-cyan-400/30 bg-cyan-500/10">
                           {project.badge}
                         </Badge>
                       </div>
-                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition-colors group-hover:border-cyan-400/50 group-hover:text-cyan-300 group-hover:bg-cyan-500/10">
+                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition-all duration-300 group-hover:border-cyan-400/50 group-hover:text-cyan-300 group-hover:bg-cyan-500/10 group-hover:shadow-[0_0_12px_rgba(6,182,212,0.25)]">
                         <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </span>
                     </div>
@@ -270,7 +261,7 @@ export function ProjectsSection() {
                     </p>
                   </div>
 
-                  <div className="relative z-10 mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between">
                     <div className="flex flex-wrap gap-1.5">
                       {project.stack.slice(0, 4).map((tech) => (
                         <span
