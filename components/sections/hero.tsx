@@ -303,11 +303,11 @@ export function HeroSection() {
               Kotlin, and PostgreSQL.
             </p>
 
-            <div className="hero-fade-up mt-6 flex flex-wrap items-center gap-3">
-              <a href="#projects" className="cursor-pointer">
+            <div className="hero-fade-up mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <a href="#projects" className="cursor-pointer w-full sm:w-auto">
                 <Button
                   magnetic
-                  className="h-11 rounded-xl border border-cyan-400/30 bg-[#12161F] pl-4 pr-1.5 text-slate-50 shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-cyan-400/60 hover:bg-[#171D28] hover:shadow-[0_0_24px_rgba(6,182,212,0.25)]"
+                  className="h-11 w-full sm:w-auto rounded-xl border border-cyan-400/30 bg-[#12161F] pl-4 pr-1.5 text-slate-50 shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-cyan-400/60 hover:bg-[#171D28] hover:shadow-[0_0_24px_rgba(6,182,212,0.25)] justify-between sm:justify-center"
                 >
                   <span className="font-medium text-sm">Explore Work</span>
                   <span className="ml-2 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400 to-teal-400 text-slate-950 shadow-sm">
@@ -316,11 +316,11 @@ export function HeroSection() {
                 </Button>
               </a>
 
-              <a href="#contact" className="cursor-pointer">
+              <a href="#contact" className="cursor-pointer w-full sm:w-auto">
                 <Button
                   magnetic
                   variant="outline"
-                  className="h-11 rounded-xl border-white/15 bg-white/[0.04] px-5 text-slate-100 backdrop-blur-md transition-all duration-300 hover:border-cyan-400/45 hover:bg-white/[0.08]"
+                  className="h-11 w-full sm:w-auto rounded-xl border-white/15 bg-white/[0.04] px-5 text-slate-100 backdrop-blur-md transition-all duration-300 hover:border-cyan-400/45 hover:bg-white/[0.08]"
                 >
                   Get in touch
                 </Button>
@@ -333,7 +333,7 @@ export function HeroSection() {
             ref={portraitWrapRef}
             className="hero-portrait-stage order-1 z-20 flex justify-center lg:order-2 lg:col-span-4"
           >
-            <div className="relative h-[440px] w-[320px] sm:h-[520px] sm:w-[400px] lg:h-[610px] lg:w-[470px] xl:h-[650px] xl:w-[500px]">
+            <div className="relative h-[360px] w-[270px] xs:h-[420px] xs:w-[310px] sm:h-[500px] sm:w-[380px] lg:h-[610px] lg:w-[470px] xl:h-[650px] xl:w-[500px]">
               {/* Ground Contact Floor Shadow (anchored at shoes) */}
               <div
                 aria-hidden="true"
@@ -406,8 +406,8 @@ export function HeroSection() {
           </div>
 
           {/* Right Column: Architectural Telemetry & Operational Status Card */}
-          <div className="order-3 z-30 flex flex-col lg:col-span-4 lg:items-end lg:pt-2">
-            <div className="hero-fade-up w-full max-w-xs space-y-3 rounded-2xl border border-white/10 bg-[#0D1117]/75 p-4.5 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-cyan-400/40">
+          <div className="order-3 z-30 flex flex-col items-center lg:items-end lg:col-span-4 lg:pt-2 w-full">
+            <div className="hero-fade-up w-full max-w-sm lg:max-w-xs space-y-3 rounded-2xl border border-white/10 bg-[#0D1117]/75 p-4.5 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-cyan-400/40">
               {/* Header Status Beacon */}
               <div className="flex items-center justify-between border-b border-white/[0.07] pb-3">
                 <div className="flex items-center gap-2">
@@ -509,15 +509,15 @@ export function HeroSection() {
       </div>
 
       {/* Bottom Interactive Dock & Backdrop Swatch Switcher */}
-      <div className="relative z-30 mx-auto mt-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-3 px-4 sm:px-8 pb-3">
-        <div className="hero-fade-up inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0D1117]/80 px-3.5 py-1.5 font-mono text-[11px] text-slate-300 backdrop-blur-md shadow-sm">
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
-          <span>Move cursor to direct studio light · Click anywhere to switch theme</span>
+      <div className="relative z-30 mx-auto mt-auto flex w-full max-w-7xl flex-col sm:flex-row items-center justify-between gap-2.5 px-4 sm:px-8 pb-3 text-center sm:text-left">
+        <div className="hero-fade-up inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0D1117]/80 px-3.5 py-1.5 font-mono text-[10px] sm:text-[11px] text-slate-300 backdrop-blur-md shadow-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse shrink-0" />
+          <span className="truncate">Move cursor to direct studio light · Click anywhere to switch theme</span>
         </div>
 
-        <div className="hero-fade-up flex items-center gap-2.5 rounded-full border border-white/10 bg-[#0D1117]/80 px-3.5 py-1.5 backdrop-blur-md shadow-sm">
-          <span className="font-mono text-[11px] text-slate-400 mr-1">
-            Studio Ambience
+        <div className="hero-fade-up flex items-center gap-2 rounded-full border border-white/10 bg-[#0D1117]/80 px-3 py-1.5 backdrop-blur-md shadow-sm">
+          <span className="font-mono text-[10px] sm:text-[11px] text-slate-400 mr-1">
+            Ambience
           </span>
           {BACKDROP_ORDER.map((key) => (
             <button

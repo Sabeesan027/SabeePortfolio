@@ -134,3 +134,27 @@ body {
   background-color: rgba(6, 182, 212, 0.28);
   color: #f8fafc;
 }
+
+/* Tactile Haptic Micro-Interactions (Haptikos / Bato.dev style) */
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+button:active,
+[role="button"]:active {
+  transform: scale(0.975);
+  transition: transform 0.08s ease-out;
+}
+
+/* Responsive clamp container */
+.fluid-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 3.5vw, 2.5rem);
+  padding-right: clamp(1rem, 3.5vw, 2.5rem);
+  max-width: 82rem;
+}

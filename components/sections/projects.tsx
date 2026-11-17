@@ -315,7 +315,7 @@ export function ProjectsSection() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 16 }}
               transition={{ type: "spring", stiffness: 320, damping: 28 }}
-              className="relative z-10 max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-cyan-400/35 bg-[#0D1117] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.85)] sm:p-8"
+              className="relative z-10 max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl sm:rounded-3xl border border-cyan-400/35 bg-[#0D1117] p-5 sm:p-8 shadow-[0_24px_80px_rgba(0,0,0,0.85)] overscroll-contain"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>

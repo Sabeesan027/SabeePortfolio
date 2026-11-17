@@ -31,7 +31,7 @@ export function SectionHeading({
         <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
         {eyebrow}
       </div>
-      <h2 className="text-3xl font-bold tracking-tight text-slate-50 sm:text-4xl lg:text-[2.5rem] leading-[1.15]">
+      <h2 className="text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl md:text-4xl lg:text-[2.5rem] leading-[1.18] sm:leading-[1.15]">
         {title}{" "}
         {highlight ? (
           <span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-teal-300 bg-clip-text text-transparent">
@@ -40,7 +40,7 @@ export function SectionHeading({
         ) : null}
       </h2>
       {description ? (
-        <p className="mt-3 text-base leading-relaxed text-slate-400 sm:text-lg">
+        <p className="mt-2.5 text-sm leading-relaxed text-slate-400 sm:text-base md:text-lg">
           {description}
         </p>
       ) : null}
